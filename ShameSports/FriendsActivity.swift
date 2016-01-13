@@ -101,5 +101,12 @@ class FriendsActivity: UITableViewController {
     }
 
 
+    @IBAction func logOut(sender: UIBarButtonItem) {
+        FBSDKLoginManager().logOut()
+    //    FBSDKAccessToken.setCurrentAccessToken(nil)
+    //    FBSDKProfile.setCurrentProfile(nil)
+        
+        performSegueWithIdentifier("GoLogin", sender: nil)
+    }
 }
 

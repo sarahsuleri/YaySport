@@ -21,6 +21,9 @@
 		43520C951C2FDBAF00FACD63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43520C931C2FDBAF00FACD63 /* Main.storyboard */; };
 		43520C971C2FDBAF00FACD63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43520C961C2FDBAF00FACD63 /* Assets.xcassets */; };
 		43520C9A1C2FDBAF00FACD63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */; };
+		D261EC811C46622500EF539D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D261EC7E1C46622500EF539D /* FBSDKCoreKit.framework */; };
+		D261EC821C46622500EF539D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D261EC7F1C46622500EF539D /* FBSDKLoginKit.framework */; };
+		D261EC831C46622500EF539D /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D261EC801C46622500EF539D /* FBSDKShareKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,10 @@
 		43520C961C2FDBAF00FACD63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43520C991C2FDBAF00FACD63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43520C9B1C2FDBAF00FACD63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D261EC7E1C46622500EF539D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../../../Downloads/FacebookSDKs-iOS-20151111/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		D261EC7F1C46622500EF539D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../../Downloads/FacebookSDKs-iOS-20151111/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		D261EC801C46622500EF539D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../../Downloads/FacebookSDKs-iOS-20151111/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		D261EC8E1C466F0100EF539D /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D261EC821C46622500EF539D /* FBSDKLoginKit.framework in Frameworks */,
+				D261EC811C46622500EF539D /* FBSDKCoreKit.framework in Frameworks */,
+				D261EC831C46622500EF539D /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +66,7 @@
 		43520C811C2FDBAF00FACD63 = {
 			isa = PBXGroup;
 			children = (
+				D261EC851C46689E00EF539D /* Frameworks */,
 				43520C8C1C2FDBAF00FACD63 /* ShameSports */,
 				43520C8B1C2FDBAF00FACD63 /* Products */,
 			);
@@ -87,8 +98,19 @@
 				43520C961C2FDBAF00FACD63 /* Assets.xcassets */,
 				43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */,
 				43520C9B1C2FDBAF00FACD63 /* Info.plist */,
+				D261EC8E1C466F0100EF539D /* BridgingHeader.h */,
 			);
 			path = ShameSports;
+			sourceTree = "<group>";
+		};
+		D261EC851C46689E00EF539D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D261EC7E1C46622500EF539D /* FBSDKCoreKit.framework */,
+				D261EC7F1C46622500EF539D /* FBSDKLoginKit.framework */,
+				D261EC801C46622500EF539D /* FBSDKShareKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,7 +145,7 @@
 				TargetAttributes = {
 					43520C891C2FDBAF00FACD63 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = LL5RQ9UJ6X;
+						DevelopmentTeam = 43T82SMB9X;
 					};
 				};
 			};
@@ -284,14 +306,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "\"/Users/omartawfik/Downloads/FacebookSDKs-iOS-20151111\"";
 				INFOPLIST_FILE = ShameSports/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mhci.rwth-aachen.de.ShameSports";
+				PRODUCT_BUNDLE_IDENTIFIER = "mhci.rwth-aachen.de.Shamesport";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = ShameSports/BridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -300,14 +326,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "\"/Users/omartawfik/Downloads/FacebookSDKs-iOS-20151111\"";
 				INFOPLIST_FILE = ShameSports/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mhci.rwth-aachen.de.ShameSports";
+				PRODUCT_BUNDLE_IDENTIFIER = "mhci.rwth-aachen.de.Shamesport";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = ShameSports/BridgingHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

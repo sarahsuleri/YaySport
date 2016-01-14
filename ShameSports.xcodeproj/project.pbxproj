@@ -21,6 +21,9 @@
 		43520C951C2FDBAF00FACD63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43520C931C2FDBAF00FACD63 /* Main.storyboard */; };
 		43520C971C2FDBAF00FACD63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43520C961C2FDBAF00FACD63 /* Assets.xcassets */; };
 		43520C9A1C2FDBAF00FACD63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */; };
+		D20073831C47DEB2009DE546 /* FBSDKCoreKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = D261EC7E1C46622500EF539D /* FBSDKCoreKit.framework */; };
+		D20073841C47DEB2009DE546 /* FBSDKLoginKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = D261EC7F1C46622500EF539D /* FBSDKLoginKit.framework */; };
+		D20073851C47DEB2009DE546 /* FBSDKShareKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = D261EC801C46622500EF539D /* FBSDKShareKit.framework */; };
 		D261EC811C46622500EF539D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D261EC7E1C46622500EF539D /* FBSDKCoreKit.framework */; };
 		D261EC821C46622500EF539D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D261EC7F1C46622500EF539D /* FBSDKLoginKit.framework */; };
 		D261EC831C46622500EF539D /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D261EC801C46622500EF539D /* FBSDKShareKit.framework */; };
@@ -172,6 +175,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20073831C47DEB2009DE546 /* FBSDKCoreKit.framework in Resources */,
+				D20073841C47DEB2009DE546 /* FBSDKLoginKit.framework in Resources */,
+				D20073851C47DEB2009DE546 /* FBSDKShareKit.framework in Resources */,
 				43520C9A1C2FDBAF00FACD63 /* LaunchScreen.storyboard in Resources */,
 				43520C971C2FDBAF00FACD63 /* Assets.xcassets in Resources */,
 				43520C951C2FDBAF00FACD63 /* Main.storyboard in Resources */,

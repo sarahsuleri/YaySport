@@ -23,7 +23,33 @@ class LogIn: UIViewController,FBSDKLoginButtonDelegate{
 
         loginView.delegate = self
         loginView.readPermissions = ["public_profile", "user_friends"]
+        
+        
+        //Register Notifications
+        let gCalender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let day =  gCalender.components(NSCalendarUnit.Day , fromDate: NSDate())
+        let month =  gCalender.components(NSCalendarUnit.Month , fromDate: NSDate())
+        let year =  gCalender.components(NSCalendarUnit.Year , fromDate: NSDate())
 
+        
+        let dateComp:NSDateComponents = NSDateComponents()
+        dateComp.year = year.year
+        dateComp.month = month.month
+        dateComp.day =   day.day
+        dateComp.hour = 18
+        dateComp.minute = 45
+        dateComp.timeZone = NSTimeZone.systemTimeZone()
+        
+       
+        let fireDate:NSDate = gCalender.dateFromComponents(dateComp)!
+        
+        
+        let notification:UILocalNotification = UILocalNotification()
+        notification.alertBody = "Hi, I am a notification"
+        notification.fireDate = fireDate
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
     }
 
     

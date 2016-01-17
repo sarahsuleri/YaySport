@@ -11,7 +11,6 @@ import AVFoundation
 import UIKit
 import ImageIO
 
-
 extension UIColor {
     
     class func Yay() -> UIColor {

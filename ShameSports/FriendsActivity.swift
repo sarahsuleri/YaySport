@@ -11,13 +11,19 @@ import UIKit
 class FriendsActivity: UITableViewController {
     
     override func viewDidLoad() {
-        YayMgr.load()
-        //objects = YayMgr.myPosts
-        //objects.append(YayMgr.myPosts[0])
         super.viewDidLoad()
-        
-        
+        YayMgr.load()
+        self.tableView.reloadData()
     }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        print("Friends View will appear")
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+        print("FrPosts size here: ", YayMgr.FrPosts.count)
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         let object = YayMgr.FrPosts[indexPath.row]
@@ -105,7 +111,8 @@ class FriendsActivity: UITableViewController {
         FBSDKLoginManager().logOut()
     //    FBSDKAccessToken.setCurrentAccessToken(nil)
     //    FBSDKProfile.setCurrentProfile(nil)
-        
+        YayMgr.myPosts.removeAll()
+        YayMgr.FrPosts.removeAll()
         performSegueWithIdentifier("GoLogin", sender: nil)
     }
 }

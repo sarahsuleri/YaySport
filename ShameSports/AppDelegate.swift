@@ -8,10 +8,6 @@
 
 import UIKit
 
-
-
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,13 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
        
-  FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         var initialViewController: UIViewController
         
-        if(FBSDKAccessToken.currentAccessToken() != nil){
+        let accessToken = FBSDKAccessToken.currentAccessToken()
+        if (accessToken != nil) {
+            YayMgr.userID = Int(accessToken.userID)!
+            accessToken
             let vc = mainStoryboard.instantiateViewControllerWithIdentifier("TabBarController") as UIViewController
             initialViewController = vc
         }else{

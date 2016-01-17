@@ -9,10 +9,10 @@
 import Foundation
 
 
-struct Post {
+class Post {
     let Poster : User
     let Points : [Int]
-    let Comments : [Comment]
+    var Comments : [Comment]
     let Text : Message
     
     init (Poster : User,Points : [Int],Comments : [Comment],Text : Message){

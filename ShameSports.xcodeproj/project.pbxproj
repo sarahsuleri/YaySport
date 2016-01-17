@@ -17,6 +17,8 @@
 		233FDFDC1C41CE5A00F81A6A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FDFDB1C41CE5A00F81A6A /* Utils.swift */; };
 		233FDFE01C41D60C00F81A6A /* FriendsActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FDFDF1C41D60C00F81A6A /* FriendsActivity.swift */; };
 		233FDFE21C41D65600F81A6A /* MyActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FDFE11C41D65600F81A6A /* MyActivity.swift */; };
+		2652F7B11C4AA14600214489 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2652F7B01C4AA14600214489 /* HealthKit.framework */; };
+		2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652F7B21C4AA1A800214489 /* HealthManager.swift */; };
 		43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */; };
 		43520C951C2FDBAF00FACD63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43520C931C2FDBAF00FACD63 /* Main.storyboard */; };
 		43520C971C2FDBAF00FACD63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43520C961C2FDBAF00FACD63 /* Assets.xcassets */; };
@@ -42,6 +44,9 @@
 		233FDFDB1C41CE5A00F81A6A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		233FDFDF1C41D60C00F81A6A /* FriendsActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsActivity.swift; sourceTree = "<group>"; };
 		233FDFE11C41D65600F81A6A /* MyActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyActivity.swift; sourceTree = "<group>"; };
+		2652F7AF1C4AA14600214489 /* ShameSports.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShameSports.entitlements; sourceTree = "<group>"; };
+		2652F7B01C4AA14600214489 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		2652F7B21C4AA1A800214489 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		43520C8A1C2FDBAF00FACD63 /* ShameSports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShameSports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43520C941C2FDBAF00FACD63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D20073931C47E4B9009DE546 /* FBSDKLoginKit.framework in Frameworks */,
+				2652F7B11C4AA14600214489 /* HealthKit.framework in Frameworks */,
 				D20073921C47E4B9009DE546 /* FBSDKCoreKit.framework in Frameworks */,
 				D20073941C47E4B9009DE546 /* FBSDKShareKit.framework in Frameworks */,
 				E36BBF4FC31A4F9BFD6A1788 /* libPods.a in Frameworks */,
@@ -101,6 +107,7 @@
 		43520C8C1C2FDBAF00FACD63 /* ShameSports */ = {
 			isa = PBXGroup;
 			children = (
+				2652F7AF1C4AA14600214489 /* ShameSports.entitlements */,
 				43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */,
 				233FDFCC1C418BCB00F81A6A /* LogIn.swift */,
 				233FDFDF1C41D60C00F81A6A /* FriendsActivity.swift */,
@@ -112,6 +119,7 @@
 				233FDFCE1C41BBFE00F81A6A /* Comment.swift */,
 				233FDFDB1C41CE5A00F81A6A /* Utils.swift */,
 				233FDFD91C41BE8300F81A6A /* DummyData.swift */,
+				2652F7B21C4AA1A800214489 /* HealthManager.swift */,
 				43520C931C2FDBAF00FACD63 /* Main.storyboard */,
 				43520C961C2FDBAF00FACD63 /* Assets.xcassets */,
 				43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */,
@@ -124,6 +132,7 @@
 		D261EC851C46689E00EF539D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2652F7B01C4AA14600214489 /* HealthKit.framework */,
 				D200738F1C47E4B9009DE546 /* FBSDKCoreKit.framework */,
 				D20073901C47E4B9009DE546 /* FBSDKLoginKit.framework */,
 				D20073911C47E4B9009DE546 /* FBSDKShareKit.framework */,
@@ -167,7 +176,15 @@
 				TargetAttributes = {
 					43520C891C2FDBAF00FACD63 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 43T82SMB9X;
+						DevelopmentTeam = C2X5TLHQYM;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -265,6 +282,7 @@
 				43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */,
 				233FDFDC1C41CE5A00F81A6A /* Utils.swift in Sources */,
 				233FDFE01C41D60C00F81A6A /* FriendsActivity.swift in Sources */,
+				2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */,
 				233FDFCD1C418BCB00F81A6A /* LogIn.swift in Sources */,
 				233FDFDA1C41BE8300F81A6A /* DummyData.swift in Sources */,
 				233FDFD41C41BD3E00F81A6A /* Message.swift in Sources */,
@@ -381,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ShameSports/ShameSports.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -390,7 +409,7 @@
 				INFOPLIST_FILE = ShameSports/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mhci.rwth-aachen.de.Shamesport";
+				PRODUCT_BUNDLE_IDENTIFIER = YaySport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ShameSports/BridgingHeader.h;
@@ -405,6 +424,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ShameSports/ShameSports.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -414,7 +434,7 @@
 				INFOPLIST_FILE = ShameSports/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mhci.rwth-aachen.de.Shamesport";
+				PRODUCT_BUNDLE_IDENTIFIER = YaySport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = ShameSports/BridgingHeader.h;

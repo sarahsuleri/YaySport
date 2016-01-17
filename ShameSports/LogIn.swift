@@ -21,20 +21,40 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
     var userData:AnyObject?
     var userFriends:AnyObject?
     
+    let healthManager:HealthManager = HealthManager()
+    
     override func viewDidLoad() {
-
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         loginView.delegate = self
-        loginView.readPermissions = ["public_profile", "email", "user_friends"]
-
+        loginView.readPermissions = ["public_profile", "user_friends"]
+        authorizeHealthKit()
     }
+    
+    func authorizeHealthKit()
+    {
+        healthManager.authorizeHealthKit { (authorized,  error) -> Void in
+            if authorized {
+                print("HealthKit authorization received.")
+            }
+            else
+            {
+                print("HealthKit authorization denied!")
+                if error != nil {
+                    print("\(error)")
+                }
+            }
+        }
+    }
+    
+    
 
     
     func returnUserData()
     {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large)"])
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+        graphRequest.startWithCompletionHandler{ (connection, result, error) -> Void in
             
             if ((error) != nil)
             {
@@ -49,7 +69,7 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
                 //print("User Name is: \(userName)")
                 self.userData = result
             }
-        })
+        }
     }
     
     func returnUserFriends()
@@ -57,13 +77,14 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
         let fbRequest = FBSDKGraphRequest(graphPath:"/me/friends", parameters: ["fields": "id, name, first_name, last_name, picture.type(large)"]);
         fbRequest.startWithCompletionHandler { (connection : FBSDKGraphRequestConnection!, result : AnyObject!, error : NSError!) -> Void in
             
-            if error == nil {
-                //print("Friends are : \(result)")
+            if error != nil
+            {
+              print("Error Getting Friends \(error)")
+                
+            } else
+            {
+                print("Friends are : \(result)")
                 self.userFriends = result
-                
-            } else {
-                
-                print("Error Getting Friends \(error)");
                 
             }
         }

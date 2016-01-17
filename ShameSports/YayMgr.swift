@@ -30,12 +30,41 @@ class YayMgr {
         BooMsg.append(m1)
         BooMsg.append(m3)
         
-        
+
         
     }
     
+    static func getBooMsg() -> String{
+        let randomIndex = arc4random_uniform(UInt32(YayMgr.BooMsg.count))
+        return YayMgr.BooMsg[Int(randomIndex)].Description
+    }
+    
+    static func getYayMsg() -> String{
+         let randomIndex = arc4random_uniform(UInt32(YayMgr.YayMsg.count))
+        return YayMgr.YayMsg[Int(randomIndex)].Description
+    }
+    
+    // Criteria to show msgs
+    static func criteriaToShowMsg(dailyCount: Int){
+    
+        YayMgr.load() //Just for testing
+        if( dailyCount < 200){
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                YayMgr.registerNotification(dailyCount.description + " Steps!! " + YayMgr.getBooMsg())
+            })
+        }
+        else if( dailyCount >= 200){
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                YayMgr.registerNotification(dailyCount.description + " Steps!! " + YayMgr.getYayMsg())
+            })
+        }
+    
+    }
+    
     // Register Notifications : To be altered for different msgs
-    static func registerNotification(){
+    static func registerNotification(msg : String){
         
     //Register Notifications
     let gCalender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
@@ -60,8 +89,8 @@ class YayMgr {
     
     
     let notification:UILocalNotification = UILocalNotification()
-    notification.alertTitle = "200 Steps"
-    notification.alertBody = "When your friends tell you look good, ditch them, they are all a bunch of liars"
+    //notification.alertTitle = "200 Steps"
+    notification.alertBody = msg
     notification.fireDate = fireDate
     
     UIApplication.sharedApplication().scheduleLocalNotification(notification)

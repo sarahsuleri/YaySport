@@ -15,8 +15,8 @@ class LogIn: UIViewController,FBSDKLoginButtonDelegate{
     
     var userData:AnyObject?
     var userFriends:AnyObject?
-    
-    let healthManager:HealthManager = HealthManager()
+     let healthManager:HealthManager = HealthManager()
+
     
     override func viewDidLoad() {
         
@@ -25,8 +25,9 @@ class LogIn: UIViewController,FBSDKLoginButtonDelegate{
         
         loginView.delegate = self
         loginView.readPermissions = ["public_profile", "user_friends"]
-        authorizeHealthKit()
-    }
+        //authorizeHealthKit()
+        }
+    
     
     func authorizeHealthKit()
     {
@@ -43,7 +44,6 @@ class LogIn: UIViewController,FBSDKLoginButtonDelegate{
             }
         }
     }
-    
     
 
     

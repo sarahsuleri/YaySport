@@ -28,9 +28,9 @@ class HealthManager {
     func authorizeHealthKit(completion: ((success:Bool, error:NSError!) -> Void)!)
     {
         let healthKitTypesToRead : NSSet = NSSet(set: [objStepsCount,objFlightsClimbed,objDistanceWalkedRunning ])
-        let healthKitTypesToWrite = NSSet(set: [ objStepsCount])
+       
 
-        healthKitStore?.requestAuthorizationToShareTypes(healthKitTypesToWrite as? Set<HKSampleType>, readTypes: healthKitTypesToRead as? Set<HKObjectType>) { (success, error) -> Void in
+        healthKitStore?.requestAuthorizationToShareTypes(nil, readTypes: healthKitTypesToRead as? Set<HKObjectType>) { (success, error) -> Void in
             
             if success && error == nil{
                 dispatch_async(dispatch_get_main_queue(),
@@ -145,18 +145,16 @@ class HealthManager {
                     return
                 }
                 
-                var dailyAVG:Double = 0
+                var dailyAVG:Int = 0
                 for _steps in results as! [HKQuantitySample]
                 {
-                    dailyAVG += _steps.quantity.doubleValueForUnit(HKUnit.countUnit())
+                    dailyAVG += Int(_steps.quantity.doubleValueForUnit(HKUnit.countUnit()))
                 }
                 print(dailyAVG)
-                if( dailyAVG < 200){
-                    dispatch_async(dispatch_get_main_queue(), {
-                   
-                        YayMgr.registerNotification()
-                    })
-                }
+                
+                //Criteria to show msg
+                
+                YayMgr.criteriaToShowMsg(dailyAVG)
                 
         })
         

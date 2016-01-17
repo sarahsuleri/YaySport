@@ -16,7 +16,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let healthManager:HealthManager = HealthManager()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         //SS: Register Notifications 
@@ -25,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         
+        
+        // HK 
+        
+        authorizeHealthKit()
+
         //SS: End
         
         
@@ -49,7 +54,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
- 
+    func authorizeHealthKit()
+    {
+        healthManager.authorizeHealthKit { (authorized,  error) -> Void in
+            if authorized {
+                print("HealthKit authorization received.")
+            }
+            else
+            {
+                print("HealthKit authorization denied!")
+                if error != nil {
+                    print("\(error)")
+                }
+            }
+        }
+    }
+    
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
      return   FBSDKApplicationDelegate.sharedInstance().application(app, openURL: url, sourceApplication: options["UIApplicationOpenURLOptionsSourceApplicationKey"] as! String!, annotation: nil)

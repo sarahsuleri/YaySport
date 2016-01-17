@@ -32,6 +32,14 @@ class HealthManager {
 
         healthKitStore?.requestAuthorizationToShareTypes(healthKitTypesToWrite as? Set<HKSampleType>, readTypes: healthKitTypesToRead as? Set<HKObjectType>) { (success, error) -> Void in
             
+            if success && error == nil{
+                dispatch_async(dispatch_get_main_queue(),
+                    self.startObservingStepsChanges)
+            } else {
+                if let theError = error{
+                    print("Error occurred = \(theError)")
+                }
+            }
             if( completion != nil )
             {
                 completion(success:success,error:error)
@@ -87,6 +95,120 @@ class HealthManager {
         }
         self.healthKitStore!.executeQuery(sampleQuery)
     }
+    
+    // Observer Query
+    
+    lazy var types: Set<HKObjectType> = {
+        return [self.objStepsCount]
+    }()
+    
+    
+    lazy var predicate: NSPredicate = {
+        let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        
+        let endDate = NSDate()
+        let startDate = cal.startOfDayForDate(endDate)
+        let now = NSDate()
+        let yesterday =
+        NSCalendar.currentCalendar().dateByAddingUnit(.Day,
+            value: -1,
+            toDate: now,
+            options: .WrapComponents)
+        
+        return HKQuery.predicateForSamplesWithStartDate(startDate,
+            endDate: endDate,
+            options: .StrictEndDate)
+    }()
+    
+    lazy var query: HKObserverQuery = {
+        return HKObserverQuery(sampleType: self.objStepsCount,
+            predicate: self.predicate,
+            updateHandler: self.stepsChangedHandler)
+    }()
+    
+    func fetchRecordedStepsISinceStartOfDay(){
+        
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+            ascending: true)
+        
+        let query = HKSampleQuery(sampleType: objStepsCount,
+            predicate: predicate,
+            limit: Int(HKObjectQueryNoLimit),
+            sortDescriptors: [sortDescriptor],
+            resultsHandler: {(query: HKSampleQuery,
+                results: [HKSample]?,
+                error: NSError?) in
+                
+                guard let results = results where results.count > 0 else {
+                    print("Could not read the user's steps")
+                    print("or no steps data was available")
+                    return
+                }
+                
+                var dailyAVG:Double = 0
+                for _steps in results as! [HKQuantitySample]
+                {
+                    dailyAVG += _steps.quantity.doubleValueForUnit(HKUnit.countUnit())
+                }
+                print(dailyAVG)
+                if( dailyAVG < 200){
+                    dispatch_async(dispatch_get_main_queue(), {
+                   
+                        YayMgr.registerNotification()
+                    })
+                }
+                
+        })
+        
+        healthKitStore!.executeQuery(query)
+        
+    }
+    
+    func stepsChangedHandler(query: HKObserverQuery,
+        completionHandler: HKObserverQueryCompletionHandler,
+        error: NSError?){
+            
+            fetchRecordedStepsISinceStartOfDay()
+            
+            completionHandler()
+            
+    }
+    
+    func startObservingStepsChanges(){
+        healthKitStore!.executeQuery(query)
+        healthKitStore!.enableBackgroundDeliveryForType(objStepsCount,
+            frequency: .Daily,
+            withCompletion: {succeeded, error in
+                
+                if succeeded{
+                    print("Enabled background delivery of steps changes")
+                } else {
+                    if let theError = error{
+                        print("Failed to enable background delivery of steps changes. ")
+                        print("Error = \(theError)")
+                    }
+                }
+                
+        })
+    }
+    
+    func stopObservingStepsChanges(){
+        healthKitStore!.stopQuery(query)
+        healthKitStore!.disableAllBackgroundDeliveryWithCompletion{
+            succeeded, error in
+            
+            if succeeded{
+                print("Disabled background delivery of steps changes")
+            } else {
+                if let theError = error{
+                    print("Failed to disable background delivery of steps changes. ")
+                    print("Error = \(theError)")
+                }
+            }
+            
+        }
+    }
+
     
 }
 

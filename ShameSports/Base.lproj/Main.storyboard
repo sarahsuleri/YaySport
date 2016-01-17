@@ -319,7 +319,7 @@
         <!--Friends' Activity-->
         <scene sceneID="DE3-gP-2Ka">
             <objects>
-                <tableViewController id="iJs-Re-PQM" customClass="FriendsActivity" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="friendsActivityTVC" id="iJs-Re-PQM" customClass="FriendsActivity" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="28" sectionFooterHeight="28" id="4uz-PC-BDs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -480,7 +480,7 @@
         <!--My Activity-->
         <scene sceneID="TC7-da-Uh5">
             <objects>
-                <tableViewController id="1HK-oF-ew8" customClass="MyActivity" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="myActivityTVC" id="1HK-oF-ew8" customClass="MyActivity" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="28" sectionFooterHeight="28" id="ohC-PN-SAK">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

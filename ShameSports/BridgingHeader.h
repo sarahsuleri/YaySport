@@ -11,5 +11,6 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <Firebase/Firebase.h>
 
 #endif /* BridgingHeader_h */

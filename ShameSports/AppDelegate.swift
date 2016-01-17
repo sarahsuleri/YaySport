@@ -8,10 +8,6 @@
 
 import UIKit
 
-
-
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -41,7 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         var initialViewController: UIViewController
         
-        if(FBSDKAccessToken.currentAccessToken() != nil){
+        let accessToken = FBSDKAccessToken.currentAccessToken()
+        if (accessToken != nil) {
+            YayMgr.userID = Int(accessToken.userID)!
+            accessToken
             let vc = mainStoryboard.instantiateViewControllerWithIdentifier("TabBarController") as UIViewController
             initialViewController = vc
         }else{

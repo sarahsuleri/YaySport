@@ -10,6 +10,15 @@ import Foundation
 import HealthKit
 
 class YayMgr {
+    
+    static var firebase: Firebase = {
+        let firebase = Firebase(url: "https://yaysport.firebaseio.com")
+        return firebase
+    }()
+    
+    static var userID = 0
+    static var friendsIDs : [Int] = [107563939625133, 128929287485572]
+    static var limitQueryTo : UInt = 50
     static var myPosts : [Post] = []
     static var FrPosts : [Post] = []
     static var BooMsg : [Message] = []
@@ -20,15 +29,46 @@ class YayMgr {
     var floors,steps, distanceWalked:HKQuantitySample?
     
     static func load() {
-        
         // this to be changed to  load from firebase
         loaded = true
-        myPosts = DummyD.getMyPost()
-        FrPosts = DummyD.getFrPost()
+        //myPosts = loadPostsFromDB()
+        //FrPosts = DummyD.getFrPost()
+        loadFriendsPosts()
+        loadMyPosts()
         YayMsg.append(m0)
         YayMsg.append(m2)
         BooMsg.append(m1)
         BooMsg.append(m3)
+    }
+    
+    static func loadMyPosts() {
+        myPosts.removeAll()
+        loadPostByUserID(userID)
+    }
+    
+    
+    static func loadFriendsPosts() {
+        FrPosts.removeAll()
+        let postsRef = firebase.childByAppendingPath("posts")
+        postsRef.queryLimitedToLast(limitQueryTo).observeEventType(.ChildAdded, withBlock: {snapshot in
+            if friendsIDs.contains(snapshot.value["Poster"] as! Int) {
+                //print("Load Post from ", snapshot.value["Poster"] as! Int)
+                loadPost(snapshot, tag: "friends")
+            }
+        })
+    }
+    
+    
+    static func loadPostByUserID(id: Int) {
+        let postsRef = firebase.childByAppendingPath("posts")
+        
+        postsRef.queryOrderedByChild("Poster").queryEqualToValue(id).observeEventType(.ChildAdded, withBlock: { snapshot in
+            loadPost(snapshot, tag: "my")
+        })
+    }
+    
+    
+    static func loadPost(snapshot: FDataSnapshot, tag: String) {
         
 
         

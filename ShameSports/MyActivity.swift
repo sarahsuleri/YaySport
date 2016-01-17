@@ -9,14 +9,21 @@
 import UIKit
 
 class MyActivity: UITableViewController {
+    
     override func viewDidLoad() {
-        YayMgr.load()
-        //objects = YayMgr.myPosts
-        //objects.append(YayMgr.myPosts[0])
         super.viewDidLoad()
-        
-        
+        YayMgr.load()
+        //print("MyPosts size here: ", YayMgr.myPosts.count)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        print("My View will appear")
+        super.viewWillAppear(animated)
+        //YayMgr.load()
+        self.tableView.reloadData()
+    }
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         let object = YayMgr.myPosts[indexPath.row]
@@ -31,10 +38,7 @@ class MyActivity: UITableViewController {
         comCount.text = String(object.Comments.count)
         des.text = object.Text.Description
 
-        
-
-        
-        if(object.Text.Yay){
+        if(object.Text.Yay) {
             
             points.text = "+" + String(object.Points.count)
             title.textColor  = UIColor.Yay()

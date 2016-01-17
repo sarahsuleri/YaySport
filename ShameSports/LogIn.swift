@@ -8,7 +8,12 @@
 
 import UIKit
 
-class LogIn: UIViewController,FBSDKLoginButtonDelegate{
+class LogIn: UIViewController, FBSDKLoginButtonDelegate {
+    
+    private lazy var firebase: Firebase =  {
+        let firebase = Firebase(url: "https://yaysport.firebaseio.com")
+        return firebase
+    }()
     
    
     @IBOutlet weak var loginView: FBSDKLoginButton!
@@ -22,7 +27,6 @@ class LogIn: UIViewController,FBSDKLoginButtonDelegate{
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         loginView.delegate = self
         loginView.readPermissions = ["public_profile", "user_friends"]
         //authorizeHealthKit()
@@ -59,9 +63,10 @@ class LogIn: UIViewController,FBSDKLoginButtonDelegate{
             }
             else
             {
-                print("fetched user: \(result)")
-                let userName = result.valueForKey("name") as? String
-                print("User Name is: \(userName)")
+                //print("fetched user: \(result)")
+                self.saveInDB(result)
+                //let userName = result.valueForKey("name") as? String
+                //print("User Name is: \(userName)")
                 self.userData = result
             }
         }
@@ -74,12 +79,10 @@ class LogIn: UIViewController,FBSDKLoginButtonDelegate{
             
             if error != nil
             {
-                
-              print("Error Getting Friends \(error)");
+              print("Error Getting Friends \(error)")
                 
             } else
             {
-                
                 print("Friends are : \(result)")
                 self.userFriends = result
                 
@@ -118,6 +121,25 @@ class LogIn: UIViewController,FBSDKLoginButtonDelegate{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
+    // MARK: - Firebase Save User Data
+    
+    func saveInDB(data: AnyObject!) {
+        let id = data.valueForKey("id") as! String
+        let firstName = data.valueForKey("first_name") as! String
+        let lastName = data.valueForKey("last_name") as! String
+        let photoUrl = data.valueForKey("picture")!.valueForKey("data")!.valueForKey("url") as! String
+        YayMgr.userID = Int(id)!
+        
+        let usersRef = firebase.childByAppendingPath("users/\(id)")
+        usersRef.setValue([
+            "FirstName": firstName,
+            "LastName": lastName,
+            "PhotoUrl": photoUrl
+        ])
     }
     
 

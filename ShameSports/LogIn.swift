@@ -20,7 +20,7 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
     
     var userData:AnyObject?
     var userFriends:AnyObject?
-     let healthManager:HealthManager = HealthManager()
+
 
     
     override func viewDidLoad() {
@@ -29,25 +29,8 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         loginView.delegate = self
         loginView.readPermissions = ["public_profile", "user_friends"]
-        //authorizeHealthKit()
         }
     
-    
-    func authorizeHealthKit()
-    {
-        healthManager.authorizeHealthKit { (authorized,  error) -> Void in
-            if authorized {
-                print("HealthKit authorization received.")
-            }
-            else
-            {
-                print("HealthKit authorization denied!")
-                if error != nil {
-                    print("\(error)")
-                }
-            }
-        }
-    }
     
 
     

@@ -150,7 +150,7 @@ class HealthManager {
                 {
                     dailyAVG += Int(_steps.quantity.doubleValueForUnit(HKUnit.countUnit()))
                 }
-                print(dailyAVG)
+               
                 
                 //Criteria to show msg
                 

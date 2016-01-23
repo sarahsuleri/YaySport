@@ -165,19 +165,28 @@ class YayMgr {
     // Criteria to show msgs
     static func criteriaToShowMsg(dailyCount: Int){
     
-        YayMgr.load() //Just for testing
+        var msgDesc : String = ""
+        var isYay: Bool = true
+       
+
+        //YayMgr.load() //Just for testing
         if( dailyCount < 200){
             dispatch_async(dispatch_get_main_queue(), {
-                
-                YayMgr.registerNotification(dailyCount.description + " Steps!! " + YayMgr.getBooMsg())
+                msgDesc = YayMgr.getBooMsg()
+                isYay = false
+                YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
             })
         }
         else if( dailyCount >= 200){
             dispatch_async(dispatch_get_main_queue(), {
-                
-                YayMgr.registerNotification(dailyCount.description + " Steps!! " + YayMgr.getYayMsg())
+                msgDesc = YayMgr.getYayMsg()
+                isYay = true
+                YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
             })
         }
+        
+        // Msg object
+        var msgObj :Message = Message(Id: 0,Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
     
     }
     
@@ -212,6 +221,8 @@ class YayMgr {
     notification.fireDate = fireDate
     
     UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+        
         
     }
     // HK : Load Data : Sample Queries for testing 

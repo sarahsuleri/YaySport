@@ -14,19 +14,18 @@ class TabBarViewController: UITabBarController {
         let firebase = Firebase(url: "https://yaysport.firebaseio.com")
         return firebase
     }()
+    
     var messagesRef: Firebase!
-    var handle: UInt!
+    var messagesHandle: UInt!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Tab bar view did load")
         messagesRef = firebase.childByAppendingPath("messages")
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("Tab bar view will appear")
-        handle = messagesRef.observeEventType(.Value, withBlock: {
+        messagesHandle = messagesRef.observeEventType(.Value, withBlock: {
             snapshot in
             let enumerator = snapshot.children
             while let snapChild = enumerator.nextObject() as? FDataSnapshot {
@@ -43,7 +42,7 @@ class TabBarViewController: UITabBarController {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         // Remove listener with handle
-        messagesRef.removeObserverWithHandle(handle)
+        messagesRef.removeObserverWithHandle(messagesHandle)
     }
 
     override func didReceiveMemoryWarning() {

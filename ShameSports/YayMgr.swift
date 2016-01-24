@@ -17,7 +17,7 @@ class YayMgr {
     }()
     
     static var userID = 0
-    static var friendsIDs : [Int] = [107563939625133, 128929287485572]
+    static var friendsIDs : [Int] = []
     static var limitQueryTo : UInt = 50
     static var myPosts : [Post] = []
     static var FrPosts : [Post] = []
@@ -157,9 +157,25 @@ class YayMgr {
     }
     
     
-    // MARK: - Firebase: send data in DB
+    // MARK: - Firebase: save data to DB
     
+    static func saveUserInDB(data: AnyObject!) {
+        YayMgr.userID = Int(data.valueForKey("id") as! String)!
+        let usersRef = firebase.childByAppendingPath("users/\(YayMgr.userID)")
+        usersRef.setValue([
+            "FirstName": data.valueForKey("first_name") as! String,
+            "LastName": data.valueForKey("last_name") as! String,
+            "PhotoUrl": data.valueForKey("picture")!.valueForKey("data")!.valueForKey("url") as! String
+        ])
+    }
     
+    static func saveFriendsIDs(friendsData: NSDictionary!) {
+        let usersRef = firebase.childByAppendingPath("users/\(YayMgr.userID)")
+        for friend in friendsData.valueForKey("data") as! NSArray {
+            YayMgr.friendsIDs.append(Int(friend.valueForKey("id") as! String)!)
+        }
+        usersRef.updateChildValues([ "FriendsIDs": YayMgr.friendsIDs ])
+    }
     
     
     static func getBooMsg() -> String{

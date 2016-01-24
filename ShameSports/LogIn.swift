@@ -18,24 +18,16 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
    
     @IBOutlet weak var loginView: FBSDKLoginButton!
     
-    var userData:AnyObject?
-    var userFriends:AnyObject?
+    //var userData: AnyObject?
+    //var userFriends: AnyObject?
 
-
-    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         loginView.delegate = self
         loginView.readPermissions = ["public_profile", "user_friends"]
-        }
+    }
     
-    
-
-    
-    func returnUserData()
-    {
+    func returnUserData() {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large)"])
         graphRequest.startWithCompletionHandler{ (connection, result, error) -> Void in
             
@@ -47,10 +39,10 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
             else
             {
                 //print("fetched user: \(result)")
-                self.saveInDB(result)
+                YayMgr.saveUserInDB(result)
                 //let userName = result.valueForKey("name") as? String
                 //print("User Name is: \(userName)")
-                self.userData = result
+                //self.userData = result
             }
         }
     }
@@ -66,8 +58,9 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
                 
             } else
             {
-                print("Friends are : \(result)")
-                self.userFriends = result
+                //print("Friends are : \(result)")
+                YayMgr.saveFriendsIDs(result as! NSDictionary)
+                //self.userFriends = result
                 
             }
         }
@@ -105,26 +98,5 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-    // MARK: - Firebase Save User Data
-    
-    func saveInDB(data: AnyObject!) {
-        let id = data.valueForKey("id") as! String
-        let firstName = data.valueForKey("first_name") as! String
-        let lastName = data.valueForKey("last_name") as! String
-        let photoUrl = data.valueForKey("picture")!.valueForKey("data")!.valueForKey("url") as! String
-        YayMgr.userID = Int(id)!
-        
-        let usersRef = firebase.childByAppendingPath("users/\(id)")
-        usersRef.setValue([
-            "FirstName": firstName,
-            "LastName": lastName,
-            "PhotoUrl": photoUrl
-        ])
-    }
-    
-
 
 }

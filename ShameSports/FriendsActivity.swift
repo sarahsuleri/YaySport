@@ -21,10 +21,12 @@ class FriendsActivity: UITableViewController {
         print("Friends View will appear")
         super.viewWillAppear(animated)
         self.tableView.reloadData()
-        print("FrPosts size here: ", YayMgr.FrPosts.count)
-        //YayMgr.loadMessages()
-        print("All yays: ", YayMgr.YayMsg.count)
-        print("All boos: ", YayMgr.BooMsg.count)
+        // Test: Create a Post
+        /*
+        YayMgr.createPost(Message(Id: 0, Title: "Blabla", Description: "Blabla", Yay: false)) { newPost in
+            print("New post: ", newPost)
+        }
+        */
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

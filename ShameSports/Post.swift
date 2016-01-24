@@ -9,17 +9,19 @@
 import Foundation
 
 
-class Post {
+struct Post {
     let Poster : User
     let Points : [Int]
     var Comments : [Comment]
     let Text : Message
+    let Timestamp : NSTimeInterval
     
-    init (Poster : User,Points : [Int],Comments : [Comment],Text : Message){
+    init (Poster : User,Points : [Int],Comments : [Comment],Text : Message,Timestamp: NSTimeInterval) {
         self.Poster = Poster
         self.Points = Points
         self.Comments = Comments
         self.Text  = Text
+        self.Timestamp = Timestamp
     }
     
 }

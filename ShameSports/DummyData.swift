@@ -41,6 +41,7 @@ class DummyD {
     static var myPosts : [Post] = []
     static var FrPosts : [Post] = []
     
+    /*
     static func getMyPost() -> [Post] {
         myPosts.append(Post(Poster: u0, Points: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21], Comments: [c2,c3,c4,c5,c6], Text: m1))
         myPosts.append(Post(Poster: u0, Points: [1,2,3,4,5,6,7,8,9,10,11], Comments: [c0,c1,c3,c4,c5,c6], Text: m2))
@@ -59,6 +60,7 @@ class DummyD {
         FrPosts.append(Post(Poster: u6, Points: [1,2,3,4,5,6,7,8,9], Comments: [c0,c1,c2,c3,c4,c5,c6], Text: m2))
         return FrPosts
     }
+    */
    
 }
 

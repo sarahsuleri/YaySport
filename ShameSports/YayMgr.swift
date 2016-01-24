@@ -78,6 +78,9 @@ class YayMgr {
         // Get Points
         let points = snapshot.value["Points"] as! [Int]
         
+        // Get Timestamp
+        let timestamp = snapshot.value["Timestamp"] as! Double
+        
         // Get Post Owner
         getUserByID(posterID) { poster in
             
@@ -91,7 +94,7 @@ class YayMgr {
                 loadComments(Int(snapshot.key)!) { comments in
                     
                     // Create a Post
-                    let post = Post(Poster: poster, Points: points, Comments: comments, Text: text)
+                    let post = Post(Poster: poster, Points: points, Comments: comments, Text: text, Timestamp: timestamp)
                     
                     if tag == "friends" {
                         FrPosts.insert(post, atIndex: 0)
@@ -106,15 +109,15 @@ class YayMgr {
     
     
     static func getUserByID(id: Int, completionHandler: (User) -> ()) {
-        let posterRef = firebase.childByAppendingPath("users/\(id)")
-        posterRef.observeEventType(.Value, withBlock: {
+        let userRef = firebase.childByAppendingPath("users/\(id)")
+        userRef.observeEventType(.Value, withBlock: {
             snapshot in
-            let poster = User(Id: id,
+            let user = User(Id: id,
                 FirstName: snapshot.value["FirstName"] as! String,
                 LastName: snapshot.value["LastName"] as! String,
                 PhotoUrl: snapshot.value["PhotoUrl"] as! String
             )
-            completionHandler(poster)
+            completionHandler(user)
         })
     }
     
@@ -159,14 +162,18 @@ class YayMgr {
     
     // MARK: - Firebase: save data to DB
     
-    static func saveUserInDB(data: AnyObject!) {
-        YayMgr.userID = Int(data.valueForKey("id") as! String)!
+    static func saveUserInDB(userData: AnyObject!) {
+        YayMgr.userID = Int(userData.valueForKey("id") as! String)!
         let usersRef = firebase.childByAppendingPath("users/\(YayMgr.userID)")
         usersRef.setValue([
-            "FirstName": data.valueForKey("first_name") as! String,
-            "LastName": data.valueForKey("last_name") as! String,
-            "PhotoUrl": data.valueForKey("picture")!.valueForKey("data")!.valueForKey("url") as! String
+            "FirstName": userData.valueForKey("first_name") as! String,
+            "LastName": userData.valueForKey("last_name") as! String,
+            "PhotoUrl": userData.valueForKey("picture")!.valueForKey("data")!.valueForKey("url") as! String
         ])
+    }
+    
+    static func savePostInDB() {
+        
     }
     
     static func saveFriendsIDs(friendsData: NSDictionary!) {
@@ -177,6 +184,15 @@ class YayMgr {
         usersRef.updateChildValues([ "FriendsIDs": YayMgr.friendsIDs ])
     }
     
+    
+    static func createPost(message: Message, completionHandler: Post -> ()) {
+        var newPost: Post!
+        getUserByID(userID) { currentUser in
+            print("current user: ", currentUser.FirstName, " ", currentUser.LastName)
+            newPost = Post(Poster: currentUser, Points: [], Comments: [], Text: message, Timestamp: NSDate().timeIntervalSince1970)
+            completionHandler(newPost)
+        }
+    }
     
     static func getBooMsg() -> String{
         let randomIndex = arc4random_uniform(UInt32(YayMgr.BooMsg.count))

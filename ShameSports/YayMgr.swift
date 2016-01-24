@@ -172,8 +172,15 @@ class YayMgr {
         ])
     }
     
-    static func savePostInDB() {
-        
+    static func savePostInDB(post: Post) {
+        let postsRef = firebase.childByAppendingPath("posts").childByAutoId()
+        postsRef.setValue([
+            "Comments": [],
+            "Points": [],
+            "Poster": post.Poster.Id,
+            "Text": ["Message": post.Text.Id, "Title": post.Text.Title],
+            "Timestamp": NSDate().timeIntervalSince1970
+        ])
     }
     
     static func saveFriendsIDs(friendsData: NSDictionary!) {
@@ -190,6 +197,7 @@ class YayMgr {
         getUserByID(userID) { currentUser in
             print("current user: ", currentUser.FirstName, " ", currentUser.LastName)
             newPost = Post(Poster: currentUser, Points: [], Comments: [], Text: message, Timestamp: NSDate().timeIntervalSince1970)
+            savePostInDB(newPost)
             completionHandler(newPost)
         }
     }

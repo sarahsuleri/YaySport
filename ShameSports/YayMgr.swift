@@ -28,6 +28,9 @@ class YayMgr {
     var healthManager:HealthManager?
     var floors,steps, distanceWalked:HKQuantitySample?
     
+    
+    // MARK: - Firebase: load from DB
+    
     static func load() {
         // this to be changed to  load from firebase
         loaded = true
@@ -46,11 +49,10 @@ class YayMgr {
         loadPostByUserID(userID)
     }
     
-    
     static func loadFriendsPosts() {
         FrPosts.removeAll()
         let postsRef = firebase.childByAppendingPath("posts")
-        postsRef.queryLimitedToLast(limitQueryTo).observeEventType(.ChildAdded, withBlock: {snapshot in
+        postsRef.queryLimitedToLast(limitQueryTo).observeEventType(.ChildAdded, withBlock: { snapshot in
             if friendsIDs.contains(snapshot.value["Poster"] as! Int) {
                 //print("Load Post from ", snapshot.value["Poster"] as! Int)
                 loadPost(snapshot, tag: "friends")
@@ -105,27 +107,29 @@ class YayMgr {
     
     static func getUserByID(id: Int, completionHandler: (User) -> ()) {
         let posterRef = firebase.childByAppendingPath("users/\(id)")
-        posterRef.observeEventType(FEventType.Value) { (snapshot: FDataSnapshot!) -> Void in
+        posterRef.observeEventType(.Value, withBlock: {
+            snapshot in
             let poster = User(Id: id,
                 FirstName: snapshot.value["FirstName"] as! String,
                 LastName: snapshot.value["LastName"] as! String,
                 PhotoUrl: snapshot.value["PhotoUrl"] as! String
             )
             completionHandler(poster)
-        }
+        })
     }
     
     
     static func getMessageByID(id: Int, title: String, completionHandler: (Message) -> ()) {
         let messageRef = firebase.childByAppendingPath("messages/\(id)")
-        messageRef.observeEventType(FEventType.Value) { (snapshot: FDataSnapshot!) -> Void in
+        messageRef.observeEventType(.Value, withBlock: {
+            snapshot in
             let message = Message(Id: id,
                 Title: title,
                 Description: snapshot.value["Description"] as! String,
                 Yay: snapshot.value["Yay"] as! Bool
             )
             completionHandler(message)
-        }
+        })
     }
     
     
@@ -151,6 +155,12 @@ class YayMgr {
             }
         })
     }
+    
+    
+    // MARK: - Firebase: send data in DB
+    
+    
+    
     
     static func getBooMsg() -> String{
         let randomIndex = arc4random_uniform(UInt32(YayMgr.BooMsg.count))
@@ -300,6 +310,4 @@ class YayMgr {
             
         });
     }
-
-
 }

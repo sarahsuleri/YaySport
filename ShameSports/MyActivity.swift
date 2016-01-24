@@ -12,13 +12,16 @@ class MyActivity: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        YayMgr.load()
+        //YayMgr.load()
         //print("MyPosts size here: ", YayMgr.myPosts.count)
     }
     
     override func viewWillAppear(animated: Bool) {
         print("My View will appear")
         super.viewWillAppear(animated)
+        //YayMgr.loadMessages()
+        print("All yays: ", YayMgr.YayMsg.count)
+        print("All boos: ", YayMgr.BooMsg.count)
         //YayMgr.load()
         self.tableView.reloadData()
     }

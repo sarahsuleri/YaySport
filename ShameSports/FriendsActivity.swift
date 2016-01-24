@@ -12,7 +12,7 @@ class FriendsActivity: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        YayMgr.load()
+        //YayMgr.load()
         self.tableView.reloadData()
     }
     
@@ -22,6 +22,9 @@ class FriendsActivity: UITableViewController {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
         print("FrPosts size here: ", YayMgr.FrPosts.count)
+        //YayMgr.loadMessages()
+        print("All yays: ", YayMgr.YayMsg.count)
+        print("All boos: ", YayMgr.BooMsg.count)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

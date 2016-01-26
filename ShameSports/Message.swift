@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Message {
+class Message {
     let Id : Int
     let Title : String
     let Description : String

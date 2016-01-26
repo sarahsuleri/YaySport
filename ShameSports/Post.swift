@@ -9,7 +9,8 @@
 import Foundation
 
 
-struct Post {
+class Post  {
+    var index = "";
     let Poster : User
     let Points : [Int]
     var Comments : [Comment]
@@ -17,6 +18,7 @@ struct Post {
     let Timestamp : NSTimeInterval
     
     init (Poster : User,Points : [Int],Comments : [Comment],Text : Message,Timestamp: NSTimeInterval) {
+
         self.Poster = Poster
         self.Points = Points
         self.Comments = Comments

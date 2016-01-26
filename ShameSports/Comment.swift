@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Comment {
+class Comment {
     
     let Commentor : User
     let Comment : String

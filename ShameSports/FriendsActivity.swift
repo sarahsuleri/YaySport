@@ -23,6 +23,7 @@ class FriendsActivity: UITableViewController {
         self.tableView.reloadData()
     }
     
+    static var fCell : UITableViewCell?
     
     override func viewWillAppear(animated: Bool) {
         print("Friends View will appear")
@@ -58,6 +59,7 @@ class FriendsActivity: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         let object = YayMgr.FrPosts[indexPath.row]
   
@@ -104,10 +106,11 @@ class FriendsActivity: UITableViewController {
             cell.backgroundColor = UIColor.BooLite()
         }
         
-        var picLocation = CGFloat(0)
-        for item in object.Comments {
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+      
 
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            var picLocation = CGFloat(0)
+            for item in object.Comments {
                 let cellImg : UIImageView = UIImageView(frame: CGRectMake(picLocation, 0, 16, 16))
                 picLocation += 18
                 cellImg.layer.cornerRadius = 8
@@ -121,10 +124,10 @@ class FriendsActivity: UITableViewController {
                         comPics.addSubview(cellImg)
                     }
                 }
-                
-            })
-            
+            }
         }
+            
+        
         
         return cell
     }
@@ -137,7 +140,16 @@ class FriendsActivity: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return YayMgr.FrPosts.count
     }
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowFriendsActivityDetail" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let object = YayMgr.FrPosts[indexPath.row]
+                let controller = (segue.destinationViewController as! PostDetailController)
+                controller.MyActivity = true;
+                controller.detailItem = object
+            }
+        }
+    }
 
     @IBAction func logOut(sender: UIBarButtonItem) {
         FBSDKLoginManager().logOut()

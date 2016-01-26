@@ -12,24 +12,21 @@ class MyActivity: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //YayMgr.load()
-        //print("MyPosts size here: ", YayMgr.myPosts.count)
     }
     
     override func viewWillAppear(animated: Bool) {
         print("My View will appear")
         super.viewWillAppear(animated)
-        //YayMgr.loadMessages()
-        print("All yays: ", YayMgr.YayMsg.count)
-        print("All boos: ", YayMgr.BooMsg.count)
-        //YayMgr.load()
+        NSLog("======================================================================================")
+        //NSLog(testFirebase.myPosts.count)
+        testFirebase.getPostByPosterID(23156)
         self.tableView.reloadData()
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        let object = YayMgr.myPosts[indexPath.row]
+        let object = testFirebase.myPosts[indexPath.row]
         
         let points = cell.contentView.viewWithTag(10) as! UILabel
         let title = cell.contentView.viewWithTag(50) as! UILabel
@@ -55,10 +52,10 @@ class MyActivity: UITableViewController {
             cell.backgroundColor = UIColor.BooLite()
         }
         
-        var picLocation = CGFloat(0)
-        for item in object.Comments {
-            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                
+       
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            var picLocation = CGFloat(0)
+            for item in object.Comments {
                 let cellImg : UIImageView = UIImageView(frame: CGRectMake(picLocation, 0, 16, 16))
                 picLocation += 18
                 cellImg.layer.cornerRadius = 8
@@ -72,10 +69,10 @@ class MyActivity: UITableViewController {
                         comPics.addSubview(cellImg)
                     }
                 }
-                
-            })
-            
+            }
         }
+            
+        
         
         return cell
     }
@@ -87,7 +84,18 @@ class MyActivity: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return YayMgr.myPosts.count
+        return testFirebase.myPosts.count
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowMyActivityDetail" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let object = testFirebase.myPosts[indexPath.row]
+                let controller = (segue.destinationViewController as! PostDetailController)
+                controller.MyActivity = true;
+                controller.detailItem = object
+
+            }
+        }
     }
 
 

@@ -123,6 +123,7 @@
 				233FDFDB1C41CE5A00F81A6A /* Utils.swift */,
 				235C165F1C57F04300ADCD23 /* JsonSerializer.swift */,
 				233FDFD91C41BE8300F81A6A /* DummyData.swift */,
+				D261EC8E1C466F0100EF539D /* BridgingHeader.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -135,6 +136,16 @@
 				235C165B1C57E16400ADCD23 /* testFirebase.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		235C16651C5831E900ADCD23 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				43520C931C2FDBAF00FACD63 /* Main.storyboard */,
+				43520C961C2FDBAF00FACD63 /* Assets.xcassets */,
+				43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		43520C811C2FDBAF00FACD63 = {
@@ -158,17 +169,14 @@
 		43520C8C1C2FDBAF00FACD63 /* ShameSports */ = {
 			isa = PBXGroup;
 			children = (
+				235C16651C5831E900ADCD23 /* Views */,
 				235C16641C58310B00ADCD23 /* Models */,
 				235C16631C5830D000ADCD23 /* Utils */,
 				235C16621C5830C200ADCD23 /* Controllers */,
 				235C16611C58309A00ADCD23 /* Entities */,
 				2652F7AF1C4AA14600214489 /* ShameSports.entitlements */,
 				43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */,
-				43520C931C2FDBAF00FACD63 /* Main.storyboard */,
-				43520C961C2FDBAF00FACD63 /* Assets.xcassets */,
-				43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */,
 				43520C9B1C2FDBAF00FACD63 /* Info.plist */,
-				D261EC8E1C466F0100EF539D /* BridgingHeader.h */,
 			);
 			path = ShameSports;
 			sourceTree = "<group>";

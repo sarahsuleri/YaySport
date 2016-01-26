@@ -25,6 +25,7 @@ class PostDetailController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
+        print(detailItem.DBIndex)
     }
     
     
@@ -34,7 +35,7 @@ class PostDetailController: UITableViewController {
             if(MyActivity == true){
                 cell = tableView.dequeueReusableCellWithIdentifier("mPost", forIndexPath: indexPath) as UITableViewCell
                 let title = cell.contentView.viewWithTag(10) as! UILabel
-                title.text = detailItem?.Text.Title
+                title.text = detailItem.Text.Title
             }
             else {
                  cell = tableView.dequeueReusableCellWithIdentifier("fPost", forIndexPath: indexPath) as UITableViewCell

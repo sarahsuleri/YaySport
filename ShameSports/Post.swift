@@ -10,7 +10,7 @@ import Foundation
 
 
 class Post  {
-    var index = "";
+    var DBIndex = "";
     let Poster : User
     let Points : [Int]
     var Comments : [Comment]

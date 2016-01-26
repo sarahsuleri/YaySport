@@ -46,7 +46,7 @@ class testFirebase {
             
             /// Add Post to array 
             let post : Post = Post(Poster: poster, Points: points, Comments: comments, Text: message, Timestamp: timeInt)
-            post.index = snapshot.key
+            post.DBIndex = snapshot.key
             myPosts.append(post)
         })
         

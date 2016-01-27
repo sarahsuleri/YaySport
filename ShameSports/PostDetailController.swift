@@ -12,7 +12,6 @@ class PostDetailController: UITableViewController {
     var MyActivity = true;
     var detailItem: Post! {
         didSet {
-            // Update the view.
             self.tableView.reloadData();
         }
     }

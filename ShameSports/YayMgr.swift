@@ -20,9 +20,8 @@ class YayMgr {
     static var postsRef, userRef, messageRef, commentsRef: Firebase!
     static var refs = [Firebase!]()
     
-    //static var userID = 0
+   
     static var friendsIDs : [Int] = []
-    //static var limitQueryTo : UInt = 50
     static var myPosts : [Post] = []
     static var FrPosts : [Post] = []
     static var BooMsg : [Message] = []
@@ -37,8 +36,9 @@ class YayMgr {
     // MARK: - Firebase: load from DB
     
     static func load() {
-        if(loaded == false){
+        if(loaded == false && owner.Id != 0){
             loaded = true
+            
             DBMgr.getPostByPosterID(owner.Id)
             
             for friend in friendsIDs {

@@ -224,13 +224,13 @@ class YayMgr {
     }
     
     // Criteria to show msgs
-    static func criteriaToShowMsg(dailyCount: Int){
+    static func criteriaToShowMsg(dailyCount: Int, isStep:Bool , isFloor: Bool){
     
         var msgDesc : String = ""
         var isYay: Bool = true
        
 
-        //YayMgr.load() //Just for testing
+        if isStep {
         if( dailyCount < 200){
             dispatch_async(dispatch_get_main_queue(), {
                 msgDesc = YayMgr.getBooMsg()
@@ -246,8 +246,14 @@ class YayMgr {
             })
         }
         
+        
+        
         // Msg object
         var msgObj :Message = Message(Id: 0,Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
+        }
+        else if isFloor {
+            //Criteria for floors
+        }
     
     }
     

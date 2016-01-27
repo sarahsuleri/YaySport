@@ -126,6 +126,12 @@ class HealthManager {
             updateHandler: self.stepsChangedHandler)
     }()
     
+    lazy var queryFloors: HKObserverQuery = {
+        return HKObserverQuery(sampleType: self.objFlightsClimbed,
+            predicate: self.predicate,
+            updateHandler: self.floorsChangedHandler)
+    }()
+    
     func fetchRecordedStepsISinceStartOfDay(){
         
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
@@ -154,11 +160,47 @@ class HealthManager {
                 
                 //Criteria to show msg
                 
-                YayMgr.criteriaToShowMsg(dailyAVG)
+                YayMgr.criteriaToShowMsg(dailyAVG,isStep: true,isFloor: false)
                 
         })
         
         healthKitStore!.executeQuery(query)
+        
+    }
+    
+    func fetchRecordedFloorsSinceStartOfDay(){
+        
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+            ascending: true)
+        
+        let query = HKSampleQuery(sampleType: objFlightsClimbed,
+            predicate: predicate,
+            limit: Int(HKObjectQueryNoLimit),
+            sortDescriptors: [sortDescriptor],
+            resultsHandler: {(query: HKSampleQuery,
+                results: [HKSample]?,
+                error: NSError?) in
+                
+                guard let results = results where results.count > 0 else {
+                    print("Could not read the user's floors")
+                    print("or no floors data was available")
+                    return
+                }
+                
+                var dailyAVG:Int = 0
+                for _floors in results as! [HKQuantitySample]
+                {
+                    dailyAVG += Int(_floors.quantity.doubleValueForUnit(HKUnit.countUnit()))
+                }
+                
+                
+                //Criteria to show msg
+                
+                YayMgr.criteriaToShowMsg(dailyAVG,isStep: false,isFloor: true)
+                
+        })
+        
+        healthKitStore!.executeQuery(queryFloors)
         
     }
     
@@ -167,6 +209,16 @@ class HealthManager {
         error: NSError?){
             
             fetchRecordedStepsISinceStartOfDay()
+            
+            completionHandler()
+            
+    }
+    
+    func floorsChangedHandler(query: HKObserverQuery,
+        completionHandler: HKObserverQueryCompletionHandler,
+        error: NSError?){
+            
+            fetchRecordedFloorsSinceStartOfDay()
             
             completionHandler()
             
@@ -190,16 +242,19 @@ class HealthManager {
         })
     }
     
-    func stopObservingStepsChanges(){
-        healthKitStore!.stopQuery(query)
+   
+
+    
+    func stopObservingFloorsChanges(){
+        healthKitStore!.stopQuery(queryFloors)
         healthKitStore!.disableAllBackgroundDeliveryWithCompletion{
             succeeded, error in
             
             if succeeded{
-                print("Disabled background delivery of steps changes")
+                print("Disabled background delivery of floors changes")
             } else {
                 if let theError = error{
-                    print("Failed to disable background delivery of steps changes. ")
+                    print("Failed to disable background delivery of floors changes. ")
                     print("Error = \(theError)")
                 }
             }

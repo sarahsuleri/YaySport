@@ -17,6 +17,9 @@
 		233FDFDC1C41CE5A00F81A6A /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FDFDB1C41CE5A00F81A6A /* Utils.swift */; };
 		233FDFE01C41D60C00F81A6A /* FriendsActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FDFDF1C41D60C00F81A6A /* FriendsActivity.swift */; };
 		233FDFE21C41D65600F81A6A /* MyActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233FDFE11C41D65600F81A6A /* MyActivity.swift */; };
+		235C165A1C57CA0100ADCD23 /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235C16591C57CA0100ADCD23 /* PostDetailController.swift */; };
+		235C165C1C57E16400ADCD23 /* testFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235C165B1C57E16400ADCD23 /* testFirebase.swift */; };
+		235C16601C57F04300ADCD23 /* JsonSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235C165F1C57F04300ADCD23 /* JsonSerializer.swift */; };
 		2652F7B11C4AA14600214489 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2652F7B01C4AA14600214489 /* HealthKit.framework */; };
 		2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652F7B21C4AA1A800214489 /* HealthManager.swift */; };
 		43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */; };
@@ -45,6 +48,9 @@
 		233FDFDB1C41CE5A00F81A6A /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		233FDFDF1C41D60C00F81A6A /* FriendsActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsActivity.swift; sourceTree = "<group>"; };
 		233FDFE11C41D65600F81A6A /* MyActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyActivity.swift; sourceTree = "<group>"; };
+		235C16591C57CA0100ADCD23 /* PostDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
+		235C165B1C57E16400ADCD23 /* testFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testFirebase.swift; sourceTree = "<group>"; };
+		235C165F1C57F04300ADCD23 /* JsonSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonSerializer.swift; sourceTree = "<group>"; };
 		2652F7AF1C4AA14600214489 /* ShameSports.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShameSports.entitlements; sourceTree = "<group>"; };
 		2652F7B01C4AA14600214489 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		2652F7B21C4AA1A800214489 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
@@ -88,6 +94,60 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		235C16611C58309A00ADCD23 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				233FDFCE1C41BBFE00F81A6A /* Comment.swift */,
+				233FDFD31C41BD3E00F81A6A /* Message.swift */,
+				233FDFD01C41BC1B00F81A6A /* User.swift */,
+				233FDFD51C41BDA100F81A6A /* Post.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		235C16621C5830C200ADCD23 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				233FDFCC1C418BCB00F81A6A /* LogIn.swift */,
+				43F477031C551F0400649891 /* TabBarViewController.swift */,
+				233FDFDF1C41D60C00F81A6A /* FriendsActivity.swift */,
+				233FDFE11C41D65600F81A6A /* MyActivity.swift */,
+				235C16591C57CA0100ADCD23 /* PostDetailController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		235C16631C5830D000ADCD23 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				233FDFDB1C41CE5A00F81A6A /* Utils.swift */,
+				235C165F1C57F04300ADCD23 /* JsonSerializer.swift */,
+				233FDFD91C41BE8300F81A6A /* DummyData.swift */,
+				D261EC8E1C466F0100EF539D /* BridgingHeader.h */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		235C16641C58310B00ADCD23 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				233FDFD71C41BE6E00F81A6A /* YayMgr.swift */,
+				2652F7B21C4AA1A800214489 /* HealthManager.swift */,
+				235C165B1C57E16400ADCD23 /* testFirebase.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		235C16651C5831E900ADCD23 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				43520C931C2FDBAF00FACD63 /* Main.storyboard */,
+				43520C961C2FDBAF00FACD63 /* Assets.xcassets */,
+				43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		43520C811C2FDBAF00FACD63 = {
 			isa = PBXGroup;
 			children = (
@@ -109,25 +169,14 @@
 		43520C8C1C2FDBAF00FACD63 /* ShameSports */ = {
 			isa = PBXGroup;
 			children = (
+				235C16651C5831E900ADCD23 /* Views */,
+				235C16641C58310B00ADCD23 /* Models */,
+				235C16631C5830D000ADCD23 /* Utils */,
+				235C16621C5830C200ADCD23 /* Controllers */,
+				235C16611C58309A00ADCD23 /* Entities */,
 				2652F7AF1C4AA14600214489 /* ShameSports.entitlements */,
 				43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */,
-				233FDFCC1C418BCB00F81A6A /* LogIn.swift */,
-				43F477031C551F0400649891 /* TabBarViewController.swift */,
-				233FDFDF1C41D60C00F81A6A /* FriendsActivity.swift */,
-				233FDFE11C41D65600F81A6A /* MyActivity.swift */,
-				233FDFD71C41BE6E00F81A6A /* YayMgr.swift */,
-				233FDFD01C41BC1B00F81A6A /* User.swift */,
-				233FDFD31C41BD3E00F81A6A /* Message.swift */,
-				233FDFD51C41BDA100F81A6A /* Post.swift */,
-				233FDFCE1C41BBFE00F81A6A /* Comment.swift */,
-				233FDFDB1C41CE5A00F81A6A /* Utils.swift */,
-				233FDFD91C41BE8300F81A6A /* DummyData.swift */,
-				2652F7B21C4AA1A800214489 /* HealthManager.swift */,
-				43520C931C2FDBAF00FACD63 /* Main.storyboard */,
-				43520C961C2FDBAF00FACD63 /* Assets.xcassets */,
-				43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */,
 				43520C9B1C2FDBAF00FACD63 /* Info.plist */,
-				D261EC8E1C466F0100EF539D /* BridgingHeader.h */,
 			);
 			path = ShameSports;
 			sourceTree = "<group>";
@@ -288,11 +337,14 @@
 				43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */,
 				233FDFDC1C41CE5A00F81A6A /* Utils.swift in Sources */,
 				233FDFE01C41D60C00F81A6A /* FriendsActivity.swift in Sources */,
+				235C165C1C57E16400ADCD23 /* testFirebase.swift in Sources */,
 				2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */,
 				233FDFCD1C418BCB00F81A6A /* LogIn.swift in Sources */,
 				233FDFDA1C41BE8300F81A6A /* DummyData.swift in Sources */,
 				43F477041C551F0400649891 /* TabBarViewController.swift in Sources */,
 				233FDFD41C41BD3E00F81A6A /* Message.swift in Sources */,
+				235C165A1C57CA0100ADCD23 /* PostDetailController.swift in Sources */,
+				235C16601C57F04300ADCD23 /* JsonSerializer.swift in Sources */,
 				233FDFE21C41D65600F81A6A /* MyActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

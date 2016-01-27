@@ -39,6 +39,7 @@ class YayMgr {
         if(loaded == false && owner.Id != 0){
             loaded = true
             
+            DBMgr.getMessages()
             DBMgr.getPostByPosterID(owner.Id)
             
             for friend in friendsIDs {
@@ -46,139 +47,6 @@ class YayMgr {
             }
         }
     }
-    
-    
-
-    
-    static func loadPostByUserID(id: Int) {
-        postsRef = firebase.childByAppendingPath("posts")
-        postsRef.queryOrderedByChild("Poster").queryEqualToValue(id).observeEventType(.ChildAdded, withBlock: { snapshot in
-            //loadPost(snapshot, tag: "my")
-        })
-        refs.append(postsRef)
-    }
-    
-    
-    static func loadPost(snapshot: FDataSnapshot, tag: String, completionHandler: (Post) -> ()) {
-        
-        // Get Poster ID
-        let posterID = snapshot.value["Poster"] as! Int
-        
-        // Get Points
-        let points = snapshot.value["Points"] as! [Int]
-        
-        // Get Timestamp
-        let timestamp = snapshot.value["Timestamp"] as! Double
-        
-        // Get Post Owner
-        getUserByID(posterID) { poster in
-            
-            // Get Message
-            let textDict = snapshot.value["Text"] as! NSDictionary
-            let title = textDict.valueForKey("Title") as! String
-            let messageID = textDict.valueForKey("Message") as! Int
-            getMessageByID(messageID, title: title) { text in
-                
-                // Get Comments
-                loadComments(Int(snapshot.key)!) { comments in
-                    
-                    // Create a Post
-                    let post = Post(Poster: poster, Points: points, Comments: comments, Text: text, Timestamp: timestamp)
-                    
-                    if tag == "friends" {
-                        FrPosts.insert(post, atIndex: 0)
-                    } else {
-                        myPosts.insert(post, atIndex: 0)
-                    }
-                    print("FrPosts size: ", FrPosts.count)
-                    completionHandler(post)
-                }
-            }
-        }
-    }
-    
-    
-    static func getUserByID(id: Int, completionHandler: (User) -> ()) {
-        userRef = firebase.childByAppendingPath("users/\(id)")
-        userRef.observeEventType(.Value, withBlock: {
-            snapshot in
-            let user = User(Id: id,
-                FirstName: snapshot.value["FirstName"] as! String,
-                LastName: snapshot.value["LastName"] as! String,
-                PhotoUrl: snapshot.value["PhotoUrl"] as! String
-            )
-            completionHandler(user)
-        })
-        refs.append(userRef)
-    }
-    
-    
-    static func getMessageByID(id: Int, title: String, completionHandler: (Message) -> ()) {
-        messageRef = firebase.childByAppendingPath("messages/\(id)")
-        messageRef.observeEventType(.Value, withBlock: {
-            snapshot in
-            let message = Message(Id: id,
-                Title: title,
-                Description: snapshot.value["Description"] as! String,
-                Yay: snapshot.value["Yay"] as! Bool
-            )
-            completionHandler(message)
-        })
-        refs.append(messageRef)
-    }
-    
-    
-    static func loadComments(postId: Int, completionHandler: ([Comment]) -> ()) {
-        var comments = [Comment]()
-        commentsRef = firebase.childByAppendingPath("comments")
-        
-        commentsRef.queryOrderedByChild("PostID").queryEqualToValue(postId).observeEventType(.Value, withBlock: { snapshot in
-            
-            let loadCommentorGroup = dispatch_group_create()
-            let enumerator = snapshot.children
-            while let snapChild = enumerator.nextObject() as? FDataSnapshot {
-                dispatch_group_enter(loadCommentorGroup)
-                getUserByID(snapChild.value!["Commentor"] as! Int) { commentor in
-                    let comment = Comment(Commentor: commentor,
-                        Comment: snapChild.value!["Comment"] as! String)
-                    comments.append(comment)
-                    dispatch_group_leave(loadCommentorGroup)
-                }
-            }
-            dispatch_group_notify(loadCommentorGroup, dispatch_get_main_queue()) {
-                completionHandler(comments)
-            }
-        })
-        refs.append(commentsRef)
-    }
-    
-    
-    // MARK: - Firebase: save data to DB
-    
-
-    
-    static func savePostInDB(post: Post) {
-        postsRef = firebase.childByAppendingPath("posts").childByAutoId()
-        postsRef.setValue([
-            "Comments": [],
-            "Points": [],
-            "Poster": post.Poster.Id,
-            "Text": ["Message": post.Text.Id, "Title": post.Text.Title],
-            "Timestamp": NSDate().timeIntervalSince1970
-        ])
-    }
-    
-
-    // daria we need to talk about this function
-    /*static func createPost(message: Message, completionHandler: Post -> ()) {
-        var newPost: Post!
-        getUserByID(userID) { currentUser in
-            print("current user: ", currentUser.FirstName, " ", currentUser.LastName)
-            newPost = Post(Poster: currentUser, Points: [], Comments: [], Text: message, Timestamp: NSDate().timeIntervalSince1970)
-            savePostInDB(newPost)
-            completionHandler(newPost)
-        }
-    }*/
     
     static func getBooMsg() -> String{
         let randomIndex = arc4random_uniform(UInt32(YayMgr.BooMsg.count))
@@ -216,7 +84,7 @@ class YayMgr {
         
         
         // Msg object
-        var msgObj :Message = Message(Id: 0,Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
+        var msgObj :Message = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
         }
         else if isFloor {
             //Criteria for floors

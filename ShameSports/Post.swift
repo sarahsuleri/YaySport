@@ -12,7 +12,7 @@ import Foundation
 class Post  {
     var DBIndex = "";
     let Poster : User
-    let Points : [Int]
+    var Points : [Int]
     var Comments : [Comment]
     let Text : Message
     let Timestamp : NSTimeInterval

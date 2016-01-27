@@ -17,8 +17,14 @@ class MyActivity: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
-        let post : Post = Post(Poster: YayMgr.owner, Points: [], Comments: [], Text: m1, Timestamp: NSDate().timeIntervalSince1970)
+        //let post : Post = Post(Poster: YayMgr.owner, Points: [], Comments: [], Text: m1, Timestamp: NSDate().timeIntervalSince1970)
         //DBMgr.addPost(post)
+        print("=================")
+        if (YayMgr.myPosts.count != 0) {
+            //print(Yay)
+            //DBMgr.addComment(Comment(Commentor: YayMgr.owner, Comment: "Olalala", Timestamp: NSDate().timeIntervalSince1970), post: YayMgr.myPosts[0])
+        }
+        //print(YayMgr.BooMsg.count)
     }
     
     

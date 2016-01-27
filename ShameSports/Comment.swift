@@ -13,10 +13,12 @@ class Comment {
     
     let Commentor : User
     let Comment : String
+    let Timestamp: NSTimeInterval
     
-    init(Commentor : User, Comment : String){
+    init(Commentor : User, Comment : String, Timestamp: NSTimeInterval) {
         self.Commentor = Commentor
         self.Comment = Comment
+        self.Timestamp = Timestamp
     }
     
 }

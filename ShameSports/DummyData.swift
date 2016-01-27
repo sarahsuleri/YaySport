@@ -19,11 +19,12 @@ var u5 = User(Id: 23156,FirstName: "Raghad",LastName: "Do",PhotoUrl: "http://dow
 var u6 = User(Id: 23156,FirstName: "Omar",LastName: "Do",PhotoUrl: "http://download1.acadox.net/user/8451/50.jpg?v=1")
 var u7 = User(Id: 23156,FirstName: "Steph",LastName: "Do",PhotoUrl: "http://download8.acadox.net/user/8738/50.jpg?v=2")
 
-var m0 = Message(Id: 0, Title: "100 Step", Description: "Great Work", Yay: true)
-var m1 = Message(Id: 1, Title: "2 Step", Description: "When your friends tell you look good, ditch them, they are all a bunch of liars", Yay: false)
-var m2 = Message(Id: 2, Title: "300 floor", Description: "At this rate you will reach heaven", Yay: true)
-var m3 = Message(Id: 3, Title: "1 Miles", Description: "We see that you found your soulmate, Your couch. When is the wedding ", Yay: false)
+var m0 = Message(Title: "100 Step", Description: "Great Work", Yay: true)
+var m1 = Message(Title: "2 Step", Description: "When your friends tell you look good, ditch them, they are all a bunch of liars", Yay: false)
+var m2 = Message(Title: "300 floor", Description: "At this rate you will reach heaven", Yay: true)
+var m3 = Message(Title: "1 Miles", Description: "We see that you found your soulmate, Your couch. When is the wedding ", Yay: false)
 
+/*
 var c0 = Comment(Commentor: u1, Comment: "Bla Bla")
 var c1 = Comment(Commentor: u2, Comment: "Bla Bla")
 var c2 = Comment(Commentor: u3, Comment: "Bla Bla")
@@ -31,7 +32,7 @@ var c3 = Comment(Commentor: u4, Comment: "Bla Bla")
 var c4 = Comment(Commentor: u5, Comment: "Bla Bla")
 var c5 = Comment(Commentor: u6, Comment: "Bla Bla")
 var c6 = Comment(Commentor: u7, Comment: "Bla Bla")
-
+*/
 
 
 

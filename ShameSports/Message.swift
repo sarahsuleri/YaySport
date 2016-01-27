@@ -9,13 +9,11 @@
 import Foundation
 
 class Message {
-    let Id : Int
     let Title : String
     let Description : String
     let Yay : Bool
     
-    init(Id : Int,Title : String, Description : String,Yay : Bool) {
-        self.Id = Id
+    init(Title : String, Description : String,Yay : Bool) {
         self.Title = Title
         self.Description = Description
         self.Yay = Yay

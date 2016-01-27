@@ -22,23 +22,23 @@ class DBMgr {
     
     
     static func getPostByPosterID(Id : Int, isMyActivity : Bool = true ) {
-        print("===========================")
-        print(YayMgr.myPosts.count)
       let postsRef = ref.childByAppendingPath("users/\(Id)/posts/")
         postsRef.observeEventType(.ChildAdded, withBlock: { snapshot in
             let pDic = snapshot.value["Poster"] as! NSDictionary
             let poster : User = User(Id: pDic["Id"] as! Int, FirstName: pDic["FirstName"] as! String, LastName: pDic["LastName"]as! String, PhotoUrl: pDic["PhotoUrl"]as! String)
             
             var comments : [Comment] = []
-            if let cDic = snapshot.value["Comments"] as? [NSDictionary] {
-                for com in cDic {
-                    let commentor :  User = User(Id: com["Commentor"]!["Id"] as! Int, FirstName: com["Commentor"]!["FirstName"] as! String, LastName: com["Commentor"]!["LastName"]as! String, PhotoUrl: com["Commentor"]!["PhotoUrl"]as! String)
-                    comments.append(Comment(Commentor: commentor, Comment: com["Comment"] as! String))
-                   
+            
+            if let cDic = snapshot.value["Comments"] as? NSDictionary {
+                for (_, com) in cDic {
+                    let commentor :  User = User(Id: com["Commentor"]!!["Id"] as! Int, FirstName: com["Commentor"]!!["FirstName"] as! String, LastName: com["Commentor"]!!["LastName"]as! String, PhotoUrl: com["Commentor"]!!["PhotoUrl"]as! String)
+                    comments.append(Comment(Commentor: commentor, Comment: com["Comment"] as! String, Timestamp: com["Timestamp"] as! NSTimeInterval))
                 }
             }
+            
+            
             let mDic = snapshot.value["Text"] as! NSDictionary
-            let message : Message = Message(Id: mDic["Id"] as! Int, Title: mDic["Title"] as! String, Description: mDic["Description"] as! String, Yay: mDic["Id"] as! Bool)
+            let message : Message = Message(Title: mDic["Title"] as! String, Description: mDic["Description"] as! String, Yay: mDic["Id"] as! Bool)
             
             var points : [Int] = []
             if let pointsDic = snapshot.value["Points"] as! [Int]? {
@@ -66,7 +66,39 @@ class DBMgr {
 
         })
         
-       
-        
+    }
+    
+    
+    static func getMessages() {
+        let msgRef = ref.childByAppendingPath("messages")
+        msgRef.observeEventType(.Value, withBlock: { snapshot in
+            let enumerator = snapshot.children
+            while let snapChild = enumerator.nextObject() as? FDataSnapshot {
+                let msg = Message(Title: "", Description: snapChild.value["Description"] as! String, Yay: snapChild.value["Yay"] as! Bool)
+                if msg.Yay {
+                    YayMgr.YayMsg.append(msg)
+                } else {
+                    YayMgr.BooMsg.append(msg)
+                }
+            }
+        })
+    }
+    
+    
+    static func addPoint(post: Post) {
+        post.Points.append(YayMgr.owner.Id)
+        let pointsRef = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/\(post.DBIndex)/Points")
+        pointsRef.setValue(post.Points)
+    }
+    
+    static func removePoint(post: Post) {
+        post.Points = post.Points.filter() {$0 != YayMgr.owner.Id}
+        let pointsRef = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/\(post.DBIndex)/Points")
+        pointsRef.setValue(post.Points)
+    }
+    
+    static func addComment(comment: Comment, post: Post) {
+        let commentsRef = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/\(post.DBIndex)/Comments").childByAutoId()
+        commentsRef.setValue( convertStringToDictionary(JSONSerializer.toJson(comment)) )
     }
 }

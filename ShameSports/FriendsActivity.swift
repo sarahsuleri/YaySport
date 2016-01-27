@@ -13,16 +13,16 @@ class FriendsActivity: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        YayMgr.FrPosts.observe { e in
+            self.tableView.reloadData()
+        }
     }
 
     
     override func viewWillAppear(animated: Bool) {
 
         super.viewWillAppear(animated)
-        YayMgr.load()
         self.tableView.reloadData()
-        
-
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

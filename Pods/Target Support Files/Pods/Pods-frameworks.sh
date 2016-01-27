@@ -82,3 +82,16 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods/Firebase.framework"
+  install_framework "Pods/ReactiveFoundation.framework"
+  install_framework "Pods/ReactiveKit.framework"
+  install_framework "Pods/ReactiveUIKit.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods/Firebase.framework"
+  install_framework "Pods/ReactiveFoundation.framework"
+  install_framework "Pods/ReactiveKit.framework"
+  install_framework "Pods/ReactiveUIKit.framework"
+fi

@@ -12,5 +12,8 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <Firebase/Firebase.h>
+#import <ReactiveKit/ReactiveKit.h>
+#import <ReactiveFoundation/ReactiveFoundation.h>
+#import <ReactiveUIKit/ReactiveUIKit.h>
 
 #endif /* BridgingHeader_h */

@@ -8,22 +8,15 @@
 
 import Foundation
 import HealthKit
+import ReactiveFoundation
+import ReactiveKit
+
 
 class YayMgr {
     
-    // Firebase-related variables
-    
-    static var firebase: Firebase = {
-        let firebase = Firebase(url: "https://yaysport.firebaseio.com")
-        return firebase
-    }()
-    static var postsRef, userRef, messageRef, commentsRef: Firebase!
-    static var refs = [Firebase!]()
-    
-   
     static var friendsIDs : [Int] = []
-    static var myPosts : [Post] = []
-    static var FrPosts : [Post] = []
+    static var myPosts = ObservableCollection([Post]())
+    static var FrPosts = ObservableCollection([Post]())
     static var BooMsg : [Message] = []
     static var YayMsg : [Message] = []
     static var owner : User = User(Id: 0, FirstName: "temp", LastName: "temp", PhotoUrl: "temp")
@@ -36,6 +29,7 @@ class YayMgr {
     // MARK: - Firebase: load from DB
     
     static func load() {
+        loadDefaults()
         if(loaded == false && owner.Id != 0){
             loaded = true
             
@@ -47,6 +41,20 @@ class YayMgr {
             }
         }
     }
+    
+    static func setOwner(user: User) {
+        YayMgr.owner = user
+        saveDefaults()
+        //load()
+    }
+    
+    static func setFriendList(frList: [Int]) {
+        YayMgr.friendsIDs = frList
+        saveDefaults()
+        load()
+    }
+    
+    
     
     static func getBooMsg() -> String{
         let randomIndex = arc4random_uniform(UInt32(YayMgr.BooMsg.count))
@@ -201,5 +209,29 @@ class YayMgr {
             
             
         });
+    }
+    
+    static func saveDefaults(){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(owner.Id, forKey: "Id")
+        defaults.setObject(owner.FirstName, forKey: "FirstName")
+        defaults.setObject(owner.LastName, forKey: "LastName")
+        defaults.setObject(owner.PhotoUrl, forKey: "PhotoUrl")
+        defaults.setObject(friendsIDs, forKey: "frlist")
+    }
+    
+    static func loadDefaults() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let Id = defaults.integerForKey("Id")
+        let FirstName = defaults.stringForKey("FirstName")
+        let LastName = defaults.stringForKey("LastName")
+        let PhotoUrl = defaults.stringForKey("PhotoUrl")
+        let frlist = defaults.arrayForKey("frlist")
+        
+        if (Id != 0) {
+            owner = User(Id: Id, FirstName: FirstName!, LastName: LastName!, PhotoUrl: PhotoUrl!)
+            friendsIDs = frlist as! [Int]
+        }
+        
     }
 }

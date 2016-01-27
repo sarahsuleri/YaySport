@@ -9,12 +9,6 @@
 import UIKit
 
 class LogIn: UIViewController, FBSDKLoginButtonDelegate {
-    
-    private lazy var firebase: Firebase =  {
-        let firebase = Firebase(url: "https://yaysport.firebaseio.com")
-        return firebase
-    }()
-    
    
     @IBOutlet weak var loginView: FBSDKLoginButton!
     
@@ -42,8 +36,7 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
                 let fname =  result.valueForKey("first_name") as! String
                 let lastName = result.valueForKey("last_name") as! String
                 let photo = result.valueForKey("picture")!.valueForKey("data")!.valueForKey("url") as! String
-                
-                YayMgr.owner = User(Id: userID, FirstName: fname, LastName: lastName, PhotoUrl: photo)
+                YayMgr.setOwner(User(Id: userID, FirstName: fname, LastName: lastName, PhotoUrl: photo))
                 
 
             }
@@ -63,12 +56,11 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
             {
 
                 let friendsData = result as! NSDictionary
-                
+                var FrList = [Int]()
                 for friend in friendsData.valueForKey("data") as! NSArray {
-                    YayMgr.friendsIDs.append(Int(friend.valueForKey("id") as! String)!)
+                    FrList.append(Int(friend.valueForKey("id") as! String)!)
                 }
-
-                
+                YayMgr.setFriendList(FrList)
             }
         }
     }

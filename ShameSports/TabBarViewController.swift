@@ -13,9 +13,7 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
+        YayMgr.load()
     }
     
     override func viewWillAppear(animated: Bool) {

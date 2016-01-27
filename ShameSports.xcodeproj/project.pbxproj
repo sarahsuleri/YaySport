@@ -20,6 +20,7 @@
 		235C165A1C57CA0100ADCD23 /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235C16591C57CA0100ADCD23 /* PostDetailController.swift */; };
 		235C165C1C57E16400ADCD23 /* testFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235C165B1C57E16400ADCD23 /* testFirebase.swift */; };
 		235C16601C57F04300ADCD23 /* JsonSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235C165F1C57F04300ADCD23 /* JsonSerializer.swift */; };
+		236E82351C58E5CA003E7A7D /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E82341C58E5CA003E7A7D /* UIUtils.swift */; };
 		2652F7B11C4AA14600214489 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2652F7B01C4AA14600214489 /* HealthKit.framework */; };
 		2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652F7B21C4AA1A800214489 /* HealthManager.swift */; };
 		43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */; };
@@ -51,6 +52,7 @@
 		235C16591C57CA0100ADCD23 /* PostDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
 		235C165B1C57E16400ADCD23 /* testFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testFirebase.swift; sourceTree = "<group>"; };
 		235C165F1C57F04300ADCD23 /* JsonSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonSerializer.swift; sourceTree = "<group>"; };
+		236E82341C58E5CA003E7A7D /* UIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		2652F7AF1C4AA14600214489 /* ShameSports.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShameSports.entitlements; sourceTree = "<group>"; };
 		2652F7B01C4AA14600214489 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		2652F7B21C4AA1A800214489 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				235C165F1C57F04300ADCD23 /* JsonSerializer.swift */,
 				233FDFD91C41BE8300F81A6A /* DummyData.swift */,
 				D261EC8E1C466F0100EF539D /* BridgingHeader.h */,
+				236E82341C58E5CA003E7A7D /* UIUtils.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				233FDFD61C41BDA100F81A6A /* Post.swift in Sources */,
 				233FDFD81C41BE6E00F81A6A /* YayMgr.swift in Sources */,
 				43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */,
+				236E82351C58E5CA003E7A7D /* UIUtils.swift in Sources */,
 				233FDFDC1C41CE5A00F81A6A /* Utils.swift in Sources */,
 				233FDFE01C41D60C00F81A6A /* FriendsActivity.swift in Sources */,
 				235C165C1C57E16400ADCD23 /* testFirebase.swift in Sources */,

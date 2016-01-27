@@ -20,14 +20,15 @@ class YayMgr {
     static var postsRef, userRef, messageRef, commentsRef: Firebase!
     static var refs = [Firebase!]()
     
-    static var userID = 0
+    //static var userID = 0
     static var friendsIDs : [Int] = []
     //static var limitQueryTo : UInt = 50
     static var myPosts : [Post] = []
     static var FrPosts : [Post] = []
     static var BooMsg : [Message] = []
     static var YayMsg : [Message] = []
-    //static var loaded : Bool = false
+    static var owner : User = User(Id: 0, FirstName: "temp", LastName: "temp", PhotoUrl: "temp")
+    static var loaded : Bool = false
     
     var healthManager:HealthManager?
     var floors,steps, distanceWalked:HKQuantitySample?
@@ -36,37 +37,18 @@ class YayMgr {
     // MARK: - Firebase: load from DB
     
     static func load() {
-        // this to be changed to  load from firebase
-        //loaded = true
-        //myPosts = loadPostsFromDB()
-        //FrPosts = DummyD.getFrPost()
-        //loadFriendsPosts()
-        //loadMyPosts()
-        //YayMsg.append(m0)
-        //YayMsg.append(m2)
-        //BooMsg.append(m1)
-        //BooMsg.append(m3)
-    }
-    
-    
-    /*
-    static func loadMyPosts() {
-        myPosts.removeAll()
-        loadPostByUserID(userID)
-    }
-    
-    
-    static func loadFriendsPosts() {
-        FrPosts.removeAll()
-        let postsRef = firebase.childByAppendingPath("posts")
-        postsRef.queryLimitedToLast(limitQueryTo).observeEventType(.ChildAdded, withBlock: { snapshot in
-            if friendsIDs.contains(snapshot.value["Poster"] as! Int) {
-                //print("Load Post from ", snapshot.value["Poster"] as! Int)
-                loadPost(snapshot, tag: "friends")
+        if(loaded == false){
+            loaded = true
+            DBMgr.getPostByPosterID(owner.Id)
+            
+            for friend in friendsIDs {
+                DBMgr.getPostByPosterID(friend,isMyActivity: false);
             }
-        })
+        }
     }
-    */
+    
+    
+
     
     static func loadPostByUserID(id: Int) {
         postsRef = firebase.childByAppendingPath("posts")
@@ -173,15 +155,7 @@ class YayMgr {
     
     // MARK: - Firebase: save data to DB
     
-    static func saveUserInDB(userData: AnyObject!) {
-        YayMgr.userID = Int(userData.valueForKey("id") as! String)!
-        userRef = firebase.childByAppendingPath("users/\(YayMgr.userID)")
-        userRef.setValue([
-            "FirstName": userData.valueForKey("first_name") as! String,
-            "LastName": userData.valueForKey("last_name") as! String,
-            "PhotoUrl": userData.valueForKey("picture")!.valueForKey("data")!.valueForKey("url") as! String
-        ])
-    }
+
     
     static func savePostInDB(post: Post) {
         postsRef = firebase.childByAppendingPath("posts").childByAutoId()
@@ -194,16 +168,9 @@ class YayMgr {
         ])
     }
     
-    static func saveFriendsIDs(friendsData: NSDictionary!) {
-        userRef = firebase.childByAppendingPath("users/\(YayMgr.userID)")
-        for friend in friendsData.valueForKey("data") as! NSArray {
-            YayMgr.friendsIDs.append(Int(friend.valueForKey("id") as! String)!)
-        }
-        userRef.updateChildValues([ "FriendsIDs": YayMgr.friendsIDs ])
-    }
-    
-    
-    static func createPost(message: Message, completionHandler: Post -> ()) {
+
+    // daria we need to talk about this function
+    /*static func createPost(message: Message, completionHandler: Post -> ()) {
         var newPost: Post!
         getUserByID(userID) { currentUser in
             print("current user: ", currentUser.FirstName, " ", currentUser.LastName)
@@ -211,7 +178,7 @@ class YayMgr {
             savePostInDB(newPost)
             completionHandler(newPost)
         }
-    }
+    }*/
     
     static func getBooMsg() -> String{
         let randomIndex = arc4random_uniform(UInt32(YayMgr.BooMsg.count))

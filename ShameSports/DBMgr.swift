@@ -45,10 +45,13 @@ class DBMgr {
             
             let post : Post = Post(Poster: poster, Points: points, Comments: comments, Text: message, Timestamp: timeInt)
             post.DBIndex = snapshot.key
+            
             if (isMyActivity == true){
-                YayMgr.myPosts.append(post)
+                let index = YayMgr.myPosts.indexOf({$0.Timestamp > post.Timestamp})
+                YayMgr.myPosts.insert(post, atIndex: index!)
             } else {
-                YayMgr.FrPosts.append(post)
+                let index = YayMgr.FrPosts.indexOf({$0.Timestamp > post.Timestamp})
+                YayMgr.FrPosts.insert(post, atIndex: index!)
             }
         })
         
@@ -57,48 +60,3 @@ class DBMgr {
     }
 }
 
-
-
-class aa  {
-    var poster: bb;
-    var id : String
-    // encode to serialize and save it using nsuserdefaults
-    init (id:String){
-        poster = bb(firstName: "bla", lastName: " sec")
-        self.id = id
-    }
-
-}
-
-class bb  {
-    let firstName : String;
-    let lastName : String;
-    init (firstName : String, lastName : String){
-        self.firstName = firstName
-        self.lastName = lastName
-    }
-
-}
-
-/*: NSObject, NSCoding
-required init?(coder decoder: NSCoder) {
-self.firstName = (decoder.decodeObjectForKey("firstName") as? String)!
-self.lastName = (decoder.decodeObjectForKey("lastName") as? String)!
-super.init()
-}
-func encodeWithCoder(coder: NSCoder) {
-coder.encodeObject(self.firstName, forKey: "firstName")
-coder.encodeObject(self.lastName, forKey: "lastName")
-}    
-
-required init?(coder decoder: NSCoder) {
-        self.poster = (decoder.decodeObjectForKey("poster") as? bb)!
-        self.id = (decoder.decodeObjectForKey("id") as? String)!
-        super.init()
-    }
-    func encodeWithCoder(coder: NSCoder) {
-        coder.encodeObject(self.poster, forKey: "poster")
-        coder.encodeObject(self.id, forKey: "id")
-    }
-
-*/

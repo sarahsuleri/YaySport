@@ -38,11 +38,14 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
             }
             else
             {
-                //print("fetched user: \(result)")
-                YayMgr.saveUserInDB(result)
-                //let userName = result.valueForKey("name") as? String
-                //print("User Name is: \(userName)")
-                //self.userData = result
+                let userID = Int(result.valueForKey("id") as! String)!
+                let fname =  result.valueForKey("first_name") as! String
+                let lastName = result.valueForKey("last_name") as! String
+                let photo = result.valueForKey("picture")!.valueForKey("data")!.valueForKey("url") as! String
+                
+                YayMgr.owner = User(Id: userID, FirstName: fname, LastName: lastName, PhotoUrl: photo)
+                
+
             }
         }
     }
@@ -58,9 +61,13 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
                 
             } else
             {
-                //print("Friends are : \(result)")
-                YayMgr.saveFriendsIDs(result as! NSDictionary)
-                //self.userFriends = result
+
+                let friendsData = result as! NSDictionary
+                
+                for friend in friendsData.valueForKey("data") as! NSArray {
+                    YayMgr.friendsIDs.append(Int(friend.valueForKey("id") as! String)!)
+                }
+
                 
             }
         }

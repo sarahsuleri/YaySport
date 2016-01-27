@@ -39,8 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let accessToken = FBSDKAccessToken.currentAccessToken()
         if (accessToken != nil) {
-            YayMgr.userID = Int(accessToken.userID)!
-            accessToken
             let vc = mainStoryboard.instantiateViewControllerWithIdentifier("TabBarController") as UIViewController
             initialViewController = vc
         }else{

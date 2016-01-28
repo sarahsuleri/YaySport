@@ -13,105 +13,43 @@ class HealthManager {
     
     static var msgObj :Message = Message(Title: "",Description: "",Yay: false)
     
-    let healthKitStore:HKHealthStore? = {
-        if HKHealthStore.isHealthDataAvailable() {
+    static var healthKitStore:HKHealthStore = {
+    /*  if HKHealthStore.isHealthDataAvailable() {
             return HKHealthStore()
         } else {
             return nil
-        }
+        }*/
+        return HKHealthStore()
     }()
     
-    let objStepsCount = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!
-    let objFlightsClimbed = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed)!
-    let objDistanceWalkedRunning = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)!
+   static let objStepsCount = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!
+   static let objFlightsClimbed = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed)!
+    static let objDistanceWalkedRunning = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)!
     
-    var lstSteps: [HKQuantitySample] = []
+     static var lstSteps: [HKQuantitySample] = []
     
-    func authorizeHealthKit(completion: ((success:Bool, error:NSError!) -> Void)!)
-    {
-        let healthKitTypesToRead : NSSet = NSSet(set: [objStepsCount,objFlightsClimbed,objDistanceWalkedRunning ])
-       
-
-        healthKitStore?.requestAuthorizationToShareTypes(nil, readTypes: healthKitTypesToRead as? Set<HKObjectType>) { (success, error) -> Void in
-            
-            if success && error == nil{
-                dispatch_async(dispatch_get_main_queue(),{
-                    self.startObservingStepsChanges()
-                
-     //               self.startObservingFloorsChanges()
-          
-       //             self.startObservingMilesChanges()
-                })
-            } else {
-                if let theError = error{
-                    print("Error occurred = \(theError)")
-                }
-            }
-            if( completion != nil )
-            {
-                completion(success:success,error:error)
-            }
-        }
-    }
+    //Query
+    static var querySteps: HKObserverQuery = {
+        return HKObserverQuery(sampleType: HealthManager.objStepsCount,
+            predicate: HealthManager.predicate,
+            updateHandler: HealthManager.stepsChangedHandler)
+    }()
     
-    // Reads Number of steps taken
-    func readNumberOfStepsTaken(){
-        
-        let readStepsQuery = HKSampleQuery(sampleType: objStepsCount,
-            predicate: nil,
-            limit: 100,
-            sortDescriptors: nil)
-            { [unowned self] (query, results, error) in
-                if let results = results as? [HKQuantitySample] {
-                    
-                    self.lstSteps = results
-                    print(self.lstSteps)
-                }
-        }
-        
-        
-        healthKitStore?.executeQuery(readStepsQuery)
-        
-    }
-    
-    //Reads most recent sample of today i.e. from 12am
-    func readMostRecentSample(sampleType:HKSampleType , completion: (([HKSample]!, NSError!) -> Void)!)
-    {
-
-        let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-        
-        let endDate = NSDate()
-        let startDate = cal.startOfDayForDate(endDate)
-        
-        let mostRecentPredicate = HKQuery.predicateForSamplesWithStartDate(startDate, endDate: endDate, options: .None)
-        let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
-        let limit = 0
-        
-        let sampleQuery = HKSampleQuery(sampleType: sampleType, predicate: mostRecentPredicate, limit: limit, sortDescriptors: [sortDescriptor])
-            { (sampleQuery, results, error ) -> Void in
-                
-                if let _ = error {
-                    completion(nil,error)
-                    return;
-                }
-                
-                let mostRecentSample = results! as? [HKQuantitySample]
-                if completion != nil {
-                    completion(mostRecentSample,nil)
-                }
-        }
-        self.healthKitStore!.executeQuery(sampleQuery)
-    }
-    
-    // Observer Query
-    
-    lazy var types: Set<HKObjectType> = {
-        return [self.objStepsCount, self.objFlightsClimbed, self.objDistanceWalkedRunning]
+    static var queryFloors: HKObserverQuery = {
+        return HKObserverQuery(sampleType: HealthManager.objFlightsClimbed,
+            predicate: HealthManager.predicate,
+            updateHandler: HealthManager.floorsChangedHandler)
     }()
     
     
+    static var queryMiles: HKObserverQuery = {
+        return HKObserverQuery(sampleType: HealthManager.objDistanceWalkedRunning,
+            predicate: HealthManager.predicate,
+            updateHandler: HealthManager.milesChangedHandler)
+    }()
+
     //Predicate
-    lazy var predicate: NSPredicate = {
+    static var predicate: NSPredicate = {
         let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         
         let endDate = NSDate()
@@ -128,36 +66,42 @@ class HealthManager {
             options: .StrictEndDate)
     }()
     
-    
-    //Query
-    lazy var querySteps: HKObserverQuery = {
-        return HKObserverQuery(sampleType: self.objStepsCount,
-            predicate: self.predicate,
-            updateHandler: self.stepsChangedHandler)
-    }()
-    
-    lazy var queryFloors: HKObserverQuery = {
-        return HKObserverQuery(sampleType: self.objFlightsClimbed,
-            predicate: self.predicate,
-            updateHandler: self.floorsChangedHandler)
-    }()
-    
-    
-    lazy var queryMiles: HKObserverQuery = {
-        return HKObserverQuery(sampleType: self.objDistanceWalkedRunning,
-            predicate: self.predicate,
-            updateHandler: self.milesChangedHandler)
-    }()
 
+    // Observer Query
+    
+    lazy var types: Set<HKObjectType> = {
+        return [HealthManager.objStepsCount, HealthManager.objFlightsClimbed, HealthManager.objDistanceWalkedRunning]
+    }()
+    
+    func authorizeHealthKit(completion: ((success:Bool, error:NSError!) -> Void)!)
+    {
+        let healthKitTypesToRead : NSSet = NSSet(set: [HealthManager.objStepsCount,HealthManager.objFlightsClimbed,HealthManager.objDistanceWalkedRunning ])
+       
+
+         HealthManager.healthKitStore.requestAuthorizationToShareTypes(nil, readTypes: healthKitTypesToRead as? Set<HKObjectType>) { (success, error) -> Void in
+            
+            if success && error == nil{
+                } else {
+                if let theError = error{
+                    print("Error occurred = \(theError)")
+                }
+            }
+            if( completion != nil )
+            {
+                completion(success:success,error:error)
+            }
+        }
+    }
+    
     
     //Fetch Calls
-    func fetchRecordedStepsISinceStartOfDay(){
+    static func fetchRecordedStepsISinceStartOfDay(){
         
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
             ascending: true)
         
-        let query = HKSampleQuery(sampleType: objStepsCount,
-            predicate: predicate,
+        let query = HKSampleQuery(sampleType: HealthManager.objStepsCount,
+            predicate: HealthManager.predicate,
             limit: Int(HKObjectQueryNoLimit),
             sortDescriptors: [sortDescriptor],
             resultsHandler: {(query: HKSampleQuery,
@@ -175,24 +119,23 @@ class HealthManager {
                 {
                     dailyAVG += Int(_steps.quantity.doubleValueForUnit(HKUnit.countUnit()))
                 }
-               
-                
+                            
                 //Criteria to show msg
                 
                 HealthManager.criteriaToShowMsg(dailyAVG,isStep: true,isFloor: false,isMiles: false)
                 
         })
         
-        healthKitStore!.executeQuery(query)
+         HealthManager.healthKitStore.executeQuery(query)
         
     }
     
-    func fetchRecordedFloorsSinceStartOfDay(){
+    static func fetchRecordedFloorsSinceStartOfDay(){
         
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
             ascending: true)
         
-        let query = HKSampleQuery(sampleType: objFlightsClimbed,
+        let query = HKSampleQuery(sampleType: HealthManager.objFlightsClimbed,
             predicate: predicate,
             limit: Int(HKObjectQueryNoLimit),
             sortDescriptors: [sortDescriptor],
@@ -219,17 +162,17 @@ class HealthManager {
                 
         })
         
-        healthKitStore!.executeQuery(query)
+         HealthManager.healthKitStore.executeQuery(query)
         
     }
     
-    func fetchRecordedMilesSinceStartOfDay(){
+    static func fetchRecordedMilesSinceStartOfDay(){
         
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
             ascending: true)
         
-        let query = HKSampleQuery(sampleType: objDistanceWalkedRunning,
-            predicate: predicate,
+        let query = HKSampleQuery(sampleType: HealthManager.objDistanceWalkedRunning,
+            predicate: HealthManager.predicate,
             limit: Int(HKObjectQueryNoLimit),
             sortDescriptors: [sortDescriptor],
             resultsHandler: {(query: HKSampleQuery,
@@ -255,13 +198,13 @@ class HealthManager {
                 
         })
         
-        healthKitStore!.executeQuery(query)
+         HealthManager.healthKitStore.executeQuery(query)
         
     }
     
     //Change Handler
     
-    func stepsChangedHandler(query: HKObserverQuery,
+    static func stepsChangedHandler(query: HKObserverQuery,
         completionHandler: HKObserverQueryCompletionHandler,
         error: NSError?){
             
@@ -271,7 +214,7 @@ class HealthManager {
             
     }
     
-    func floorsChangedHandler(query: HKObserverQuery,
+    static func floorsChangedHandler(query: HKObserverQuery,
         completionHandler: HKObserverQueryCompletionHandler,
         error: NSError?){
             
@@ -281,7 +224,7 @@ class HealthManager {
             
     }
     
-    func milesChangedHandler(query: HKObserverQuery,
+    static func milesChangedHandler(query: HKObserverQuery,
         completionHandler: HKObserverQueryCompletionHandler,
         error: NSError?){
             
@@ -292,9 +235,9 @@ class HealthManager {
     }
     
     //Start Observation
-    func startObservingStepsChanges(){
-        healthKitStore!.executeQuery(querySteps)
-        healthKitStore!.enableBackgroundDeliveryForType(objStepsCount,
+     static func startObservingStepsChanges(){
+         HealthManager.healthKitStore.executeQuery(HealthManager.querySteps)
+         HealthManager.healthKitStore.enableBackgroundDeliveryForType(objStepsCount,
             frequency: .Daily,
             withCompletion: {succeeded, error in
                 
@@ -310,9 +253,9 @@ class HealthManager {
         })
     }
     
-    func startObservingFloorsChanges(){
-        healthKitStore!.executeQuery(queryFloors)
-        healthKitStore!.enableBackgroundDeliveryForType(objFlightsClimbed,
+    static func startObservingFloorsChanges(){
+         HealthManager.healthKitStore.executeQuery(HealthManager.queryFloors)
+         HealthManager.healthKitStore.enableBackgroundDeliveryForType(objFlightsClimbed,
             frequency: .Daily,
             withCompletion: {succeeded, error in
                 
@@ -327,9 +270,9 @@ class HealthManager {
                 
         })
     }
-    func startObservingMilesChanges(){
-        healthKitStore!.executeQuery(queryMiles)
-        healthKitStore!.enableBackgroundDeliveryForType(objDistanceWalkedRunning,
+    static func startObservingMilesChanges(){
+         HealthManager.healthKitStore.executeQuery(HealthManager.queryMiles)
+         HealthManager.healthKitStore.enableBackgroundDeliveryForType(objDistanceWalkedRunning,
             frequency: .Daily,
             withCompletion: {succeeded, error in
                 
@@ -348,9 +291,9 @@ class HealthManager {
    
 
     //Stop Observation
-    func stopObservingStepsChanges(){
-        healthKitStore!.stopQuery(querySteps)
-        healthKitStore!.disableAllBackgroundDeliveryWithCompletion{
+    static func stopObservingStepsChanges(){
+        HealthManager.healthKitStore.stopQuery(HealthManager.querySteps)
+         HealthManager.healthKitStore.disableAllBackgroundDeliveryWithCompletion{
             succeeded, error in
             
             if succeeded{
@@ -366,9 +309,9 @@ class HealthManager {
     }
 
     
-    func stopObservingFloorsChanges(){
-        healthKitStore!.stopQuery(queryFloors)
-        healthKitStore!.disableAllBackgroundDeliveryWithCompletion{
+    static func stopObservingFloorsChanges(){
+         HealthManager.healthKitStore.stopQuery(HealthManager.queryFloors)
+         HealthManager.healthKitStore.disableAllBackgroundDeliveryWithCompletion{
             succeeded, error in
             
             if succeeded{
@@ -383,9 +326,9 @@ class HealthManager {
         }
     }
     
-    func stopObservingMilesChanges(){
-        healthKitStore!.stopQuery(queryMiles)
-        healthKitStore!.disableAllBackgroundDeliveryWithCompletion{
+    static func stopObservingMilesChanges(){
+         HealthManager.healthKitStore.stopQuery(HealthManager.queryMiles)
+         HealthManager.healthKitStore.disableAllBackgroundDeliveryWithCompletion{
             succeeded, error in
             
             if succeeded{
@@ -402,82 +345,7 @@ class HealthManager {
 
     
     
-    // HK : Load Data : Sample Queries for testing
-    
-    func readSteps(){
-        
-        let sampleType = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-        self.readMostRecentSample(sampleType!, completion: { (mostRecentSteps, error) -> Void in
-            
-            if( error != nil )
-            {
-                print("Error reading steps taken from HealthKit Store: \(error.localizedDescription)")
-                return;
-            }
-            
-            
-            let steps = mostRecentSteps.first as? HKQuantitySample;
-            var dailyAVG:Double = 0
-            for _steps in mostRecentSteps as! [HKQuantitySample]
-            {
-                dailyAVG += _steps.quantity.doubleValueForUnit(HKUnit.countUnit())
-            }
-            print(dailyAVG)
-            
-        });
-    }
-    
-    func readFloors(){
-        
-        let sampleType = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed)
-        
-        self.readMostRecentSample(sampleType!, completion: { (mostRecentFloors, error) -> Void in
-            
-            if( error != nil )
-            {
-                print("Error reading number of floors climbed from HealthKit Store: \(error.localizedDescription)")
-                return;
-            }
-            
-            
-            let floors = mostRecentFloors.first as? HKQuantitySample;
-            var dailyAVG:Double = 0
-            for _floors in mostRecentFloors as! [HKQuantitySample]
-            {
-                dailyAVG += _floors.quantity.doubleValueForUnit(HKUnit.countUnit())
-            }
-            print(dailyAVG)
-            
-            
-            
-        });
-    }
-    
-    func readDistanceWalked(){
-        
-        let sampleType = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
-        self.readMostRecentSample(sampleType!, completion: { (mostRecentDistance, error) -> Void in
-            
-            if( error != nil )
-            {
-                print("Error reading distance walked from HealthKit Store: \(error.localizedDescription)")
-                return;
-            }
-            
-            
-            let distanceWalked = mostRecentDistance.first as? HKQuantitySample;
-            
-            var dailyAVG:Double = 0
-            for _distance in mostRecentDistance as! [HKQuantitySample]
-            {
-                dailyAVG += _distance.quantity.doubleValueForUnit(HKUnit.mileUnit())
-            }
-            print(dailyAVG)
-            
-            
-        });
-    }
-
+   
 
     // Criteria to show msgs<
     static func criteriaToShowMsg(dailyCount: Int, isStep:Bool , isFloor: Bool, isMiles: Bool){
@@ -491,7 +359,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
-                    YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
                     
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
@@ -502,7 +370,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
-                    YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
                     
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
@@ -519,7 +387,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
-                    YayMgr.registerNotification(dailyCount.description + " Floors!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Floors!! " + msgDesc)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Floors!! ",Description: msgDesc, Yay: isYay)
                 })
@@ -528,7 +396,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
-                    YayMgr.registerNotification(dailyCount.description + " Floors!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Floors!! " + msgDesc)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Floors!! ",Description: msgDesc, Yay: isYay)
                 })
@@ -544,7 +412,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
-                    YayMgr.registerNotification(dailyCount.description + " Miles!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Miles!! " + msgDesc)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Miles!! ",Description: msgDesc, Yay: isYay)
 
@@ -554,7 +422,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
-                    YayMgr.registerNotification(dailyCount.description + " Miles!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Miles!! " + msgDesc)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Miles!! ",Description: msgDesc, Yay: isYay)
 
@@ -564,6 +432,44 @@ class HealthManager {
             
         }
     }
+    
+    
+    // Register Notifications : To be altered for different msgs
+    static func registerNotification(msg : String){
+        
+        //Register Notifications
+        let gCalender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let day =  gCalender.components(NSCalendarUnit.Day , fromDate: NSDate())
+        let month =  gCalender.components(NSCalendarUnit.Month , fromDate: NSDate())
+        let year =  gCalender.components(NSCalendarUnit.Year , fromDate: NSDate())
+        let hour = gCalender.components(NSCalendarUnit.Hour , fromDate: NSDate())
+        let min = gCalender.components(NSCalendarUnit.Minute , fromDate: NSDate())
+        
+        let dateComp:NSDateComponents = NSDateComponents()
+        dateComp.year = year.year
+        dateComp.month = month.month
+        dateComp.day =   day.day
+        dateComp.hour = hour.hour
+        print(hour.hour.description)
+        print(min.minute.advancedBy(1).description)
+        dateComp.minute = min.minute.advancedBy(1)
+        dateComp.timeZone = NSTimeZone.systemTimeZone()
+        
+        
+        let fireDate:NSDate = gCalender.dateFromComponents(dateComp)!
+        
+        
+        let notification:UILocalNotification = UILocalNotification()
+        //notification.alertTitle = "200 Steps"
+        notification.alertBody = msg
+        notification.fireDate = fireDate
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        
+        
+        
+    }
+
 
     
 }

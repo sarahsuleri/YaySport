@@ -36,6 +36,15 @@ class YayMgr {
             for friend in friendsIDs {
                 DBMgr.getPostByPosterID(friend,isMyActivity: false);
             }
+            
+            dispatch_async(dispatch_get_main_queue(),{
+                         HealthManager.startObservingStepsChanges()
+                
+                             HealthManager.startObservingFloorsChanges()
+                
+                             HealthManager.startObservingMilesChanges()
+            })
+                       
         }
     }
     
@@ -54,55 +63,20 @@ class YayMgr {
     
     
     static func getBooMsg() -> String{
-        if YayMgr.BooMsg.count == 0{ DBMgr.getMessages()}
+        if YayMgr.BooMsg.count == 0{  BooMsg.append(Message(Title: "", Description: "Seriously! Even snails move more than you !", Yay: false))}
         let randomIndex = arc4random_uniform(UInt32(YayMgr.BooMsg.count))
         return YayMgr.BooMsg[Int(randomIndex)].Description
     }
     
     static func getYayMsg() -> String{
-         if YayMgr.YayMsg.count == 0{ DBMgr.getMessages()}
+        if YayMgr.YayMsg.count == 0{ YayMsg.append(Message(Title: "", Description: "Job Well Done !", Yay: true))}
          let randomIndex = arc4random_uniform(UInt32(YayMgr.YayMsg.count))
         return YayMgr.YayMsg[Int(randomIndex)].Description
     }
     
     
     
-    // Register Notifications : To be altered for different msgs
-    static func registerNotification(msg : String){
-        
-    //Register Notifications
-    let gCalender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-    let day =  gCalender.components(NSCalendarUnit.Day , fromDate: NSDate())
-    let month =  gCalender.components(NSCalendarUnit.Month , fromDate: NSDate())
-    let year =  gCalender.components(NSCalendarUnit.Year , fromDate: NSDate())
-    let hour = gCalender.components(NSCalendarUnit.Hour , fromDate: NSDate())
-    let min = gCalender.components(NSCalendarUnit.Minute , fromDate: NSDate())
-    
-    let dateComp:NSDateComponents = NSDateComponents()
-    dateComp.year = year.year
-    dateComp.month = month.month
-    dateComp.day =   day.day
-    dateComp.hour = hour.hour
-    print(hour.hour.description)
-    print(min.minute.advancedBy(1).description)
-    dateComp.minute = min.minute.advancedBy(1)
-    dateComp.timeZone = NSTimeZone.systemTimeZone()
-    
-    
-    let fireDate:NSDate = gCalender.dateFromComponents(dateComp)!
-    
-    
-    let notification:UILocalNotification = UILocalNotification()
-    //notification.alertTitle = "200 Steps"
-    notification.alertBody = msg
-    notification.fireDate = fireDate
-    
-    UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        
-        
-        
-    }
-       
+           
     static func saveDefaults(){
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setInteger(owner.Id, forKey: "Id")

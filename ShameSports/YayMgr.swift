@@ -22,7 +22,7 @@ class YayMgr {
     static var owner : User = User(Id: 0, FirstName: "temp", LastName: "temp", PhotoUrl: "temp")
     static var loaded : Bool = false
     
-    var healthManager:HealthManager?
+    
     var floors,steps, distanceWalked:HKQuantitySample?
     
     
@@ -66,39 +66,7 @@ class YayMgr {
         return YayMgr.YayMsg[Int(randomIndex)].Description
     }
     
-    // Criteria to show msgs
-    static func criteriaToShowMsg(dailyCount: Int, isStep:Bool , isFloor: Bool){
     
-        var msgDesc : String = ""
-        var isYay: Bool = true
-       
-
-        if isStep {
-        if( dailyCount < 200){
-            dispatch_async(dispatch_get_main_queue(), {
-                msgDesc = YayMgr.getBooMsg()
-                isYay = false
-                YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
-            })
-        }
-        else if( dailyCount >= 200){
-            dispatch_async(dispatch_get_main_queue(), {
-                msgDesc = YayMgr.getYayMsg()
-                isYay = true
-                YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
-            })
-        }
-        
-        
-        
-        // Msg object
-        var msgObj :Message = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
-        }
-        else if isFloor {
-            //Criteria for floors
-        }
-    
-    }
     
     // Register Notifications : To be altered for different msgs
     static func registerNotification(msg : String){
@@ -135,82 +103,7 @@ class YayMgr {
         
         
     }
-    // HK : Load Data : Sample Queries for testing 
-    
-    func readSteps(){
-        
-        let sampleType = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
-        self.healthManager?.readMostRecentSample(sampleType!, completion: { (mostRecentSteps, error) -> Void in
-            
-            if( error != nil )
-            {
-                print("Error reading steps taken from HealthKit Store: \(error.localizedDescription)")
-                return;
-            }
-            
-            
-            self.steps = mostRecentSteps.first as? HKQuantitySample;
-            var dailyAVG:Double = 0
-            for _steps in mostRecentSteps as! [HKQuantitySample]
-            {
-                dailyAVG += _steps.quantity.doubleValueForUnit(HKUnit.countUnit())
-            }
-            print(dailyAVG)
-            
-        });
-    }
-    
-    func readFloors(){
-        
-        let sampleType = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed)
-        
-        self.healthManager?.readMostRecentSample(sampleType!, completion: { (mostRecentFloors, error) -> Void in
-            
-            if( error != nil )
-            {
-                print("Error reading number of floors climbed from HealthKit Store: \(error.localizedDescription)")
-                return;
-            }
-            
-            
-            self.floors = mostRecentFloors.first as? HKQuantitySample;
-            var dailyAVG:Double = 0
-            for _floors in mostRecentFloors as! [HKQuantitySample]
-            {
-                dailyAVG += _floors.quantity.doubleValueForUnit(HKUnit.countUnit())
-            }
-            print(dailyAVG)
-            
-            
-            
-        });
-    }
-    
-    func readDistanceWalked(){
-        
-        let sampleType = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
-        self.healthManager?.readMostRecentSample(sampleType!, completion: { (mostRecentDistance, error) -> Void in
-            
-            if( error != nil )
-            {
-                print("Error reading distance walked from HealthKit Store: \(error.localizedDescription)")
-                return;
-            }
-            
-            
-            self.distanceWalked = mostRecentDistance.first as? HKQuantitySample;
-            
-            var dailyAVG:Double = 0
-            for _distance in mostRecentDistance as! [HKQuantitySample]
-            {
-                dailyAVG += _distance.quantity.doubleValueForUnit(HKUnit.mileUnit())
-            }
-            print(dailyAVG)
-            
-            
-        });
-    }
-    
+       
     static func saveDefaults(){
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setInteger(owner.Id, forKey: "Id")

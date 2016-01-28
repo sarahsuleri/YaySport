@@ -11,6 +11,8 @@ import HealthKit
 
 class HealthManager {
     
+    static var msgObj :Message = Message(Title: "",Description: "",Yay: false)
+    
     let healthKitStore:HKHealthStore? = {
         if HKHealthStore.isHealthDataAvailable() {
             return HKHealthStore()
@@ -160,7 +162,7 @@ class HealthManager {
                 
                 //Criteria to show msg
                 
-                YayMgr.criteriaToShowMsg(dailyAVG,isStep: true,isFloor: false)
+                HealthManager.criteriaToShowMsg(dailyAVG,isStep: true,isFloor: false)
                 
         })
         
@@ -196,7 +198,7 @@ class HealthManager {
                 
                 //Criteria to show msg
                 
-                YayMgr.criteriaToShowMsg(dailyAVG,isStep: false,isFloor: true)
+               HealthManager.criteriaToShowMsg(dailyAVG,isStep: false,isFloor: true)
                 
         })
         
@@ -260,6 +262,133 @@ class HealthManager {
             }
             
         }
+    }
+    
+    
+    // HK : Load Data : Sample Queries for testing
+    
+    func readSteps(){
+        
+        let sampleType = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)
+        self.readMostRecentSample(sampleType!, completion: { (mostRecentSteps, error) -> Void in
+            
+            if( error != nil )
+            {
+                print("Error reading steps taken from HealthKit Store: \(error.localizedDescription)")
+                return;
+            }
+            
+            
+            let steps = mostRecentSteps.first as? HKQuantitySample;
+            var dailyAVG:Double = 0
+            for _steps in mostRecentSteps as! [HKQuantitySample]
+            {
+                dailyAVG += _steps.quantity.doubleValueForUnit(HKUnit.countUnit())
+            }
+            print(dailyAVG)
+            
+        });
+    }
+    
+    func readFloors(){
+        
+        let sampleType = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierFlightsClimbed)
+        
+        self.readMostRecentSample(sampleType!, completion: { (mostRecentFloors, error) -> Void in
+            
+            if( error != nil )
+            {
+                print("Error reading number of floors climbed from HealthKit Store: \(error.localizedDescription)")
+                return;
+            }
+            
+            
+            let floors = mostRecentFloors.first as? HKQuantitySample;
+            var dailyAVG:Double = 0
+            for _floors in mostRecentFloors as! [HKQuantitySample]
+            {
+                dailyAVG += _floors.quantity.doubleValueForUnit(HKUnit.countUnit())
+            }
+            print(dailyAVG)
+            
+            
+            
+        });
+    }
+    
+    func readDistanceWalked(){
+        
+        let sampleType = HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)
+        self.readMostRecentSample(sampleType!, completion: { (mostRecentDistance, error) -> Void in
+            
+            if( error != nil )
+            {
+                print("Error reading distance walked from HealthKit Store: \(error.localizedDescription)")
+                return;
+            }
+            
+            
+            let distanceWalked = mostRecentDistance.first as? HKQuantitySample;
+            
+            var dailyAVG:Double = 0
+            for _distance in mostRecentDistance as! [HKQuantitySample]
+            {
+                dailyAVG += _distance.quantity.doubleValueForUnit(HKUnit.mileUnit())
+            }
+            print(dailyAVG)
+            
+            
+        });
+    }
+
+
+    // Criteria to show msgs<
+    static func criteriaToShowMsg(dailyCount: Int, isStep:Bool , isFloor: Bool){
+        
+        var msgDesc : String = ""
+        var isYay: Bool = true
+        
+        
+        if isStep {
+            if( dailyCount < 200){
+                dispatch_async(dispatch_get_main_queue(), {
+                    msgDesc = YayMgr.getBooMsg()
+                    isYay = false
+                    YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                })
+            }
+            else if( dailyCount >= 200){
+                dispatch_async(dispatch_get_main_queue(), {
+                    msgDesc = YayMgr.getYayMsg()
+                    isYay = true
+                    YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                })
+            }
+            
+            
+            
+            // Msg object
+           msgObj  = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
+        }
+        else if isFloor {
+            //Criteria for floors
+            
+            if( dailyCount < 3){
+                dispatch_async(dispatch_get_main_queue(), {
+                    msgDesc = YayMgr.getBooMsg()
+                    isYay = false
+                    YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                })
+            }
+            else if( dailyCount >= 3){
+                dispatch_async(dispatch_get_main_queue(), {
+                    msgDesc = YayMgr.getYayMsg()
+                    isYay = true
+                    YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                })
+            }
+        }
+        
     }
 
     

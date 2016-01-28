@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShameSports/HealthManager.swift"
-            timestampString = "474691033.664304"
+            timestampString = "475699190.244981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "authorizeHealthKit(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShameSports/HealthManager.swift"
-            timestampString = "474691035.685444"
+            timestampString = "475699190.244981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "authorizeHealthKit(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShameSports/HealthManager.swift"
-            timestampString = "474723777.041281"
+            timestampString = "475699190.244981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "startObservingStepsChanges()"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "fetchRecordedFloorsSinceStartOfDay()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShameSports/HealthManager.swift"
-            timestampString = "474723777.041281"
+            timestampString = "475699190.244981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "fetchRecordedStepsISinceStartOfDay()"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,13 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShameSports/HealthManager.swift"
-            timestampString = "474691237.278285"
+            timestampString = "475699190.244981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "fetchRecordedStepsISinceStartOfDay()"
-            landmarkType = "5">
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "queryFloors"
+            landmarkType = "19">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShameSports/HealthManager.swift"
-            timestampString = "474723777.041281"
+            timestampString = "475699190.244981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "stepsChangedHandler(_:completionHandler:error:)"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "fetchRecordedStepsISinceStartOfDay()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -143,8 +143,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "load()"
-            landmarkType = "5">
+            landmarkName = "YayMgr"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -154,12 +154,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShameSports/HealthManager.swift"
-            timestampString = "474735326.688137"
+            timestampString = "475699190.244981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "startObservingStepsChanges()"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "fetchRecordedFloorsSinceStartOfDay()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

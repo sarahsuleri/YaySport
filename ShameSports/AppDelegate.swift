@@ -22,9 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         
         
-        // HK 
         
-        authorizeHealthKit()
 
         //SS: End
         
@@ -48,6 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = initialViewController
         
         self.window?.makeKeyAndVisible()
+        
+        // HK
+        
+        authorizeHealthKit()
         
         return true
     }

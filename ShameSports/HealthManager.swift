@@ -35,8 +35,13 @@ class HealthManager {
         healthKitStore?.requestAuthorizationToShareTypes(nil, readTypes: healthKitTypesToRead as? Set<HKObjectType>) { (success, error) -> Void in
             
             if success && error == nil{
-                dispatch_async(dispatch_get_main_queue(),
-                    self.startObservingStepsChanges)
+                dispatch_async(dispatch_get_main_queue(),{
+                    self.startObservingStepsChanges()
+                
+     //               self.startObservingFloorsChanges()
+          
+       //             self.startObservingMilesChanges()
+                })
             } else {
                 if let theError = error{
                     print("Error occurred = \(theError)")
@@ -101,10 +106,11 @@ class HealthManager {
     // Observer Query
     
     lazy var types: Set<HKObjectType> = {
-        return [self.objStepsCount]
+        return [self.objStepsCount, self.objFlightsClimbed, self.objDistanceWalkedRunning]
     }()
     
     
+    //Predicate
     lazy var predicate: NSPredicate = {
         let cal = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         
@@ -122,7 +128,9 @@ class HealthManager {
             options: .StrictEndDate)
     }()
     
-    lazy var query: HKObserverQuery = {
+    
+    //Query
+    lazy var querySteps: HKObserverQuery = {
         return HKObserverQuery(sampleType: self.objStepsCount,
             predicate: self.predicate,
             updateHandler: self.stepsChangedHandler)
@@ -134,6 +142,15 @@ class HealthManager {
             updateHandler: self.floorsChangedHandler)
     }()
     
+    
+    lazy var queryMiles: HKObserverQuery = {
+        return HKObserverQuery(sampleType: self.objDistanceWalkedRunning,
+            predicate: self.predicate,
+            updateHandler: self.milesChangedHandler)
+    }()
+
+    
+    //Fetch Calls
     func fetchRecordedStepsISinceStartOfDay(){
         
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
@@ -162,7 +179,7 @@ class HealthManager {
                 
                 //Criteria to show msg
                 
-                HealthManager.criteriaToShowMsg(dailyAVG,isStep: true,isFloor: false)
+                HealthManager.criteriaToShowMsg(dailyAVG,isStep: true,isFloor: false,isMiles: false)
                 
         })
         
@@ -198,13 +215,51 @@ class HealthManager {
                 
                 //Criteria to show msg
                 
-               HealthManager.criteriaToShowMsg(dailyAVG,isStep: false,isFloor: true)
+               HealthManager.criteriaToShowMsg(dailyAVG,isStep: false,isFloor: true,isMiles: false)
                 
         })
         
-        healthKitStore!.executeQuery(queryFloors)
+        healthKitStore!.executeQuery(query)
         
     }
+    
+    func fetchRecordedMilesSinceStartOfDay(){
+        
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate,
+            ascending: true)
+        
+        let query = HKSampleQuery(sampleType: objDistanceWalkedRunning,
+            predicate: predicate,
+            limit: Int(HKObjectQueryNoLimit),
+            sortDescriptors: [sortDescriptor],
+            resultsHandler: {(query: HKSampleQuery,
+                results: [HKSample]?,
+                error: NSError?) in
+                
+                guard let results = results where results.count > 0 else {
+                    print("Could not read the user's miles")
+                    print("or no miles data was available")
+                    return
+                }
+                
+                var dailyAVG:Int = 0
+                for _miles in results as! [HKQuantitySample]
+                {
+                    dailyAVG += Int(_miles.quantity.doubleValueForUnit(HKUnit.mileUnit()))
+                }
+                
+                
+                //Criteria to show msg
+                
+                HealthManager.criteriaToShowMsg(dailyAVG,isStep: false,isFloor: false,isMiles: true)
+                
+        })
+        
+        healthKitStore!.executeQuery(query)
+        
+    }
+    
+    //Change Handler
     
     func stepsChangedHandler(query: HKObserverQuery,
         completionHandler: HKObserverQueryCompletionHandler,
@@ -226,8 +281,19 @@ class HealthManager {
             
     }
     
+    func milesChangedHandler(query: HKObserverQuery,
+        completionHandler: HKObserverQueryCompletionHandler,
+        error: NSError?){
+            
+            fetchRecordedMilesSinceStartOfDay()
+            
+            completionHandler()
+            
+    }
+    
+    //Start Observation
     func startObservingStepsChanges(){
-        healthKitStore!.executeQuery(query)
+        healthKitStore!.executeQuery(querySteps)
         healthKitStore!.enableBackgroundDeliveryForType(objStepsCount,
             frequency: .Daily,
             withCompletion: {succeeded, error in
@@ -244,7 +310,60 @@ class HealthManager {
         })
     }
     
+    func startObservingFloorsChanges(){
+        healthKitStore!.executeQuery(queryFloors)
+        healthKitStore!.enableBackgroundDeliveryForType(objFlightsClimbed,
+            frequency: .Daily,
+            withCompletion: {succeeded, error in
+                
+                if succeeded{
+                    print("Enabled background delivery of floors changes")
+                } else {
+                    if let theError = error{
+                        print("Failed to enable background delivery of floors changes. ")
+                        print("Error = \(theError)")
+                    }
+                }
+                
+        })
+    }
+    func startObservingMilesChanges(){
+        healthKitStore!.executeQuery(queryMiles)
+        healthKitStore!.enableBackgroundDeliveryForType(objDistanceWalkedRunning,
+            frequency: .Daily,
+            withCompletion: {succeeded, error in
+                
+                if succeeded{
+                    print("Enabled background delivery of miles changes")
+                } else {
+                    if let theError = error{
+                        print("Failed to enable background delivery of miles changes. ")
+                        print("Error = \(theError)")
+                    }
+                }
+                
+        })
+    }
+    
    
+
+    //Stop Observation
+    func stopObservingStepsChanges(){
+        healthKitStore!.stopQuery(querySteps)
+        healthKitStore!.disableAllBackgroundDeliveryWithCompletion{
+            succeeded, error in
+            
+            if succeeded{
+                print("Disabled background delivery of steps changes")
+            } else {
+                if let theError = error{
+                    print("Failed to disable background delivery of steps changes. ")
+                    print("Error = \(theError)")
+                }
+            }
+            
+        }
+    }
 
     
     func stopObservingFloorsChanges(){
@@ -263,6 +382,24 @@ class HealthManager {
             
         }
     }
+    
+    func stopObservingMilesChanges(){
+        healthKitStore!.stopQuery(queryMiles)
+        healthKitStore!.disableAllBackgroundDeliveryWithCompletion{
+            succeeded, error in
+            
+            if succeeded{
+                print("Disabled background delivery of miles changes")
+            } else {
+                if let theError = error{
+                    print("Failed to disable background delivery of miles changes. ")
+                    print("Error = \(theError)")
+                }
+            }
+            
+        }
+    }
+
     
     
     // HK : Load Data : Sample Queries for testing
@@ -343,7 +480,7 @@ class HealthManager {
 
 
     // Criteria to show msgs<
-    static func criteriaToShowMsg(dailyCount: Int, isStep:Bool , isFloor: Bool){
+    static func criteriaToShowMsg(dailyCount: Int, isStep:Bool , isFloor: Bool, isMiles: Bool){
         
         var msgDesc : String = ""
         var isYay: Bool = true
@@ -355,6 +492,10 @@ class HealthManager {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
                     YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                    
+                    // Msg object
+                    msgObj  = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
+                    
                 })
             }
             else if( dailyCount >= 200){
@@ -362,13 +503,14 @@ class HealthManager {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
                     YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                    
+                    // Msg object
+                    msgObj  = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
+                    
                 })
             }
             
             
-            
-            // Msg object
-           msgObj  = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
         }
         else if isFloor {
             //Criteria for floors
@@ -377,18 +519,50 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
-                    YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                    YayMgr.registerNotification(dailyCount.description + " Floors!! " + msgDesc)
+                    // Msg object
+                    msgObj  = Message(Title: dailyCount.description + " Floors!! ",Description: msgDesc, Yay: isYay)
                 })
             }
             else if( dailyCount >= 3){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
-                    YayMgr.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                    YayMgr.registerNotification(dailyCount.description + " Floors!! " + msgDesc)
+                    // Msg object
+                    msgObj  = Message(Title: dailyCount.description + " Floors!! ",Description: msgDesc, Yay: isYay)
                 })
             }
+            
+           
+
         }
-        
+        else if isMiles {
+            //Criteria for floors
+            
+            if( dailyCount < 3){
+                dispatch_async(dispatch_get_main_queue(), {
+                    msgDesc = YayMgr.getBooMsg()
+                    isYay = false
+                    YayMgr.registerNotification(dailyCount.description + " Miles!! " + msgDesc)
+                    // Msg object
+                    msgObj  = Message(Title: dailyCount.description + " Miles!! ",Description: msgDesc, Yay: isYay)
+
+                })
+            }
+            else if( dailyCount >= 3){
+                dispatch_async(dispatch_get_main_queue(), {
+                    msgDesc = YayMgr.getYayMsg()
+                    isYay = true
+                    YayMgr.registerNotification(dailyCount.description + " Miles!! " + msgDesc)
+                    // Msg object
+                    msgObj  = Message(Title: dailyCount.description + " Miles!! ",Description: msgDesc, Yay: isYay)
+
+                })
+            }
+            
+            
+        }
     }
 
     

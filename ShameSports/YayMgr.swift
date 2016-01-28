@@ -23,9 +23,6 @@ class YayMgr {
     static var loaded : Bool = false
     
     
-    var floors,steps, distanceWalked:HKQuantitySample?
-    
-    
     // MARK: - Firebase: load from DB
     
     static func load() {
@@ -57,11 +54,13 @@ class YayMgr {
     
     
     static func getBooMsg() -> String{
+        if YayMgr.BooMsg.count == 0{ DBMgr.getMessages()}
         let randomIndex = arc4random_uniform(UInt32(YayMgr.BooMsg.count))
         return YayMgr.BooMsg[Int(randomIndex)].Description
     }
     
     static func getYayMsg() -> String{
+         if YayMgr.YayMsg.count == 0{ DBMgr.getMessages()}
          let randomIndex = arc4random_uniform(UInt32(YayMgr.YayMsg.count))
         return YayMgr.YayMsg[Int(randomIndex)].Description
     }

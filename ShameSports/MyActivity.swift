@@ -28,6 +28,8 @@ class MyActivity: UITableViewController {
             //DBMgr.addComment(Comment(Commentor: YayMgr.owner, Comment: "Olalala", Timestamp: NSDate().timeIntervalSince1970), post: YayMgr.myPosts[0])
         }
         //print(YayMgr.BooMsg.count)
+        print("get message: ", YayMgr.getYayMsg())
+        print("get bad one: ", YayMgr.getBooMsg())
     }
     
     

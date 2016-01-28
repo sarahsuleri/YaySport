@@ -69,7 +69,7 @@ class DBMgr {
         let mDic = snapshot.value["Text"] as! NSDictionary
         let message : Message = Message(Title: mDic["Title"] as! String, Description: mDic["Description"] as! String, Yay: mDic["Yay"] as! Bool)
         
-        print("Message Yay: ", message.Yay)
+        //print("Message Yay: ", message.Yay)
         
         var points : [Int] = []
         if let pointsDic = snapshot.value["Points"] as! [Int]? {
@@ -89,7 +89,7 @@ class DBMgr {
             let enumerator = snapshot.children
             while let snapChild = enumerator.nextObject() as? FDataSnapshot {
                 let msg = Message(Title: "", Description: snapChild.value["Description"] as! String, Yay: snapChild.value["Yay"] as! Bool)
-                if msg.Yay {
+                if msg.Yay == true {
                     YayMgr.YayMsg.append(msg)
                 } else {
                     YayMgr.BooMsg.append(msg)

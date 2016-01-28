@@ -17,8 +17,8 @@ class YayMgr {
     static var friendsIDs : [Int] = []
     static var myPosts = ObservableCollection([Post]())
     static var FrPosts = ObservableCollection([Post]())
-    static var BooMsg : [Message] = []
-    static var YayMsg : [Message] = []
+    static var BooMsg = ObservableCollection([Message]())
+    static var YayMsg = ObservableCollection([Message]())
     static var owner : User = User(Id: 0, FirstName: "temp", LastName: "temp", PhotoUrl: "temp")
     static var loaded : Bool = false
     
@@ -30,7 +30,7 @@ class YayMgr {
     
     static func load() {
         loadDefaults()
-        if(loaded == false && owner.Id != 0){
+        if(loaded == false && owner.Id != 0) {
             loaded = true
             
             DBMgr.getMessages()
@@ -56,14 +56,28 @@ class YayMgr {
     
     
     
-    static func getBooMsg() -> String{
-        let randomIndex = arc4random_uniform(UInt32(YayMgr.BooMsg.count))
-        return YayMgr.BooMsg[Int(randomIndex)].Description
+    static func getBooMsg() -> String {
+        var randomIndex: UInt32!
+        YayMsg.observe { e in
+            randomIndex = arc4random_uniform(UInt32(YayMgr.BooMsg.count))
+        }
+        if randomIndex != nil {
+            return YayMgr.BooMsg[Int(randomIndex)].Description
+        } else {
+            return ""
+        }
     }
     
-    static func getYayMsg() -> String{
-         let randomIndex = arc4random_uniform(UInt32(YayMgr.YayMsg.count))
-        return YayMgr.YayMsg[Int(randomIndex)].Description
+    static func getYayMsg() -> String {
+        var randomIndex: UInt32!
+        YayMsg.observe { e in
+            randomIndex = arc4random_uniform(UInt32(YayMgr.YayMsg.count))
+        }
+        if randomIndex != nil {
+            return YayMgr.YayMsg[Int(randomIndex)].Description
+        } else {
+            return ""
+        }
     }
     
     // Criteria to show msgs

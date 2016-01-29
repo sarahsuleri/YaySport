@@ -91,7 +91,6 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        print("User Logged Out")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

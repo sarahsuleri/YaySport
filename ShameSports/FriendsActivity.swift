@@ -54,10 +54,7 @@ class FriendsActivity: UITableViewController {
 
     @IBAction func logOut(sender: UIBarButtonItem) {
         FBSDKLoginManager().logOut()
-    //    FBSDKAccessToken.setCurrentAccessToken(nil)
-    //    FBSDKProfile.setCurrentProfile(nil)
-        YayMgr.myPosts.removeAll()
-        YayMgr.FrPosts.removeAll()
+        YayMgr.logOut()
         performSegueWithIdentifier("GoLogin", sender: nil)
     }
 }

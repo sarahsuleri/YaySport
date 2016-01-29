@@ -383,7 +383,7 @@
                                         </label>
                                         <view tag="70" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odF-Td-RNy">
                                             <rect key="frame" x="80" y="78" width="377" height="16"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="Ecz-DO-kB4"/>
                                             </constraints>
@@ -406,6 +406,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="hP7-9A-UHL" firstAttribute="leading" secondItem="t8j-d6-3pj" secondAttribute="trailing" constant="19" id="0vp-B6-N9B"/>
                                         <constraint firstItem="mNb-82-31P" firstAttribute="leading" secondItem="2Fl-Df-jaU" secondAttribute="trailing" constant="10" id="75f-0V-INN"/>
@@ -528,7 +529,7 @@
                                         </label>
                                         <view tag="70" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lgg-xl-vwd">
                                             <rect key="frame" x="80" y="78" width="377" height="16"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="qkg-c3-UEt"/>
                                             </constraints>
@@ -624,7 +625,7 @@
                                         </label>
                                         <view tag="70" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E70-dh-DpJ">
                                             <rect key="frame" x="78" y="75" width="464" height="16"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="ZtD-CA-jPD"/>
                                             </constraints>
@@ -671,7 +672,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="V0M-Cw-xsP"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="toX-l4-1OT">
@@ -783,7 +784,7 @@
                                         </label>
                                         <view tag="70" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qiW-Sw-pul">
                                             <rect key="frame" x="78" y="75" width="464" height="16"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="gQe-Sc-qG0"/>
                                             </constraints>
@@ -863,6 +864,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="cjA-N9-4Aj"/>
-        <segue reference="7gu-1R-MDh"/>
+        <segue reference="bHV-I7-Jdb"/>
     </inferredMetricsTieBreakers>
 </document>

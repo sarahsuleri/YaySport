@@ -50,11 +50,13 @@ class PostDetailController: UITableViewController {
         if(indexPath.row == 0){
             if(MyActivity == true){
                 cell = tableView.dequeueReusableCellWithIdentifier("mPost", forIndexPath: indexPath) as UITableViewCell
-                populateMyPost(indexPath.row,isMyActivity: true,cell: cell)
+                populateMyPost(detailItemIndex,isMyActivity: true,cell: cell)
             }
             else {
                 cell = tableView.dequeueReusableCellWithIdentifier("fPost", forIndexPath: indexPath) as UITableViewCell
-                populateFriendPost(indexPath.row,isMyActivity: true,cell: cell)
+                let btn = cell.contentView.viewWithTag(20) as! UIButton
+                btn.addTarget(self, action: "pointClick:", forControlEvents: .TouchUpInside)
+                populateFriendPost(detailItemIndex,isMyActivity: false,cell: cell)
             }
         }
         else{
@@ -93,6 +95,14 @@ class PostDetailController: UITableViewController {
         return 1
     }
     
+
+
+    func pointClick(sender: UIButton){
+
+        YayMgr.addPoint(Int(sender.accessibilityValue!)!)
+
+    }
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("seriously wheres the count \(detailItem == nil ? 0 : detailItem.Comments.count) ")
         return detailItem == nil ? 0 : detailItem.Comments.count+1

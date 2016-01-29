@@ -44,10 +44,9 @@ class FriendsActivity: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowFriendsActivityDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = YayMgr.FrPosts[indexPath.row]
                 let controller = (segue.destinationViewController as! PostDetailController)
-                controller.MyActivity = true;
-                controller.detailItem = object
+                controller.MyActivity = false;
+                controller.detailItemIndex = indexPath.row
             }
         }
     }

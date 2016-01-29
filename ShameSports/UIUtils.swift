@@ -68,6 +68,9 @@ func populateFriendPost (object : Post, cell : UITableViewCell) -> UITableViewCe
     let fPic = cell.contentView.viewWithTag(30) as! UIImageView
     let comPics = cell.contentView.viewWithTag(70)! as UIView
     
+    btn.addTarget(object.DBIndex, action: "pointClick:", forControlEvents: .TouchUpInside)
+    
+    
     name.text = object.Poster.FirstName + ":"
     title.text = object.Text.Title
     comCount.text = String(object.Comments.count)
@@ -125,3 +128,22 @@ func populateFriendPost (object : Post, cell : UITableViewCell) -> UITableViewCe
     
     return cell
 }
+
+
+func pointClick(sender: AnyObject?){
+    print (sender)
+    
+}
+
+func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
+    let label:UILabel = UILabel(frame: CGRectMake(0, 0, width, CGFloat.max))
+    label.numberOfLines = 0
+    label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+    label.font = font
+    label.text = text
+    
+    label.sizeToFit()
+    return label.frame.height
+}
+
+

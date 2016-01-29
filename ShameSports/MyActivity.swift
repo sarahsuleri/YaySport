@@ -51,10 +51,9 @@ class MyActivity: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowMyActivityDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = YayMgr.myPosts[indexPath.row]
                 let controller = (segue.destinationViewController as! PostDetailController)
                 controller.MyActivity = true;
-                controller.detailItem = object
+                controller.detailItemIndex = indexPath.row
 
             }
         }

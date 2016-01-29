@@ -50,11 +50,11 @@ class PostDetailController: UITableViewController {
         if(indexPath.row == 0){
             if(MyActivity == true){
                 cell = tableView.dequeueReusableCellWithIdentifier("mPost", forIndexPath: indexPath) as UITableViewCell
-                populateMyPost(detailItem,cell: cell)
+                populateMyPost(indexPath.row,isMyActivity: true,cell: cell)
             }
             else {
                 cell = tableView.dequeueReusableCellWithIdentifier("fPost", forIndexPath: indexPath) as UITableViewCell
-                populateFriendPost(detailItem,cell: cell)
+                populateFriendPost(indexPath.row,isMyActivity: true,cell: cell)
             }
         }
         else{

@@ -35,8 +35,7 @@ class MyActivity: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        let object = YayMgr.myPosts[indexPath.row]
-        return populateMyPost(object,cell: cell)
+        return populateMyPost(indexPath.row,isMyActivity: true,cell: cell)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

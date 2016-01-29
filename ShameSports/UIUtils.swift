@@ -8,8 +8,14 @@
 
 import UIKit
 
-func populateMyPost (object : Post, cell : UITableViewCell) -> UITableViewCell {
-
+func populateMyPost (index : Int, isMyActivity : Bool, cell : UITableViewCell) -> UITableViewCell {
+    let object : Post!
+    if(isMyActivity == true){
+        object = YayMgr.myPosts[index]
+    }
+    else {
+        object = YayMgr.FrPosts[index]
+    }
     let points = cell.contentView.viewWithTag(10) as! UILabel
     let title = cell.contentView.viewWithTag(50) as! UILabel
     let comCount = cell.contentView.viewWithTag(80) as! UILabel
@@ -57,8 +63,14 @@ func populateMyPost (object : Post, cell : UITableViewCell) -> UITableViewCell {
     return cell
 }
 
-func populateFriendPost (object : Post, cell : UITableViewCell) -> UITableViewCell {
-    
+func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCell) -> UITableViewCell {
+    let object : Post!
+    if(isMyActivity == true){
+        object = YayMgr.myPosts[index]
+    }
+    else {
+        object = YayMgr.FrPosts[index]
+    }
     let points = cell.contentView.viewWithTag(10) as! UILabel
     let name = cell.contentView.viewWithTag(40) as! UILabel
     let title = cell.contentView.viewWithTag(50) as! UILabel
@@ -68,8 +80,9 @@ func populateFriendPost (object : Post, cell : UITableViewCell) -> UITableViewCe
     let fPic = cell.contentView.viewWithTag(30) as! UIImageView
     let comPics = cell.contentView.viewWithTag(70)! as UIView
     
-    btn.addTarget(object.DBIndex, action: "pointClick:", forControlEvents: .TouchUpInside)
-    
+    btn.accessibilityValue = "yay\(index)"
+    //btn.addTarget(self, action: "pointClick:", forControlEvents: .TouchUpInside)
+     
     
     name.text = object.Poster.FirstName + ":"
     title.text = object.Text.Title

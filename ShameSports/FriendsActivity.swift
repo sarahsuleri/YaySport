@@ -28,9 +28,8 @@ class FriendsActivity: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        let object = YayMgr.FrPosts[indexPath.row]
-        
-        return populateFriendPost(object,cell: cell)
+
+        return populateFriendPost(indexPath.row,isMyActivity: false, cell: cell)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

@@ -82,6 +82,24 @@ class YayMgr {
     }
     
     
+    static func addPoint(index : Int, isMyactivity : Bool){
+        
+        if(isMyactivity == true){
+            DBMgr.addPoint(YayMgr.myPosts[index])
+            YayMgr.myPosts[index].Points.append(owner.Id)
+        }
+        else {
+            
+            YayMgr.FrPosts[index].Points.append(owner.Id)
+             DBMgr.addPoint(YayMgr.FrPosts[index])
+        }
+       
+        
+    }
+    static func addComment(comment: Comment, index : Int, isMyactivity : Bool){
+        myPosts[index].Comments.append(comment)
+        DBMgr.addComment(comment, post: myPosts[index])
+    }
     
     
     static func saveDefaults(){

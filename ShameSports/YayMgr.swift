@@ -27,7 +27,8 @@ class YayMgr {
     
     static func load() {
         loadDefaults()
-        if(loaded == false && owner.Id != 0){
+        print("owner id: ", owner.Id, " loaded: ", loaded)
+        if(loaded == false && owner.Id != 0) {
             loaded = true
             
             DBMgr.getMessages()
@@ -37,6 +38,7 @@ class YayMgr {
                 DBMgr.getPostByPosterID(friend,isMyActivity: false);
             }
             
+            /*
             dispatch_async(dispatch_get_main_queue(),{
                 HealthManager.startObservingStepsChanges()
                 
@@ -44,6 +46,7 @@ class YayMgr {
                 
                 HealthManager.startObservingMilesChanges()
             })
+            */
             
         }
     }
@@ -103,5 +106,20 @@ class YayMgr {
             friendsIDs = frlist as! [Int]
         }
         
+    }
+    
+    static func logOut() {
+        
+        loaded = false
+        DBMgr.removeAllObservers()
+        
+        myPosts.removeAll(); FrPosts.removeAll()
+        YayMsg.removeAll(); BooMsg.removeAll()
+        
+        friendsIDs.removeAll()
+        
+        HealthManager.stopObservingFloorsChanges()
+        HealthManager.stopObservingMilesChanges()
+        HealthManager.stopObservingStepsChanges()
     }
 }

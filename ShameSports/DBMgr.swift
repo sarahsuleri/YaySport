@@ -13,10 +13,12 @@ class DBMgr {
 
     
     static let ref = Firebase(url:  "https://yaysport.firebaseio.com")
+    static var refArray = [ref]
     
     static func addPost(post : Post) {
-        let autiId = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/").childByAutoId()
-        autiId.setValue( convertStringToDictionary(JSONSerializer.toJson(post)) )
+        let postAutoId = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/").childByAutoId()
+        postAutoId.setValue( convertStringToDictionary(JSONSerializer.toJson(post)) )
+        refArray.append(postAutoId)
     }
     
     static func changePostByPosterID(Id : Int, isMyActivity : Bool = true ) {
@@ -31,6 +33,7 @@ class DBMgr {
                 YayMgr.FrPosts[index!] = post
             }
         })
+        refArray.append(postsRef)
     }
     
     static func getPostByPosterID(Id : Int, isMyActivity : Bool = true ) {
@@ -50,7 +53,7 @@ class DBMgr {
             }
 
         })
-        
+        refArray.append(postsRef)
     }
     
     static func parseFToPost(snapshot: FDataSnapshot) -> Post {
@@ -68,8 +71,6 @@ class DBMgr {
         
         let mDic = snapshot.value["Text"] as! NSDictionary
         let message : Message = Message(Title: mDic["Title"] as! String, Description: mDic["Description"] as! String, Yay: mDic["Yay"] as! Bool)
-        
-        //print("Message Yay: ", message.Yay)
         
         var points : [Int] = []
         if let pointsDic = snapshot.value["Points"] as! [Int]? {
@@ -96,6 +97,7 @@ class DBMgr {
                 }
             }
         })
+        refArray.append(msgRef)
     }
     
     
@@ -103,16 +105,26 @@ class DBMgr {
         post.Points.append(YayMgr.owner.Id)
         let pointsRef = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/\(post.DBIndex)/Points")
         pointsRef.setValue(post.Points)
+        refArray.append(pointsRef)
     }
     
     static func removePoint(post: Post) {
         post.Points = post.Points.filter() {$0 != YayMgr.owner.Id}
         let pointsRef = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/\(post.DBIndex)/Points")
         pointsRef.setValue(post.Points)
+        refArray.append(pointsRef)
     }
     
     static func addComment(comment: Comment, post: Post) {
         let commentsRef = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/\(post.DBIndex)/Comments").childByAutoId()
         commentsRef.setValue( convertStringToDictionary(JSONSerializer.toJson(comment)) )
+        refArray.append(commentsRef)
     }
+    
+    static func removeAllObservers() {
+        for ref in refArray {
+            ref.removeAllObservers()
+        }
+    }
+    
 }

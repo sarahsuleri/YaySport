@@ -82,17 +82,13 @@ class YayMgr {
     }
     
     
-    static func addPoint(index : Int, isMyactivity : Bool){
+    static func addPoint(index : Int){
         
-        if(isMyactivity == true){
-            DBMgr.addPoint(YayMgr.myPosts[index])
-            YayMgr.myPosts[index].Points.append(owner.Id)
-        }
-        else {
+    
             
-            YayMgr.FrPosts[index].Points.append(owner.Id)
+            //YayMgr.FrPosts[index].Points.append(owner.Id)
              DBMgr.addPoint(YayMgr.FrPosts[index])
-        }
+        
        
         
     }

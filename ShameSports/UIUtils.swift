@@ -80,8 +80,8 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
     let fPic = cell.contentView.viewWithTag(30) as! UIImageView
     let comPics = cell.contentView.viewWithTag(70)! as UIView
     
-    btn.accessibilityValue = "yay\(index)"
-    //btn.addTarget(self, action: "pointClick:", forControlEvents: .TouchUpInside)
+    btn.accessibilityValue = String(index)
+   
      
     
     name.text = object.Poster.FirstName + ":"
@@ -143,10 +143,6 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
 }
 
 
-func pointClick(sender: AnyObject?){
-    print (sender)
-    
-}
 
 func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
     let label:UILabel = UILabel(frame: CGRectMake(0, 0, width, CGFloat.max))

@@ -28,10 +28,16 @@ class FriendsActivity: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-
+        let btn = cell.contentView.viewWithTag(20) as! UIButton
+        btn.addTarget(self, action: "pointClick:", forControlEvents: .TouchUpInside)
         return populateFriendPost(indexPath.row,isMyActivity: false, cell: cell)
     }
     
+    func pointClick(sender: UIButton){
+        
+       YayMgr.addPoint(Int(sender.accessibilityValue!)!)
+        
+    }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 1

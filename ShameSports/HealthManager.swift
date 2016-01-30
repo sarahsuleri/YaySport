@@ -353,9 +353,8 @@ class HealthManager {
         var msgDesc : String = ""
         var isYay: Bool = true
         
-        
         if isStep {
-            if( dailyCount < 200){
+            if( dailyCount < YayMgr.userSettings.minSteps){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
@@ -364,9 +363,12 @@ class HealthManager {
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
                     
+                    if YayMgr.loaded {
+                        YayMgr.addPost(msgObj)
+                    }
                 })
             }
-            else if( dailyCount >= 200){
+            else if( dailyCount >= YayMgr.userSettings.maxSteps){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
@@ -375,6 +377,9 @@ class HealthManager {
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
                     
+                    if YayMgr.loaded {
+                        YayMgr.addPost(msgObj)
+                    }
                 })
             }
             
@@ -383,22 +388,30 @@ class HealthManager {
         else if isFloor {
             //Criteria for floors
             
-            if( dailyCount < 3){
+            if( dailyCount < YayMgr.userSettings.minFloors){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
                     self.registerNotification(dailyCount.description + " Floors!! " + msgDesc)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Floors!! ",Description: msgDesc, Yay: isYay)
+                    
+                    if YayMgr.loaded {
+                        YayMgr.addPost(msgObj)
+                    }
                 })
             }
-            else if( dailyCount >= 3){
+            else if( dailyCount >= YayMgr.userSettings.maxFloors){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
                     self.registerNotification(dailyCount.description + " Floors!! " + msgDesc)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Floors!! ",Description: msgDesc, Yay: isYay)
+                    
+                    if YayMgr.loaded {
+                        YayMgr.addPost(msgObj)
+                    }
                 })
             }
             
@@ -408,29 +421,37 @@ class HealthManager {
         else if isMiles {
             //Criteria for floors
             
-            if( dailyCount < 3){
+            if( dailyCount < YayMgr.userSettings.minMiles){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
                     self.registerNotification(dailyCount.description + " Miles!! " + msgDesc)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Miles!! ",Description: msgDesc, Yay: isYay)
-
+                    
+                    if YayMgr.loaded {
+                        YayMgr.addPost(msgObj)
+                    }
                 })
             }
-            else if( dailyCount >= 3){
+            else if( dailyCount >= YayMgr.userSettings.maxMiles){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
                     self.registerNotification(dailyCount.description + " Miles!! " + msgDesc)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Miles!! ",Description: msgDesc, Yay: isYay)
+                    
+                    if YayMgr.loaded {
+                        YayMgr.addPost(msgObj)
+                    }
 
                 })
             }
             
             
         }
+        
     }
     
     

@@ -20,10 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let types: UIUserNotificationType = UIUserNotificationType.Alert
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        
-        
-        
-
+     
         //SS: End
         
         

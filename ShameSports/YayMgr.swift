@@ -39,7 +39,7 @@ class YayMgr {
                 DBMgr.getPostByPosterID(friend,isMyActivity: false);
             }
             
-            /*
+            
             dispatch_async(dispatch_get_main_queue(),{
                 HealthManager.startObservingStepsChanges()
                 
@@ -47,7 +47,7 @@ class YayMgr {
                 
                 HealthManager.startObservingMilesChanges()
             })
-            */
+            
             
         }
     }
@@ -97,6 +97,9 @@ class YayMgr {
         isMyactivity ? DBMgr.addComment(comment, post: myPosts[index]) : DBMgr.addComment(comment, post: FrPosts[index])
     }
     
+    static func addPost(msgObj : Message){
+        DBMgr.addPost(Post(Poster: owner, Points: [1], Comments: [], Text: msgObj, Timestamp: NSDate().timeIntervalSince1970))
+    }
     
     static func saveDefaults(){
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -145,8 +148,8 @@ class YayMgr {
         
         friendsIDs.removeAll()
         
-        HealthManager.stopObservingFloorsChanges()
-        HealthManager.stopObservingMilesChanges()
-        HealthManager.stopObservingStepsChanges()
+//        HealthManager.stopObservingFloorsChanges()
+//        HealthManager.stopObservingMilesChanges()
+//        HealthManager.stopObservingStepsChanges()
     }
 }

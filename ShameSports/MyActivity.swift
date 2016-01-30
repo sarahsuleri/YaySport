@@ -50,7 +50,7 @@ class MyActivity: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowMyActivityDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let controller = (segue.destinationViewController as! PostDetailController)
+                let controller = (segue.destinationViewController as! ContainerController)
                 controller.MyActivity = true;
                 controller.detailItemIndex = indexPath.row
 

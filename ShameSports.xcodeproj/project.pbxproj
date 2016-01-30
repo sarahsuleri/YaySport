@@ -22,6 +22,7 @@
 		236E82351C58E5CA003E7A7D /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E82341C58E5CA003E7A7D /* UIUtils.swift */; };
 		236E82371C58FF6F003E7A7D /* DBMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E82361C58FF6F003E7A7D /* DBMgr.swift */; };
 		2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652F7B21C4AA1A800214489 /* HealthManager.swift */; };
+		431C4CBD1C5CC7DC00461562 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C4CBC1C5CC7DC00461562 /* ContainerController.swift */; };
 		43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */; };
 		43520C951C2FDBAF00FACD63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43520C931C2FDBAF00FACD63 /* Main.storyboard */; };
 		43520C971C2FDBAF00FACD63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43520C961C2FDBAF00FACD63 /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		236E82361C58FF6F003E7A7D /* DBMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBMgr.swift; sourceTree = "<group>"; };
 		2652F7AF1C4AA14600214489 /* ShameSports.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShameSports.entitlements; sourceTree = "<group>"; };
 		2652F7B21C4AA1A800214489 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
+		431C4CBC1C5CC7DC00461562 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		43520C8A1C2FDBAF00FACD63 /* ShameSports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShameSports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43520C941C2FDBAF00FACD63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				43F477031C551F0400649891 /* TabBarViewController.swift */,
 				233FDFDF1C41D60C00F81A6A /* FriendsActivity.swift */,
 				233FDFE11C41D65600F81A6A /* MyActivity.swift */,
+				431C4CBC1C5CC7DC00461562 /* ContainerController.swift */,
 				235C16591C57CA0100ADCD23 /* PostDetailController.swift */,
 				D25897721C5C01A500B0C2CF /* Settings.swift */,
 			);
@@ -140,7 +143,6 @@
 				233FDFD71C41BE6E00F81A6A /* YayMgr.swift */,
 				2652F7B21C4AA1A800214489 /* HealthManager.swift */,
 				236E82361C58FF6F003E7A7D /* DBMgr.swift */,
-				235C16621C5830C200ADCD23 /* Controllers */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				235C16651C5831E900ADCD23 /* Views */,
+				235C16621C5830C200ADCD23 /* Controllers */,
 				235C16641C58310B00ADCD23 /* Models */,
 				235C16631C5830D000ADCD23 /* Utils */,
 				235C16611C58309A00ADCD23 /* Entities */,
@@ -346,6 +349,7 @@
 				233FDFE01C41D60C00F81A6A /* FriendsActivity.swift in Sources */,
 				2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */,
 				233FDFCD1C418BCB00F81A6A /* LogIn.swift in Sources */,
+				431C4CBD1C5CC7DC00461562 /* ContainerController.swift in Sources */,
 				233FDFDA1C41BE8300F81A6A /* DummyData.swift in Sources */,
 				43F477041C551F0400649891 /* TabBarViewController.swift in Sources */,
 				236E82371C58FF6F003E7A7D /* DBMgr.swift in Sources */,

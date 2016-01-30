@@ -55,9 +55,5 @@ class FriendsActivity: UITableViewController {
             }
         }
     }
-
-
- 
-
 }
 

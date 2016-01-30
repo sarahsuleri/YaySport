@@ -113,4 +113,12 @@ class PostDetailController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    @IBAction func cancel(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func post(segue: UIStoryboardSegue) {
+        
+    }
 }

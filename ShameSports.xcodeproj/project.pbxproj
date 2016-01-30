@@ -23,6 +23,7 @@
 		236E82371C58FF6F003E7A7D /* DBMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E82361C58FF6F003E7A7D /* DBMgr.swift */; };
 		2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652F7B21C4AA1A800214489 /* HealthManager.swift */; };
 		431C4CBD1C5CC7DC00461562 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C4CBC1C5CC7DC00461562 /* ContainerController.swift */; };
+		431C4CBF1C5CCB2A00461562 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C4CBE1C5CCB2A00461562 /* CommentController.swift */; };
 		43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */; };
 		43520C951C2FDBAF00FACD63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43520C931C2FDBAF00FACD63 /* Main.storyboard */; };
 		43520C971C2FDBAF00FACD63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43520C961C2FDBAF00FACD63 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		2652F7AF1C4AA14600214489 /* ShameSports.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShameSports.entitlements; sourceTree = "<group>"; };
 		2652F7B21C4AA1A800214489 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		431C4CBC1C5CC7DC00461562 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
+		431C4CBE1C5CCB2A00461562 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		43520C8A1C2FDBAF00FACD63 /* ShameSports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShameSports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43520C941C2FDBAF00FACD63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				233FDFE11C41D65600F81A6A /* MyActivity.swift */,
 				431C4CBC1C5CC7DC00461562 /* ContainerController.swift */,
 				235C16591C57CA0100ADCD23 /* PostDetailController.swift */,
+				431C4CBE1C5CCB2A00461562 /* CommentController.swift */,
 				D25897721C5C01A500B0C2CF /* Settings.swift */,
 			);
 			name = Controllers;
@@ -352,6 +355,7 @@
 				431C4CBD1C5CC7DC00461562 /* ContainerController.swift in Sources */,
 				233FDFDA1C41BE8300F81A6A /* DummyData.swift in Sources */,
 				43F477041C551F0400649891 /* TabBarViewController.swift in Sources */,
+				431C4CBF1C5CCB2A00461562 /* CommentController.swift in Sources */,
 				236E82371C58FF6F003E7A7D /* DBMgr.swift in Sources */,
 				233FDFD41C41BD3E00F81A6A /* Message.swift in Sources */,
 				235C165A1C57CA0100ADCD23 /* PostDetailController.swift in Sources */,

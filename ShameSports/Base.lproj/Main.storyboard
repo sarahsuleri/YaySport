@@ -802,18 +802,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CDX-27-h4H">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CDX-27-h4H">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
                                     <segue destination="sDB-wy-r92" kind="embed" identifier="ShowComments" id="f0Q-aP-Zoj"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-EJ-0BF">
-                                <rect key="frame" x="525" y="497" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-EJ-0BF" customClass="CircleButton" customModule="ShameSports" customModuleProvider="target">
+                                <rect key="frame" x="530" y="481" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="XVy-3r-iH3"/>
+                                    <constraint firstAttribute="width" constant="50" id="eNJ-hy-Cnc"/>
+                                    <constraint firstAttribute="height" constant="50" id="eur-de-qfo"/>
                                 </constraints>
-                                <state key="normal" title="Add"/>
                                 <connections>
                                     <segue destination="WFC-SV-t0u" kind="presentation" id="2Mk-lb-q9r"/>
                                 </connections>
@@ -821,14 +821,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="leading" secondItem="Ugw-rX-4Sq" secondAttribute="leading" id="2r1-db-bh2"/>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="top" secondItem="Ugw-rX-4Sq" secondAttribute="top" id="5wE-HM-mXO"/>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="bottom" secondItem="utZ-aH-bhq" secondAttribute="top" constant="49" id="D2s-Nl-4RS"/>
-                            <constraint firstAttribute="trailing" secondItem="CDX-27-h4H" secondAttribute="trailing" id="Mqi-p5-Lyb"/>
-                            <constraint firstItem="utZ-aH-bhq" firstAttribute="top" secondItem="WcD-EJ-0BF" secondAttribute="bottom" constant="24" id="ovg-fu-SKS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="WcD-EJ-0BF" secondAttribute="trailing" constant="9" id="zZh-iJ-iP3"/>
+                            <constraint firstItem="utZ-aH-bhq" firstAttribute="top" secondItem="WcD-EJ-0BF" secondAttribute="bottom" constant="20" id="Paf-Oq-nof"/>
+                            <constraint firstItem="WcD-EJ-0BF" firstAttribute="trailing" secondItem="Ugw-rX-4Sq" secondAttribute="trailingMargin" id="sf7-oh-2OG"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="circleButton" destination="WcD-EJ-0BF" id="xz1-ZC-dbM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPZ-b3-pn2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

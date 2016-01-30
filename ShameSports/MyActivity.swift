@@ -53,7 +53,7 @@ class MyActivity: UITableViewController {
                 let controller = (segue.destinationViewController as! ContainerController)
                 controller.MyActivity = true;
                 controller.detailItemIndex = indexPath.row
-
+                controller.circleColor = YayMgr.myPosts[indexPath.row].Text.Yay ? UIColor.Yay() : UIColor.Boo()
             }
         }
     }

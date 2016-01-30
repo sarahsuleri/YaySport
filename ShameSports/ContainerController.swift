@@ -12,11 +12,17 @@ class ContainerController: UIViewController {
     
     var MyActivity: Bool!
     var detailItemIndex: Int!
+    var circleColor: UIColor!
+    @IBOutlet weak var circleButton: CircleButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        circleButton.fillColor = circleColor
     }
 
     override func didReceiveMemoryWarning() {

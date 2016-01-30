@@ -24,11 +24,11 @@
 		2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652F7B21C4AA1A800214489 /* HealthManager.swift */; };
 		431C4CBD1C5CC7DC00461562 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C4CBC1C5CC7DC00461562 /* ContainerController.swift */; };
 		431C4CBF1C5CCB2A00461562 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C4CBE1C5CCB2A00461562 /* CommentController.swift */; };
-		431C4CC11C5CE68300461562 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C4CC01C5CE68300461562 /* CircleButton.swift */; };
 		43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */; };
 		43520C951C2FDBAF00FACD63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43520C931C2FDBAF00FACD63 /* Main.storyboard */; };
 		43520C971C2FDBAF00FACD63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43520C961C2FDBAF00FACD63 /* Assets.xcassets */; };
 		43520C9A1C2FDBAF00FACD63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */; };
+		4379A2FA1C5D1B9E00BE0735 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379A2F91C5D1B9E00BE0735 /* CircleButton.swift */; };
 		43F477041C551F0400649891 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F477031C551F0400649891 /* TabBarViewController.swift */; };
 		7C7F29068F361CE371CB993E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1DC8F624DBDEF7E7AC1D4C /* Pods.framework */; };
 		D20073921C47E4B9009DE546 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D200738F1C47E4B9009DE546 /* FBSDKCoreKit.framework */; };
@@ -60,13 +60,13 @@
 		2652F7B21C4AA1A800214489 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		431C4CBC1C5CC7DC00461562 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		431C4CBE1C5CCB2A00461562 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
-		431C4CC01C5CE68300461562 /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		43520C8A1C2FDBAF00FACD63 /* ShameSports.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShameSports.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43520C941C2FDBAF00FACD63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43520C961C2FDBAF00FACD63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43520C991C2FDBAF00FACD63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43520C9B1C2FDBAF00FACD63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4379A2F91C5D1B9E00BE0735 /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		43F477031C551F0400649891 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4994B2406801147EC247028B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9D1DC8F624DBDEF7E7AC1D4C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,10 +155,10 @@
 		235C16651C5831E900ADCD23 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4379A2F91C5D1B9E00BE0735 /* CircleButton.swift */,
 				43520C931C2FDBAF00FACD63 /* Main.storyboard */,
 				43520C961C2FDBAF00FACD63 /* Assets.xcassets */,
 				43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */,
-				431C4CC01C5CE68300461562 /* CircleButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -361,7 +361,7 @@
 				431C4CBF1C5CCB2A00461562 /* CommentController.swift in Sources */,
 				236E82371C58FF6F003E7A7D /* DBMgr.swift in Sources */,
 				233FDFD41C41BD3E00F81A6A /* Message.swift in Sources */,
-				431C4CC11C5CE68300461562 /* CircleButton.swift in Sources */,
+				4379A2FA1C5D1B9E00BE0735 /* CircleButton.swift in Sources */,
 				235C165A1C57CA0100ADCD23 /* PostDetailController.swift in Sources */,
 				235C16601C57F04300ADCD23 /* JsonSerializer.swift in Sources */,
 				D25897771C5C0D4600B0C2CF /* SettingsDef.swift in Sources */,

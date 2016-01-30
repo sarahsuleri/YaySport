@@ -9,13 +9,14 @@
 import UIKit
 
 class PostDetailController: UITableViewController {
-    var MyActivity = true;
+    var MyActivity = true; var newCom: Comment!
     var detailItem : Post!
     var detailItemIndex: Int! {
         didSet {
             self.tableView.reloadData();
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,14 +28,17 @@ class PostDetailController: UITableViewController {
             self.setItemDetailObject()
             self.tableView.reloadData()
         }
-
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setItemDetailObject()
         self.tableView.reloadData()
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.tableView.numberOfRowsInSection(0) - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
     }
     
     func setItemDetailObject(){
@@ -98,9 +102,7 @@ class PostDetailController: UITableViewController {
 
 
     func pointClick(sender: UIButton){
-
         YayMgr.addPoint(Int(sender.accessibilityValue!)!)
-
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,6 +121,7 @@ class PostDetailController: UITableViewController {
     }
     
     @IBAction func post(segue: UIStoryboardSegue) {
-        
+        //print("Let us post")
+        YayMgr.addComment(newCom, index: detailItemIndex, isMyactivity: MyActivity)
     }
 }

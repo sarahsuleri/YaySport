@@ -86,26 +86,32 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
     }
   
     func textFieldDidEndEditing(textField: UITextField) {
+        
         textField.resignFirstResponder()
-        
-        let tag = textField.tag
-        
-        switch tag
+        if ((textField.text?.isEmpty) == false)
         {
-        case 1 :
-            YayMgr.userSettings.minSteps = Int(textField.text!)!
-        case 2 :
-            YayMgr.userSettings.maxSteps = Int(textField.text!)!
-        case 3 :
-            YayMgr.userSettings.minMiles = Int(textField.text!)!
-        case 4 :
-            YayMgr.userSettings.maxMiles = Int(textField.text!)!
-        case 5 :
-            YayMgr.userSettings.minFloors = Int(textField.text!)!
-        default:
-            YayMgr.userSettings.maxFloors = Int(textField.text!)!
-        }
-        YayMgr.saveDefaults()
+            let tag = textField.tag
+            
+            switch tag
+            {
+            case 1 :
+                YayMgr.userSettings.minSteps = Int(textField.text!)!
+            case 2 :
+                YayMgr.userSettings.maxSteps = Int(textField.text!)!
+            case 3 :
+                YayMgr.userSettings.minMiles = Int(textField.text!)!
+            case 4 :
+                YayMgr.userSettings.maxMiles = Int(textField.text!)!
+                print(YayMgr.userSettings.maxMiles)
+            case 5 :
+                YayMgr.userSettings.minFloors = Int(textField.text!)!
+            default:
+                YayMgr.userSettings.maxFloors = Int(textField.text!)!
+            }
+            
+            YayMgr.saveDefaults()
+            
+       }
     }
     
     func done(){
@@ -118,8 +124,7 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         
         FBSDKLoginManager().logOut()
-        YayMgr.myPosts.removeAll()
-        YayMgr.FrPosts.removeAll()
+        YayMgr.logOut()
         performSegueWithIdentifier("GoLogin", sender: nil)
     }
 

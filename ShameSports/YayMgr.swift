@@ -121,7 +121,6 @@ class YayMgr {
         let PhotoUrl = defaults.stringForKey("PhotoUrl")
         let frlist = defaults.arrayForKey("frlist")
         let minStep = defaults.integerForKey("minSteps")
-        print (minStep)
         let maxStep = defaults.integerForKey("maxSteps")
         let minMile = defaults.integerForKey("minMiles")
         let maxMile = defaults.integerForKey("maxMiles")

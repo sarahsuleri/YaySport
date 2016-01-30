@@ -83,6 +83,8 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
             
             self.returnUserData()
             self.returnUserFriends()
+            
+            
             let viewController = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as UIViewController
             self.presentViewController(viewController, animated: true, completion: nil)
          

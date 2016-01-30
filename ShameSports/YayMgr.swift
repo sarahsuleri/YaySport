@@ -21,6 +21,7 @@ class YayMgr {
     static var YayMsg : [Message] = []
     static var owner : User = User(Id: 0, FirstName: "temp", LastName: "temp", PhotoUrl: "temp")
     static var loaded : Bool = false
+    static var userSettings: SettingsDef = SettingsDef()
     
     
     // MARK: - Firebase: load from DB
@@ -63,6 +64,10 @@ class YayMgr {
         load()
     }
     
+    static func setSettings(settings:SettingsDef){
+        YayMgr.userSettings = settings
+        saveDefaults()
+    }
     
     
     static func getBooMsg() -> String{
@@ -105,6 +110,12 @@ class YayMgr {
         defaults.setObject(owner.LastName, forKey: "LastName")
         defaults.setObject(owner.PhotoUrl, forKey: "PhotoUrl")
         defaults.setObject(friendsIDs, forKey: "frlist")
+        defaults.setInteger(userSettings.minSteps, forKey: "minSteps")
+        defaults.setInteger(userSettings.maxSteps, forKey: "maxSteps")
+        defaults.setInteger(userSettings.minMiles, forKey: "minMiles")
+        defaults.setInteger(userSettings.maxMiles, forKey: "maxMiles")
+        defaults.setInteger(userSettings.minFloors, forKey: "minFloors")
+        defaults.setInteger(userSettings.maxFloors, forKey: "maxFloors")
     }
     
     static func loadDefaults() {
@@ -114,10 +125,18 @@ class YayMgr {
         let LastName = defaults.stringForKey("LastName")
         let PhotoUrl = defaults.stringForKey("PhotoUrl")
         let frlist = defaults.arrayForKey("frlist")
+        let minStep = defaults.integerForKey("minSteps")
+        print (minStep)
+        let maxStep = defaults.integerForKey("maxSteps")
+        let minMile = defaults.integerForKey("minMiles")
+        let maxMile = defaults.integerForKey("maxMiles")
+        let minFloor = defaults.integerForKey("minFloors")
+        let maxFloors = defaults.integerForKey("maxFloors")
         
         if (Id != 0) {
             owner = User(Id: Id, FirstName: FirstName!, LastName: LastName!, PhotoUrl: PhotoUrl!)
             friendsIDs = frlist as! [Int]
+            self.userSettings = SettingsDef(minStep: minStep, maxStep: maxStep, minMile: minMile, maxMile: maxMile, minFloor: minFloor, maxFloor: maxFloors)
         }
         
     }

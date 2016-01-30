@@ -56,10 +56,8 @@ class FriendsActivity: UITableViewController {
         }
     }
 
-    @IBAction func logOut(sender: UIBarButtonItem) {
-        FBSDKLoginManager().logOut()
-        YayMgr.logOut()
-        performSegueWithIdentifier("GoLogin", sender: nil)
-    }
+
+ 
+
 }
 

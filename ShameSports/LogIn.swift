@@ -37,7 +37,7 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
                 let lastName = result.valueForKey("last_name") as! String
                 let photo = result.valueForKey("picture")!.valueForKey("data")!.valueForKey("url") as! String
                 YayMgr.setOwner(User(Id: userID, FirstName: fname, LastName: lastName, PhotoUrl: photo))
-                
+                YayMgr.setSettings(SettingsDef())
 
             }
         }

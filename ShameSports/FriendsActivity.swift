@@ -33,18 +33,18 @@ class FriendsActivity: UITableViewController {
     }
     
     func pointClick(sender: UIButton){
-       playSound((sender.titleLabel?.text?.characters.contains("B") == true))
+       playSound(YayMgr.FrPosts[Int(sender.accessibilityValue!)!].Text.Yay)
        YayMgr.addPoint(Int(sender.accessibilityValue!)!)
     }
     
-    func playSound(isBoo: Bool){
-        if isBoo {
-            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.booSound)
+    func playSound(isYay: Bool){
+        if isYay {
+            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.yaySound)
             
         }
         else
         {
-            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.yaySound)
+            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.booSound)
         }
         audioPlayer.play()
     }

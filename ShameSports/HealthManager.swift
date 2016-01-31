@@ -358,7 +358,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
-                    self.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Steps!! " + msgDesc,Yay: isYay)
                     
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
@@ -372,7 +372,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
-                    self.registerNotification(dailyCount.description + " Steps!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Steps!! " + msgDesc,Yay: isYay)
                     
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Steps!! ",Description: msgDesc, Yay: isYay)
@@ -392,7 +392,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
-                    self.registerNotification(dailyCount.description + " Floors!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Floors!! " + msgDesc,Yay: isYay)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Floors!! ",Description: msgDesc, Yay: isYay)
                     
@@ -405,7 +405,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
-                    self.registerNotification(dailyCount.description + " Floors!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Floors!! " + msgDesc,Yay: isYay)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Floors!! ",Description: msgDesc, Yay: isYay)
                     
@@ -425,7 +425,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
                     isYay = false
-                    self.registerNotification(dailyCount.description + " Miles!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Miles!! " + msgDesc,Yay: isYay)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Miles!! ",Description: msgDesc, Yay: isYay)
                     
@@ -438,7 +438,7 @@ class HealthManager {
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getYayMsg()
                     isYay = true
-                    self.registerNotification(dailyCount.description + " Miles!! " + msgDesc)
+                    self.registerNotification(dailyCount.description + " Miles!! " + msgDesc,Yay: isYay)
                     // Msg object
                     msgObj  = Message(Title: dailyCount.description + " Miles!! ",Description: msgDesc, Yay: isYay)
                     
@@ -456,7 +456,7 @@ class HealthManager {
     
     
     // Register Notifications : To be altered for different msgs
-    static func registerNotification(msg : String){
+    static func registerNotification(msg : String,Yay: Bool){
         
         //Register Notifications
         let gCalender:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
@@ -481,7 +481,12 @@ class HealthManager {
         
         
         let notification:UILocalNotification = UILocalNotification()
-        notification.soundName = "boo.mp3"
+        if Yay {
+            notification.soundName = "yay.mp3"
+        }
+        else {
+            notification.soundName = "boo.mp3"
+        }
         notification.alertBody = msg
         notification.fireDate = fireDate
         

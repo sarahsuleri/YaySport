@@ -22,6 +22,8 @@ class YayMgr {
     static var owner : User = User(Id: 0, FirstName: "temp", LastName: "temp", PhotoUrl: "temp")
     static var loaded : Bool = false
     static var userSettings: SettingsDef = SettingsDef()
+    static let booSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("boo", ofType: "mp3")!)
+    static let yaySound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("yay", ofType: "mp3")!)
     
     
     // MARK: - Firebase: load from DB

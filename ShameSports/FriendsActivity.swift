@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class FriendsActivity: UITableViewController {
+
+    var audioPlayer = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +33,21 @@ class FriendsActivity: UITableViewController {
     }
     
     func pointClick(sender: UIButton){
+       playSound((sender.titleLabel?.text?.characters.contains("B") == true))
        YayMgr.addPoint(Int(sender.accessibilityValue!)!)
     }
     
+    func playSound(isBoo: Bool){
+        if isBoo {
+            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.booSound)
+            
+        }
+        else
+        {
+            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.yaySound)
+        }
+        audioPlayer.play()
+    }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

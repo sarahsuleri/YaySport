@@ -481,7 +481,7 @@ class HealthManager {
         
         
         let notification:UILocalNotification = UILocalNotification()
-        //notification.alertTitle = "200 Steps"
+        notification.soundName = "boo.mp3"
         notification.alertBody = msg
         notification.fireDate = fireDate
         

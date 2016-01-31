@@ -21,6 +21,8 @@
 		235C16601C57F04300ADCD23 /* JsonSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235C165F1C57F04300ADCD23 /* JsonSerializer.swift */; };
 		236E82351C58E5CA003E7A7D /* UIUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E82341C58E5CA003E7A7D /* UIUtils.swift */; };
 		236E82371C58FF6F003E7A7D /* DBMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 236E82361C58FF6F003E7A7D /* DBMgr.swift */; };
+		262B26F21C5D803F006344A3 /* boo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 262B26F11C5D803F006344A3 /* boo.mp3 */; };
+		262B26F41C5D8532006344A3 /* yay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 262B26F31C5D8532006344A3 /* yay.mp3 */; };
 		2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652F7B21C4AA1A800214489 /* HealthManager.swift */; };
 		431C4CBD1C5CC7DC00461562 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C4CBC1C5CC7DC00461562 /* ContainerController.swift */; };
 		431C4CBF1C5CCB2A00461562 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C4CBE1C5CCB2A00461562 /* CommentController.swift */; };
@@ -56,6 +58,8 @@
 		235C165F1C57F04300ADCD23 /* JsonSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonSerializer.swift; sourceTree = "<group>"; };
 		236E82341C58E5CA003E7A7D /* UIUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtils.swift; sourceTree = "<group>"; };
 		236E82361C58FF6F003E7A7D /* DBMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBMgr.swift; sourceTree = "<group>"; };
+		262B26F11C5D803F006344A3 /* boo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boo.mp3; sourceTree = "<group>"; };
+		262B26F31C5D8532006344A3 /* yay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = yay.mp3; sourceTree = "<group>"; };
 		2652F7AF1C4AA14600214489 /* ShameSports.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShameSports.entitlements; sourceTree = "<group>"; };
 		2652F7B21C4AA1A800214489 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		431C4CBC1C5CC7DC00461562 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 		235C16631C5830D000ADCD23 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				262B26F31C5D8532006344A3 /* yay.mp3 */,
+				262B26F11C5D803F006344A3 /* boo.mp3 */,
 				233FDFDB1C41CE5A00F81A6A /* Utils.swift */,
 				235C165F1C57F04300ADCD23 /* JsonSerializer.swift */,
 				233FDFD91C41BE8300F81A6A /* DummyData.swift */,
@@ -280,12 +286,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262B26F41C5D8532006344A3 /* yay.mp3 in Resources */,
 				D20073951C47E4DE009DE546 /* FBSDKCoreKit.framework in Resources */,
 				D20073961C47E4DE009DE546 /* FBSDKLoginKit.framework in Resources */,
 				D20073971C47E4DE009DE546 /* FBSDKShareKit.framework in Resources */,
 				D22363971C5D24F800404C46 /* Main.storyboard in Resources */,
 				43520C9A1C2FDBAF00FACD63 /* LaunchScreen.storyboard in Resources */,
 				43520C971C2FDBAF00FACD63 /* Assets.xcassets in Resources */,
+				262B26F21C5D803F006344A3 /* boo.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

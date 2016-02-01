@@ -116,6 +116,7 @@ class YayMgr {
         defaults.setInteger(userSettings.maxMiles, forKey: "maxMiles")
         defaults.setInteger(userSettings.minFloors, forKey: "minFloors")
         defaults.setInteger(userSettings.maxFloors, forKey: "maxFloors")
+        defaults.setBool(userSettings.hasSound, forKey: "hasSound")
     }
     
     static func loadDefaults() {
@@ -131,11 +132,12 @@ class YayMgr {
         let maxMile = defaults.integerForKey("maxMiles")
         let minFloor = defaults.integerForKey("minFloors")
         let maxFloors = defaults.integerForKey("maxFloors")
+        let hasSound = defaults.boolForKey("hasSound")
         
         if (Id != 0) {
             owner = User(Id: Id, FirstName: FirstName!, LastName: LastName!, PhotoUrl: PhotoUrl!)
             friendsIDs = frlist as! [Int]
-            self.userSettings = SettingsDef(minStep: minStep, maxStep: maxStep, minMile: minMile, maxMile: maxMile, minFloor: minFloor, maxFloor: maxFloors)
+            self.userSettings = SettingsDef(minStep: minStep, maxStep: maxStep, minMile: minMile, maxMile: maxMile, minFloor: minFloor, maxFloor: maxFloors, _hasSound: hasSound)
         }
         
     }

@@ -38,15 +38,22 @@ class FriendsActivity: UITableViewController {
     }
     
     func playSound(isYay: Bool){
-        if isYay {
-            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.yaySound)
+        if YayMgr.userSettings.hasSound{
+            if isYay {
+                try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.yaySound)
             
+            }
+            else
+            {
+                try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.booSound)
+            }
+            audioPlayer.play()
+        
         }
         else
         {
-            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.booSound)
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         }
-        audioPlayer.play()
     }
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

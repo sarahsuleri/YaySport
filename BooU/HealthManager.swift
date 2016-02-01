@@ -8,6 +8,9 @@
 
 import Foundation
 import HealthKit
+import AudioToolbox
+
+
 
 class HealthManager {
     
@@ -481,11 +484,17 @@ class HealthManager {
         
         
         let notification:UILocalNotification = UILocalNotification()
-        if Yay {
-            notification.soundName = "yay.mp3"
+        if YayMgr.userSettings.hasSound {
+            if Yay {
+                notification.soundName = "yay.mp3"
+            }
+            else {
+                notification.soundName = "boo.mp3"
+            }
         }
-        else {
-            notification.soundName = "boo.mp3"
+        else
+        {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         }
         notification.alertBody = msg
         notification.fireDate = fireDate

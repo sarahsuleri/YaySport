@@ -19,6 +19,8 @@ class SettingsDef {
     var minFloors:Int
     var maxFloors:Int
     
+    var hasSound: Bool
+    
     init()
     {
         self.minSteps = 2500
@@ -29,9 +31,11 @@ class SettingsDef {
         
         self.minFloors = 50
         self.maxFloors = 500
+        
+        self.hasSound = true
     }
     
-    init ( minStep: Int, maxStep: Int, minMile: Int, maxMile: Int, minFloor:Int, maxFloor: Int)
+    init ( minStep: Int, maxStep: Int, minMile: Int, maxMile: Int, minFloor:Int, maxFloor: Int, _hasSound: Bool)
     {
         self.minSteps = minStep
         self.maxSteps = maxStep
@@ -41,6 +45,8 @@ class SettingsDef {
         
         self.minFloors = minFloor
         self.maxFloors = maxFloor
+        
+        self.hasSound = _hasSound
     
     }
     

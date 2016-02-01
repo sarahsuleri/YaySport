@@ -25,6 +25,9 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
     
     @IBOutlet weak var FBLogout: FBSDKLoginButton!
     
+    @IBOutlet weak var soundSwitch: UISwitch!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,6 +51,10 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
         
         minFloors.placeholder = String(YayMgr.userSettings.minFloors) + " floors"
         maxFloors.placeholder = String(YayMgr.userSettings.maxFloors) + " floors"
+        
+        soundSwitch.setOn(Bool(YayMgr.userSettings.hasSound), animated: true)
+        soundSwitch.addTarget(self, action: "soundSwitchChanged:", forControlEvents: UIControlEvents.ValueChanged)
+
 
         FBLogout.delegate = self
     }
@@ -114,7 +121,18 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
        }
     }
     
+    func soundSwitchChanged(_soundSwitch: UISwitch) {
+        saveSoundSettings()
+    }
+    
+    func  saveSoundSettings()
+    {
+        YayMgr.userSettings.hasSound = Bool(soundSwitch.state.rawValue)
+        YayMgr.saveDefaults()
+    }
+    
     func done(){
+        
         self.view.endEditing(true)
     }
 
@@ -127,5 +145,7 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
         YayMgr.logOut()
         performSegueWithIdentifier("GoLogin", sender: nil)
     }
+    
+    
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mZu-2Z-RsI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mZu-2Z-RsI">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -9,13 +9,13 @@
         <!--Settings-->
         <scene sceneID="JB5-hM-ShA">
             <objects>
-                <tableViewController id="Dar-Km-6dm" userLabel="Settings" customClass="Settings" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Dar-Km-6dm" userLabel="Settings" customClass="Settings" customModule="BooU" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ceC-I9-5mz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="lpw-rQ-Ibd" customClass="FBSDKLoginButton">
-                            <rect key="frame" x="0.0" y="495.5" width="600" height="44"/>
+                            <rect key="frame" x="0.0" y="575.5" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
@@ -228,6 +228,35 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="" id="LNd-7h-cIm">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="MaC-41-8Z3">
+                                        <rect key="frame" x="0.0" y="514" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MaC-41-8Z3" id="Fs9-7F-F7A">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMn-K4-40F">
+                                                    <rect key="frame" x="18" y="11" width="47" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtd-Yu-sHl">
+                                                    <rect key="frame" x="501" y="4" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gtd-Yu-sHl" firstAttribute="top" secondItem="Fs9-7F-F7A" secondAttribute="topMargin" constant="-4" id="LLV-4a-95Q"/>
+                                                <constraint firstItem="pMn-K4-40F" firstAttribute="top" secondItem="Fs9-7F-F7A" secondAttribute="topMargin" constant="3" id="YVs-QF-L0X"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gtd-Yu-sHl" secondAttribute="trailing" constant="42" id="fQE-wl-KvR"/>
+                                                <constraint firstItem="pMn-K4-40F" firstAttribute="leading" secondItem="Fs9-7F-F7A" secondAttribute="leadingMargin" constant="10" id="gaM-eT-8HF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="Dar-Km-6dm" id="0bE-h6-kYV"/>
@@ -243,6 +272,7 @@
                         <outlet property="minFloors" destination="85R-aX-p1R" id="9Le-bp-LT4"/>
                         <outlet property="minMiles" destination="Yfy-kp-aU8" id="NRG-6Q-5Ju"/>
                         <outlet property="minSteps" destination="FJQ-rT-R4N" id="1ag-nt-Hau"/>
+                        <outlet property="soundSwitch" destination="gtd-Yu-sHl" id="laI-vV-VzS"/>
                         <segue destination="mZu-2Z-RsI" kind="showDetail" identifier="GoLogin" id="NmM-zd-4CY"/>
                     </connections>
                 </tableViewController>
@@ -253,7 +283,7 @@
         <!--LogIn-->
         <scene sceneID="fy0-KT-qb4">
             <objects>
-                <viewController storyboardIdentifier="loginViewController" title="LogIn" id="mZu-2Z-RsI" customClass="LogIn" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" title="LogIn" id="mZu-2Z-RsI" customClass="LogIn" customModule="BooU" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aod-Zm-8mX"/>
                         <viewControllerLayoutGuide type="bottom" id="rE9-Im-4bw"/>
@@ -306,7 +336,7 @@
         <!--Tab Bar View Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" id="49e-Tb-3d3" customClass="TabBarViewController" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="49e-Tb-3d3" customClass="TabBarViewController" customModule="BooU" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="GbW-M0-fhC"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
@@ -346,7 +376,7 @@
         <!--Friends' Activity-->
         <scene sceneID="DE3-gP-2Ka">
             <objects>
-                <tableViewController storyboardIdentifier="friendsActivityTVC" id="iJs-Re-PQM" customClass="FriendsActivity" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="friendsActivityTVC" id="iJs-Re-PQM" customClass="FriendsActivity" customModule="BooU" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="28" sectionFooterHeight="28" id="4uz-PC-BDs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -483,7 +513,7 @@
         <!--Post Detail Controller-->
         <scene sceneID="lsG-X9-V4Z">
             <objects>
-                <tableViewController id="sDB-wy-r92" customClass="PostDetailController" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="sDB-wy-r92" customClass="PostDetailController" customModule="BooU" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xvr-2H-VGA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -734,7 +764,7 @@
         <!--Comment Controller-->
         <scene sceneID="G6h-GD-aKy">
             <objects>
-                <viewController id="WFC-SV-t0u" customClass="CommentController" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WFC-SV-t0u" customClass="CommentController" customModule="BooU" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D7I-DD-bBz"/>
                         <viewControllerLayoutGuide type="bottom" id="Odl-Ec-DlN"/>
@@ -793,7 +823,7 @@
         <!--Container Controller-->
         <scene sceneID="Gqo-yH-SQ1">
             <objects>
-                <viewController id="97G-3l-0sP" customClass="ContainerController" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="97G-3l-0sP" customClass="ContainerController" customModule="BooU" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DGA-5W-ghV"/>
                         <viewControllerLayoutGuide type="bottom" id="utZ-aH-bhq"/>
@@ -808,7 +838,7 @@
                                     <segue destination="sDB-wy-r92" kind="embed" identifier="ShowComments" id="f0Q-aP-Zoj"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-EJ-0BF" customClass="CircleButton" customModule="ShameSports" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-EJ-0BF" customClass="CircleButton" customModule="BooU" customModuleProvider="target">
                                 <rect key="frame" x="530" y="481" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="eNJ-hy-Cnc"/>
@@ -855,7 +885,7 @@
         <!--My Activity-->
         <scene sceneID="TC7-da-Uh5">
             <objects>
-                <tableViewController storyboardIdentifier="myActivityTVC" id="1HK-oF-ew8" customClass="MyActivity" customModule="ShameSports" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="myActivityTVC" id="1HK-oF-ew8" customClass="MyActivity" customModule="BooU" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="28" sectionFooterHeight="28" id="ohC-PN-SAK">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

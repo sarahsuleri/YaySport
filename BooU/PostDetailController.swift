@@ -68,6 +68,12 @@ class PostDetailController: UITableViewController {
             
             let title = cell.contentView.viewWithTag(101) as! UILabel
             title.text = "\(detailItem.Comments[indexPath.row-1].Commentor.FirstName) \(detailItem.Comments[indexPath.row-1].Commentor.LastName)"
+            if detailItem.Text.Yay {
+                title.textColor = UIColor.Yay()
+            } else {
+                title.textColor = UIColor.Boo()
+            }
+            
             
             let comment = cell.contentView.viewWithTag(102) as! UILabel
             comment.text = detailItem.Comments[indexPath.row-1].Comment

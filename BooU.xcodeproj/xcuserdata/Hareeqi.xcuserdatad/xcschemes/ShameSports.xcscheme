@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43520C891C2FDBAF00FACD63"
-            BuildableName = "ShameSports.app"
-            BlueprintName = "ShameSports"
-            ReferencedContainer = "container:ShameSports.xcodeproj">
+            BuildableName = "BooU.app"
+            BlueprintName = "BooU"
+            ReferencedContainer = "container:BooU.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43520C891C2FDBAF00FACD63"
-            BuildableName = "ShameSports.app"
-            BlueprintName = "ShameSports"
-            ReferencedContainer = "container:ShameSports.xcodeproj">
+            BuildableName = "BooU.app"
+            BlueprintName = "BooU"
+            ReferencedContainer = "container:BooU.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

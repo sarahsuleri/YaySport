@@ -150,8 +150,8 @@ class YayMgr {
         
         friendsIDs.removeAll()
         
-//        HealthManager.stopObservingFloorsChanges()
-//        HealthManager.stopObservingMilesChanges()
-//        HealthManager.stopObservingStepsChanges()
+        HealthManager.stopObservingFloorsChanges()
+        HealthManager.stopObservingMilesChanges()
+        HealthManager.stopObservingStepsChanges()
     }
 }

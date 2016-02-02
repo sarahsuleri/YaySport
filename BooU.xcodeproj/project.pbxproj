@@ -254,7 +254,7 @@
 				TargetAttributes = {
 					43520C891C2FDBAF00FACD63 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 36ZEJB8K6U;
+						DevelopmentTeam = C2X5TLHQYM;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -502,7 +502,7 @@
 				INFOPLIST_FILE = BooU/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hareeqi.de.ABooU1077;
+				PRODUCT_BUNDLE_IDENTIFIER = Boo102;
 				PRODUCT_NAME = BooU;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = BooU/BridgingHeader.h;
@@ -524,7 +524,7 @@
 				INFOPLIST_FILE = BooU/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hareeqi.de.ABooU1077;
+				PRODUCT_BUNDLE_IDENTIFIER = Boo102;
 				PRODUCT_NAME = BooU;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = BooU/BridgingHeader.h;

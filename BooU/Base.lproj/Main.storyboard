@@ -802,11 +802,13 @@
                                 <items>
                                     <navigationItem id="gtk-0I-YfK">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="6bT-Ol-aWA">
+                                            <color key="tintColor" red="0.60784313729999995" green="0.34901960780000002" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <segue destination="C0v-Hd-yDj" kind="unwind" unwindAction="cancel:" id="7ea-LD-m8E"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Post" id="aiz-Lc-klg">
+                                            <color key="tintColor" red="0.60784313729999995" green="0.34901960780000002" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <segue destination="C0v-Hd-yDj" kind="unwind" identifier="CommentSaveSegue" unwindAction="post:" id="M0C-8r-d3J"/>
                                             </connections>

@@ -11,7 +11,7 @@ import AVFoundation
 
 class FriendsActivity: UITableViewController {
 
-    var audioPlayer = AVAudioPlayer()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,24 +37,7 @@ class FriendsActivity: UITableViewController {
        YayMgr.addPoint(Int(sender.accessibilityValue!)!)
     }
     
-    func playSound(isYay: Bool){
-        if YayMgr.userSettings.hasSound{
-            if isYay {
-                try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.yaySound)
-            
-            }
-            else
-            {
-                try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.booSound)
-            }
-            audioPlayer.play()
-        
-        }
-        else
-        {
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-        }
-    }
+   
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -74,4 +57,3 @@ class FriendsActivity: UITableViewController {
         }
     }
 }
-

@@ -10,6 +10,7 @@ import Foundation
 import AVFoundation
 import UIKit
 import ImageIO
+import AVFoundation
 
 extension UIColor {
     
@@ -21,11 +22,11 @@ extension UIColor {
         return UIColor(red: 155/255.0, green: 89/255.0, blue:182/255.0, alpha: 1.0)
     }
     class func YayLite() -> UIColor {
-        return UIColor(red: 26/255.0, green: 188/255.0, blue: 156/255.0, alpha: 0.1)
+        return UIColor(red: 26/255.0, green: 188/255.0, blue: 156/255.0, alpha: 0.03)
     }
     
     class func BooLite() -> UIColor {
-        return UIColor(red: 155/255.0, green: 89/255.0, blue:182/255.0, alpha: 0.1)
+        return UIColor(red: 155/255.0, green: 89/255.0, blue:182/255.0, alpha: 0.03)
     }
 }
 
@@ -56,4 +57,25 @@ func convertStringToDictionary(text: String) -> [String:AnyObject]? {
         }
     }
     return nil
+}
+
+var audioPlayer = AVAudioPlayer()
+func playSound(isYay: Bool){
+    
+    if YayMgr.userSettings.hasSound{
+        if isYay {
+            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.yaySound)
+            
+        }
+        else
+        {
+            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.booSound)
+        }
+        audioPlayer.play()
+        
+    }
+    else
+    {
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    }
 }

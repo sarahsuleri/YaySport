@@ -108,6 +108,7 @@ class PostDetailController: UITableViewController {
 
 
     func pointClick(sender: UIButton){
+        playSound(YayMgr.FrPosts[Int(sender.accessibilityValue!)!].Text.Yay)
         YayMgr.addPoint(Int(sender.accessibilityValue!)!)
     }
 

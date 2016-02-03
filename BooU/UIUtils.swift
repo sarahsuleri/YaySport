@@ -21,6 +21,9 @@ func populateMyPost (index : Int, isMyActivity : Bool, cell : UITableViewCell) -
     let comCount = cell.contentView.viewWithTag(80) as! UILabel
     let des = cell.contentView.viewWithTag(60) as! UILabel
     let comPics = cell.contentView.viewWithTag(70)! as UIView
+    while let subview = comPics.subviews.last {
+        subview.removeFromSuperview()
+    }
     
     title.text = object.Text.Title
     comCount.text = String(object.Comments.count)
@@ -79,6 +82,9 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
     let btn = cell.contentView.viewWithTag(20) as! UIButton
     let fPic = cell.contentView.viewWithTag(30) as! UIImageView
     let comPics = cell.contentView.viewWithTag(70)! as UIView
+    while let subview = comPics.subviews.last {
+        subview.removeFromSuperview()
+    }
     
     btn.accessibilityValue = String(index)
    

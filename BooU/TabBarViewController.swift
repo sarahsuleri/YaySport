@@ -14,11 +14,12 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("View tab bar loaded")
-        YayMgr.load()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        YayMgr.load()
     }
     
     override func viewDidDisappear(animated: Bool) {

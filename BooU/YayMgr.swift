@@ -42,13 +42,12 @@ class YayMgr {
             }
             
             
-            dispatch_async(dispatch_get_main_queue(),{
                 HealthManager.startObservingStepsChanges()
                 
                 HealthManager.startObservingFloorsChanges()
                 
                 HealthManager.startObservingMilesChanges()
-            })
+            
             
             
         }

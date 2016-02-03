@@ -21,11 +21,11 @@ extension UIColor {
         return UIColor(red: 155/255.0, green: 89/255.0, blue:182/255.0, alpha: 1.0)
     }
     class func YayLite() -> UIColor {
-        return UIColor(red: 26/255.0, green: 188/255.0, blue: 156/255.0, alpha: 0.01)
+        return UIColor(red: 26/255.0, green: 188/255.0, blue: 156/255.0, alpha: 0.1)
     }
     
     class func BooLite() -> UIColor {
-        return UIColor(red: 155/255.0, green: 89/255.0, blue:182/255.0, alpha: 0.01)
+        return UIColor(red: 155/255.0, green: 89/255.0, blue:182/255.0, alpha: 0.1)
     }
 }
 

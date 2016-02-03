@@ -8,21 +8,52 @@
 
 import UIKit
 
-class CommentController: UIViewController {
+class CommentController: UIViewController, UITextViewDelegate {
     
     
     @IBOutlet weak var textView: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        textView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        textView.text = "Add your comment"
+        textView.textColor = UIColor.lightGrayColor()
         textView.becomeFirstResponder()
+        textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
     }
+    
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        let currentText: NSString = textView.text
+        let updatedText = currentText.stringByReplacingCharactersInRange(range, withString: text)
+        
+        if updatedText.isEmpty {
+            textView.text = "Add your comment"
+            textView.textColor = UIColor.lightGrayColor()
+            textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+            return false
+        }
+        else if textView.textColor == UIColor.lightGrayColor() && !text.isEmpty {
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+        }
+        return true
+    }
+    
+    
+    func textViewDidChangeSelection(textView: UITextView) {
+        if self.view.window != nil {
+            if textView.textColor == UIColor.lightGrayColor() {
+                textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
+            }
+        }
+    }
+    
     
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return .TopAttached

@@ -292,40 +292,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boo U!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udu-fZ-lDJ">
-                                <rect key="frame" x="201" y="421" width="196" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="196" id="wgu-Zr-jor"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="54"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Gg-ZN-GNq" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="201" y="530" width="198" height="50"/>
+                                <rect key="frame" x="211" y="487" width="198" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="LWt-az-jhT"/>
                                     <constraint firstAttribute="width" constant="198" id="mPV-gU-VeR"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="har-NQ-rHt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="har-NQ-rHt">
                                 <rect key="frame" x="124" y="58" width="352" height="342"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="352" id="wSk-xn-sp6"/>
+                                    <constraint firstAttribute="width" constant="352" id="xzB-Fb-9Sc"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Boo U!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udu-fZ-lDJ">
+                                <rect key="frame" x="202" y="387" width="196" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="lXV-NE-y0P"/>
+                                    <constraint firstAttribute="width" constant="196" id="wgu-Zr-jor"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="54"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.22352941176470589" green="0.73333333333333328" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="har-NQ-rHt" firstAttribute="centerX" secondItem="3Gg-ZN-GNq" secondAttribute="centerX" id="HnN-cu-mNs"/>
-                            <constraint firstItem="har-NQ-rHt" firstAttribute="top" secondItem="aod-Zm-8mX" secondAttribute="bottom" constant="38" id="dwM-a8-zb4"/>
-                            <constraint firstItem="Udu-fZ-lDJ" firstAttribute="top" secondItem="har-NQ-rHt" secondAttribute="bottom" constant="21" id="iKH-Ll-Mzj"/>
-                            <constraint firstItem="3Gg-ZN-GNq" firstAttribute="top" secondItem="Udu-fZ-lDJ" secondAttribute="bottom" constant="44" id="rMt-an-ez3"/>
-                            <constraint firstItem="3Gg-ZN-GNq" firstAttribute="centerY" secondItem="ALA-O0-brg" secondAttribute="centerY" constant="255" id="sqy-Q9-32g"/>
-                            <constraint firstItem="Udu-fZ-lDJ" firstAttribute="top" secondItem="aod-Zm-8mX" secondAttribute="bottom" constant="401" id="vdI-ck-os3"/>
-                            <constraint firstItem="Udu-fZ-lDJ" firstAttribute="centerX" secondItem="ALA-O0-brg" secondAttribute="centerX" constant="-1" id="wXn-79-hfX"/>
-                            <constraint firstItem="3Gg-ZN-GNq" firstAttribute="centerX" secondItem="ALA-O0-brg" secondAttribute="centerX" id="yy4-WT-CMT"/>
+                            <constraint firstItem="3Gg-ZN-GNq" firstAttribute="centerX" secondItem="ALA-O0-brg" secondAttribute="centerX" constant="10" id="Dqd-hH-O74"/>
+                            <constraint firstItem="har-NQ-rHt" firstAttribute="top" secondItem="aod-Zm-8mX" secondAttribute="bottom" constant="38" id="OjA-qr-v9N"/>
+                            <constraint firstItem="Udu-fZ-lDJ" firstAttribute="top" secondItem="har-NQ-rHt" secondAttribute="bottom" constant="-13" id="XkX-K1-1I9"/>
+                            <constraint firstItem="3Gg-ZN-GNq" firstAttribute="top" secondItem="Udu-fZ-lDJ" secondAttribute="bottom" constant="35" id="fp5-WC-HWh"/>
+                            <constraint firstAttribute="bottom" secondItem="3Gg-ZN-GNq" secondAttribute="bottom" constant="63" id="pld-nu-9Uk"/>
+                            <constraint firstItem="3Gg-ZN-GNq" firstAttribute="leading" secondItem="Udu-fZ-lDJ" secondAttribute="leading" constant="9" id="unC-Tp-9gk"/>
+                            <constraint firstItem="3Gg-ZN-GNq" firstAttribute="centerX" secondItem="har-NQ-rHt" secondAttribute="centerX" constant="10" id="zgq-UU-WPY"/>
                         </constraints>
                     </view>
                     <connections>

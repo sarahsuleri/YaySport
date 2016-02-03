@@ -39,7 +39,7 @@ class CommentController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "CommentSaveSegue" {
-            let comment = Comment(Commentor: YayMgr.owner, Comment: textView.text.stringByReplacingOccurrencesOfString("\n", withString: ""), Timestamp: NSDate().timeIntervalSince1970)
+            let comment = Comment(Commentor: YayMgr.owner, Comment: textView.text.stringByReplacingOccurrencesOfString("\n", withString: " "), Timestamp: NSDate().timeIntervalSince1970)
           
             let controller = segue.destinationViewController as! PostDetailController
             controller.newCom = comment

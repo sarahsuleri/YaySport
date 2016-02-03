@@ -10,6 +10,7 @@ import Foundation
 import AVFoundation
 import UIKit
 import ImageIO
+import AVFoundation
 
 extension UIColor {
     
@@ -56,4 +57,25 @@ func convertStringToDictionary(text: String) -> [String:AnyObject]? {
         }
     }
     return nil
+}
+
+var audioPlayer = AVAudioPlayer()
+func playSound(isYay: Bool){
+    
+    if YayMgr.userSettings.hasSound{
+        if isYay {
+            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.yaySound)
+            
+        }
+        else
+        {
+            try! audioPlayer = AVAudioPlayer(contentsOfURL: YayMgr.booSound)
+        }
+        audioPlayer.play()
+        
+    }
+    else
+    {
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    }
 }

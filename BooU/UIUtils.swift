@@ -34,11 +34,15 @@ func populateMyPost (index : Int, isMyActivity : Bool, cell : UITableViewCell) -
         points.text = "+" + String(object.Points.count)
         title.textColor  = UIColor.Yay()
         points.textColor = UIColor.Yay()
+        points.shadowColor = UIColor.Yay()
+        points.shadowOffset = CGSize(width: 0.0, height: 1.0)
         cell.backgroundColor = UIColor.YayLite()
     }
     else {
         points.text = "-" + String(object.Points.count)
         points.textColor = UIColor.Boo()
+        points.shadowColor = UIColor.Boo()
+        points.shadowOffset = CGSize(width: 0.0, height: 1.0)
         title.textColor  = UIColor.Boo()
         cell.backgroundColor = UIColor.BooLite()
     }
@@ -111,6 +115,8 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
         points.text = "+" + String(object.Points.count)
         name.textColor  = UIColor.Yay()
         points.textColor = UIColor.Yay()
+        points.shadowColor = UIColor.Yay()
+        points.shadowOffset = CGSize(width: 0.0, height: 1.0)
         btn.setTitle("Yay!", forState: .Normal)
         btn.backgroundColor  = UIColor.Yay()
         cell.backgroundColor = UIColor.YayLite()
@@ -118,6 +124,8 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
     else {
         points.text = "-" + String(object.Points.count)
         points.textColor = UIColor.Boo()
+        points.shadowColor = UIColor.Boo()
+        points.shadowOffset = CGSize(width: 0.0, height: 1.0)
         name.textColor  = UIColor.Boo()
         btn.setTitle("Boo!", forState: .Normal)
         btn.backgroundColor  = UIColor.Boo()

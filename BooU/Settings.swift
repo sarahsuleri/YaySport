@@ -127,7 +127,7 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
     
     func  saveSoundSettings()
     {
-        YayMgr.userSettings.hasSound = Bool(soundSwitch.state.rawValue)
+        YayMgr.userSettings.hasSound = soundSwitch.on
         YayMgr.saveDefaults()
     }
     

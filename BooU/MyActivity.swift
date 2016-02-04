@@ -12,6 +12,8 @@ class MyActivity: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
         YayMgr.myPosts.observe { e in
             self.tableView.reloadData()
         }
@@ -32,16 +34,40 @@ class MyActivity: UITableViewController {
         print("get bad one: ", YayMgr.getBooMsg())
     }
     
+  
+
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        return populateMyPost(indexPath.row,isMyActivity: true,cell: cell)
+       
+        if(indexPath.row == 0)
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! HeaderCell
+            cell.createViews()
+            return cell
+        }
+        else
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+            return populateMyPost(indexPath.row,isMyActivity: true,cell: cell)
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if (indexPath.row == 0)
+        {
+            return 130.0
+        }
+        else
+        {
+            return 105.0
+        }
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 1
     }
+    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

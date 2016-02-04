@@ -109,7 +109,7 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
                 YayMgr.userSettings.minMiles = Int(textField.text!)!
             case 4 :
                 YayMgr.userSettings.maxMiles = Int(textField.text!)!
-                print(YayMgr.userSettings.maxMiles)
+                
             case 5 :
                 YayMgr.userSettings.minFloors = Int(textField.text!)!
             default:

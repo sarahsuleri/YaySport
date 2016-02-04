@@ -21,9 +21,13 @@ func populateMyPost (index : Int, isMyActivity : Bool, cell : UITableViewCell) -
     let comCount = cell.contentView.viewWithTag(80) as! UILabel
     let des = cell.contentView.viewWithTag(60) as! UILabel
     let comPics = cell.contentView.viewWithTag(70)! as UIView
-    while let subview = comPics.subviews.last {
-        subview.removeFromSuperview()
+    if (comPics.accessibilityValue != object.DBIndex) {
+        while let subview = comPics.subviews.last {
+            subview.removeFromSuperview()
+        }
     }
+    comPics.accessibilityValue = object.DBIndex
+    
     
     title.text = object.Text.Title
     comCount.text = String(object.Comments.count)
@@ -86,9 +90,12 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
     let btn = cell.contentView.viewWithTag(20) as! UIButton
     let fPic = cell.contentView.viewWithTag(30) as! UIImageView
     let comPics = cell.contentView.viewWithTag(70)! as UIView
-    while let subview = comPics.subviews.last {
-        subview.removeFromSuperview()
+    if (comPics.accessibilityValue != object.DBIndex) {
+        while let subview = comPics.subviews.last {
+            subview.removeFromSuperview()
+        }
     }
+    comPics.accessibilityValue = object.DBIndex
     
     btn.accessibilityValue = String(index)
    
@@ -132,7 +139,7 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
         cell.backgroundColor = UIColor.BooLite()
     }
     
-    
+
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
         var picLocation = CGFloat(0)
@@ -148,6 +155,7 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
                     
                     cellImg.image = resizeImage(UIImage(data: mydata!)!, toTheSize: CGSize(width: 16, height: 16))
                     comPics.addSubview(cellImg)
+                    
                 }
             }
         }

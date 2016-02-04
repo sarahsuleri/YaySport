@@ -239,6 +239,12 @@ class HealthManager {
     
     //Start Observation
      static func startObservingStepsChanges(){
+        querySteps = {
+            return HKObserverQuery(sampleType: HealthManager.objStepsCount,
+                predicate: HealthManager.predicate,
+                updateHandler: HealthManager.stepsChangedHandler)
+        }()
+
          HealthManager.healthKitStore.executeQuery(HealthManager.querySteps)
          HealthManager.healthKitStore.enableBackgroundDeliveryForType(objStepsCount,
             frequency: .Daily,
@@ -257,6 +263,12 @@ class HealthManager {
     }
     
     static func startObservingFloorsChanges(){
+        queryFloors = {
+            return HKObserverQuery(sampleType: HealthManager.objFlightsClimbed,
+                predicate: HealthManager.predicate,
+                updateHandler: HealthManager.floorsChangedHandler)
+        }()
+
          HealthManager.healthKitStore.executeQuery(HealthManager.queryFloors)
          HealthManager.healthKitStore.enableBackgroundDeliveryForType(objFlightsClimbed,
             frequency: .Daily,
@@ -274,6 +286,12 @@ class HealthManager {
         })
     }
     static func startObservingMilesChanges(){
+        queryMiles = {
+            return HKObserverQuery(sampleType: HealthManager.objDistanceWalkedRunning,
+                predicate: HealthManager.predicate,
+                updateHandler: HealthManager.milesChangedHandler)
+        }()
+
          HealthManager.healthKitStore.executeQuery(HealthManager.queryMiles)
          HealthManager.healthKitStore.enableBackgroundDeliveryForType(objDistanceWalkedRunning,
             frequency: .Daily,

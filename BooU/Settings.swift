@@ -143,6 +143,7 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
         
         FBSDKLoginManager().logOut()
         YayMgr.logOut()
+        YayMgr.load()
         performSegueWithIdentifier("GoLogin", sender: nil)
     }
     

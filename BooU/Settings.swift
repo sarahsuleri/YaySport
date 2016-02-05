@@ -85,7 +85,9 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         let invalidCharacters = NSCharacterSet(charactersInString: "0123456789").invertedSet
-        if let _ = string.rangeOfCharacterFromSet(invalidCharacters, range:Range<String.Index>(start: string.startIndex, end: string.endIndex)) {
+        let str = string.rangeOfCharacterFromSet(invalidCharacters, range:Range<String.Index>(start: string.startIndex, end: string.endIndex))
+        if str != nil || (textField.text?.characters.count > 10)
+        {
             return false
         }
         

@@ -27,8 +27,8 @@ public class Piechart: UIControl {
      * Radius
      */
     public struct Radius {
-        public var inner: CGFloat = 40
-        public var outer: CGFloat = 60
+        public var inner: CGFloat = 30
+        public var outer: CGFloat = 40
     }
     
     /**
@@ -86,7 +86,7 @@ public class Piechart: UIControl {
         
         titleLabel = UILabel()
         titleLabel.text = title
-        titleLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        titleLabel.font = UIFont.systemFontOfSize(15, weight: UIFontWeightThin)
         titleLabel.textAlignment = .Center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLabel)

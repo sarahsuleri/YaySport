@@ -58,16 +58,7 @@ class MyActivity: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (indexPath.row == 0)
-        {
-            return 130.0
-        }
-        else
-        {
-            return 105.0
-        }
-    }
+
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         

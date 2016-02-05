@@ -20,12 +20,12 @@ class HeaderCell: UITableViewCell, PiechartDelegate {
         }
         
         let bounds = UIScreen.mainScreen().bounds
-        let shiftInX:CGFloat = (bounds.width - 365) / 3.0
+        let shiftInX:CGFloat = (bounds.width - 270) / 3.0
         
         
-        let viewSteps = UIView(frame: CGRect(x: 1, y: 0, width: 120, height: 130))
-        let viewMiles = UIView(frame: CGRect(x: 60 + shiftInX/2 , y: 0, width: 120, height: 130))
-        let viewFloors = UIView(frame: CGRect(x: 120 + shiftInX, y: 0, width: 120, height: 130))
+        let viewSteps = UIView(frame: CGRect(x: 10 + shiftInX/3, y: -5, width: 80, height: 130))
+        let viewMiles = UIView(frame: CGRect(x: 50 + 2*shiftInX/3 , y: -5, width: 80, height: 130))
+        let viewFloors = UIView(frame: CGRect(x: 90 + shiftInX, y: -5, width: 80, height: 130))
         
      
    
@@ -57,20 +57,23 @@ class HeaderCell: UITableViewCell, PiechartDelegate {
         switch chartID
         {
         case 1:
-            progress.text = "steps cut"
+            progress.text = ""
             progress.value = CGFloat (YayMgr.currentSteps) / CGFloat (YayMgr.userSettings.maxSteps)
+            if progress.value > 1 {progress.value = 1}
             needed.value = 1 - progress.value
             pieChart.title = "Steps"
             
         case 2:
-            progress.text = "miles cut"
+            progress.text = ""
             progress.value = CGFloat (YayMgr.currentMiles) / CGFloat (YayMgr.userSettings.maxMiles)
+            if progress.value > 1 {progress.value = 1}
             needed.value = 1 - progress.value
             pieChart.title = "Miles"
             
         default:
-            progress.text = "floors cut"
+            progress.text = ""
             progress.value = CGFloat (YayMgr.currentFloors) / CGFloat (YayMgr.userSettings.maxFloors)
+            if progress.value > 1 {progress.value = 1}
             needed.value = 1 - progress.value
             pieChart.title = "Floors"
             

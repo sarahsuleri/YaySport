@@ -61,12 +61,12 @@ class DBMgr {
         let poster : User = User(Id: pDic["Id"] as! Int, FirstName: pDic["FirstName"] as! String, LastName: pDic["LastName"]as! String, PhotoUrl: pDic["PhotoUrl"]as! String)
         
         var comments : [Comment] = []
-        
         if let cDic = snapshot.value["Comments"] as? NSDictionary {
-            for (_, com) in cDic {
+            for com in cDic.allValues {
                 let commentor :  User = User(Id: com["Commentor"]!!["Id"] as! Int, FirstName: com["Commentor"]!!["FirstName"] as! String, LastName: com["Commentor"]!!["LastName"]as! String, PhotoUrl: com["Commentor"]!!["PhotoUrl"]as! String)
                 comments.append(Comment(Commentor: commentor, Comment: com["Comment"] as! String, Timestamp: com["Timestamp"] as! NSTimeInterval))
             }
+            comments.sortInPlace({$0.Timestamp < $1.Timestamp})
         }
         
         let mDic = snapshot.value["Text"] as! NSDictionary

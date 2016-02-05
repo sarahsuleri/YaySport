@@ -117,7 +117,6 @@ class PostDetailController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("seriously wheres the count \(detailItem == nil ? 0 : detailItem.Comments.count) ")
         return detailItem == nil ? 0 : detailItem.Comments.count+1
     }
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

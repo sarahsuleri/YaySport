@@ -57,7 +57,7 @@ func populateMyPost (index : Int, isMyActivity : Bool, cell : UITableViewCell) -
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
         var picLocation = CGFloat(0)
-        for item in object.Comments {
+        for item in Array(Set(object.Comments)) {
             let cellImg : UIImageView = UIImageView(frame: CGRectMake(picLocation, 0, 16, 16))
             picLocation += 18
             cellImg.layer.cornerRadius = 8
@@ -149,7 +149,7 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
         var picLocation = CGFloat(0)
-        for item in object.Comments {
+        for item in Array(Set(object.Comments)) {
             let cellImg : UIImageView = UIImageView(frame: CGRectMake(picLocation, 0, 16, 16))
             picLocation += 18
             cellImg.layer.cornerRadius = 8

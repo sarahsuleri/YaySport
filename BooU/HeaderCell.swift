@@ -20,9 +20,8 @@ class HeaderCell: UITableViewCell, PiechartDelegate {
         }
         
         let bounds = UIScreen.mainScreen().bounds
-        print (bounds.width)
         let shiftInX:CGFloat = (bounds.width - 365) / 3.0
-        print (shiftInX)
+        
         
         let viewSteps = UIView(frame: CGRect(x: 1, y: 0, width: 120, height: 130))
         let viewMiles = UIView(frame: CGRect(x: 60 + shiftInX/2 , y: 0, width: 120, height: 130))

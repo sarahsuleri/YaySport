@@ -19,6 +19,12 @@ class MyActivity: UITableViewController {
         }
     }
     
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+       
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()

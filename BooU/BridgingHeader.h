@@ -15,5 +15,6 @@
 #import <ReactiveKit/ReactiveKit.h>
 #import <ReactiveFoundation/ReactiveFoundation.h>
 #import <ReactiveUIKit/ReactiveUIKit.h>
+#import <SwiftMoment/SwiftMoment.h>
 
 #endif /* BridgingHeader_h */

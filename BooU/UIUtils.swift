@@ -19,6 +19,7 @@ func populateMyPost (index : Int, isMyActivity : Bool, cell : UITableViewCell) -
     let points = cell.contentView.viewWithTag(10) as! UILabel
     let title = cell.contentView.viewWithTag(50) as! UILabel
     let comCount = cell.contentView.viewWithTag(80) as! UILabel
+    let duration = cell.contentView.viewWithTag(90) as! UILabel
     let des = cell.contentView.viewWithTag(60) as! UILabel
     let comPics = cell.contentView.viewWithTag(70)! as UIView
     if (comPics.accessibilityValue != object.DBIndex) {
@@ -28,10 +29,12 @@ func populateMyPost (index : Int, isMyActivity : Bool, cell : UITableViewCell) -
     }
     comPics.accessibilityValue = object.DBIndex
     
-    
     title.text = object.Text.Title
     comCount.text = String(object.Comments.count)
     des.text = object.Text.Description
+    
+    let diffMoment = moment() - moment(object.Timestamp)
+    duration.text = getShortDurationDesc(diffMoment)
     
     if(object.Text.Yay) {
         
@@ -86,6 +89,7 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
     let name = cell.contentView.viewWithTag(40) as! UILabel
     let title = cell.contentView.viewWithTag(50) as! UILabel
     let comCount = cell.contentView.viewWithTag(80) as! UILabel
+    let duration = cell.contentView.viewWithTag(90) as! UILabel
     let des = cell.contentView.viewWithTag(60) as! UILabel
     let btn = cell.contentView.viewWithTag(20) as! UIButton
     let fPic = cell.contentView.viewWithTag(30) as! UIImageView
@@ -99,12 +103,14 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
     
     btn.accessibilityValue = String(index)
    
-     
-    
     name.text = object.Poster.FirstName + ":"
     title.text = object.Text.Title
     comCount.text = String(object.Comments.count)
     des.text = object.Text.Description
+    
+    let diffMoment = moment() - moment(object.Timestamp)
+    duration.text = getShortDurationDesc(diffMoment)
+    
     fPic.layer.cornerRadius = 12
     fPic.layer.masksToBounds = true
     

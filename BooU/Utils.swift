@@ -47,6 +47,36 @@ func resizeImage(image:UIImage, toTheSize size:CGSize)->UIImage{
     return newImage
 }
 
+
+
+func getShortDurationDesc(duration: Duration) -> String {
+    var durationDesc = ""
+    let durationArr = duration.description.componentsSeparatedByString(" ")
+    // Contain either years, or months, or weeks, or days
+    if durationArr.count > 1 {
+        durationDesc = durationArr[0]
+    }
+    // Otherwise, contain hh:mm:ss
+    else {
+        let durationHMSArr = durationArr[0].componentsSeparatedByString(":")
+        // Hours
+        if durationHMSArr.count == 3 {
+            durationDesc = durationHMSArr[0] + "h"
+        }
+        // Minutes
+        else if durationHMSArr.count == 2 {
+            durationDesc = durationHMSArr[0] + "m"
+        }
+        // Seconds
+        else {
+            durationDesc = durationHMSArr[0] + "s"
+        }
+    }
+    return durationDesc
+}
+
+
+
 func convertStringToDictionary(text: String) -> [String:AnyObject]? {
     if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
         do {

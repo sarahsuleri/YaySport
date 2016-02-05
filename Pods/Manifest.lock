@@ -6,17 +6,20 @@ PODS:
   - ReactiveUIKit (1.0.10):
     - ReactiveFoundation
     - ReactiveKit
+  - SwiftMoment (0.4)
 
 DEPENDENCIES:
   - Firebase (>= 2.5.0)
   - ReactiveFoundation (~> 1.0)
   - ReactiveKit (~> 1.0)
   - ReactiveUIKit (~> 1.0)
+  - SwiftMoment
 
 SPEC CHECKSUMS:
   Firebase: 744617c0733b45198f9486ebd5cac64ec2d10d79
   ReactiveFoundation: ea146bd578c3e9c9c5d0b2fc87320f10ac7917bb
   ReactiveKit: 63d00d64e93d29c60cd034601da083d52b415a9a
   ReactiveUIKit: b3abc88e716ebd60f9c08708ee148e4b8e94c137
+  SwiftMoment: e751c44be03a183fa6c949426d9473d26a66ef29
 
 COCOAPODS: 0.39.0

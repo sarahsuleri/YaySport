@@ -9,7 +9,7 @@
 import UIKit
 
 class PostDetailController: UITableViewController {
-    var MyActivity = true; var newCom: Comment!
+    var MyActivity = true; var newCom: Comment!; var noComPic: UIImageView!
     var detailItem : Post!
     var detailItemIndex: Int! {
         didSet {
@@ -19,21 +19,20 @@ class PostDetailController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        YayMgr.myPosts.observe { e in
-            self.setItemDetailObject()
-            self.tableView.reloadData()
-        }
-        YayMgr.FrPosts.observe { e in
-            self.setItemDetailObject()
-            self.tableView.reloadData()
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setItemDetailObject()
-        self.tableView.reloadData()
+        YayMgr.myPosts.observe { e in
+            self.setItemDetailObject()
+            self.noComPic.hidden = (self.detailItem.Comments.count > 0) ? true : false
+            self.tableView.reloadData()
+        }
+        YayMgr.FrPosts.observe { e in
+            self.setItemDetailObject()
+            self.noComPic.hidden = (self.detailItem.Comments.count > 0) ? true : false
+            self.tableView.reloadData()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -131,7 +130,7 @@ class PostDetailController: UITableViewController {
     }
     
     @IBAction func post(segue: UIStoryboardSegue) {
-        //print("Let us post")
         YayMgr.addComment(newCom, index: detailItemIndex, isMyactivity: MyActivity)
     }
+    
 }

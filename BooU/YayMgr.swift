@@ -30,7 +30,6 @@ class YayMgr {
     
     static func load() {
         loadDefaults()
-        print("owner id: ", owner.Id, " loaded: ", loaded)
         if(loaded == false && owner.Id != 0) {
             loaded = true
             

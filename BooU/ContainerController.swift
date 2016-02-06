@@ -13,6 +13,7 @@ class ContainerController: UIViewController {
     var MyActivity: Bool!
     var detailItemIndex: Int!
     var circleColor: UIColor!
+    @IBOutlet weak var noComPic: UIImageView!
     @IBOutlet weak var circleButton: CircleButton!
 
     override func viewDidLoad() {
@@ -40,6 +41,7 @@ class ContainerController: UIViewController {
             let controller = (segue.destinationViewController as! PostDetailController)
             controller.MyActivity = MyActivity
             controller.detailItemIndex = detailItemIndex
+            controller.noComPic = noComPic
         }
     }
 }

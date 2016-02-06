@@ -74,6 +74,10 @@ class PostDetailController: UITableViewController {
                 title.textColor = UIColor.Boo()
             }
             
+            let duration = cell.contentView.viewWithTag(103) as! UILabel
+            let diffMoment = moment() - moment(detailItem.Comments[indexPath.row-1].Timestamp)
+            duration.text = getShortDurationDesc(diffMoment)
+            
             
             let comment = cell.contentView.viewWithTag(102) as! UILabel
             comment.text = detailItem.Comments[indexPath.row-1].Comment
@@ -113,7 +117,6 @@ class PostDetailController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("seriously wheres the count \(detailItem == nil ? 0 : detailItem.Comments.count) ")
         return detailItem == nil ? 0 : detailItem.Comments.count+1
     }
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

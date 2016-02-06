@@ -12,9 +12,17 @@ class MyActivity: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
         YayMgr.myPosts.observe { e in
             self.tableView.reloadData()
         }
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+       
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -32,16 +40,31 @@ class MyActivity: UITableViewController {
         print("get bad one: ", YayMgr.getBooMsg())
     }
     
+  
+
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        return populateMyPost(indexPath.row,isMyActivity: true,cell: cell)
+       
+        if(indexPath.row == 0)
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! HeaderCell
+            cell.createViews()
+            return cell
+        }
+        else
+        {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+            return populateMyPost(indexPath.row,isMyActivity: true,cell: cell)
+        }
     }
+    
+
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 1
     }
+    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

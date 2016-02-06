@@ -379,6 +379,8 @@ class HealthManager {
         var isYay: Bool = true
         
         if isStep {
+            
+            YayMgr.currentSteps = dailyCount
             if( dailyCount < YayMgr.userSettings.minSteps){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
@@ -412,7 +414,7 @@ class HealthManager {
         }
         else if isFloor {
             //Criteria for floors
-            
+            YayMgr.currentFloors = dailyCount
             if( dailyCount < YayMgr.userSettings.minFloors){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
@@ -445,7 +447,7 @@ class HealthManager {
         }
         else if isMiles {
             //Criteria for floors
-            
+            YayMgr.currentMiles = dailyCount
             if( dailyCount < YayMgr.userSettings.minMiles){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()

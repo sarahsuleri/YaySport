@@ -19,15 +19,22 @@ func populateMyPost (index : Int, isMyActivity : Bool, cell : UITableViewCell) -
     let points = cell.contentView.viewWithTag(10) as! UILabel
     let title = cell.contentView.viewWithTag(50) as! UILabel
     let comCount = cell.contentView.viewWithTag(80) as! UILabel
+    let duration = cell.contentView.viewWithTag(90) as! UILabel
     let des = cell.contentView.viewWithTag(60) as! UILabel
     let comPics = cell.contentView.viewWithTag(70)! as UIView
-    while let subview = comPics.subviews.last {
-        subview.removeFromSuperview()
+    if (comPics.accessibilityValue != object.DBIndex) {
+        while let subview = comPics.subviews.last {
+            subview.removeFromSuperview()
+        }
     }
+    comPics.accessibilityValue = object.DBIndex
     
     title.text = object.Text.Title
     comCount.text = String(object.Comments.count)
     des.text = object.Text.Description
+    
+    let diffMoment = moment() - moment(object.Timestamp)
+    duration.text = getShortDurationDesc(diffMoment)
     
     if(object.Text.Yay) {
         
@@ -50,7 +57,7 @@ func populateMyPost (index : Int, isMyActivity : Bool, cell : UITableViewCell) -
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
         var picLocation = CGFloat(0)
-        for item in object.Comments {
+        for item in Array(Set(object.Comments)) {
             let cellImg : UIImageView = UIImageView(frame: CGRectMake(picLocation, 0, 16, 16))
             picLocation += 18
             cellImg.layer.cornerRadius = 8
@@ -82,22 +89,28 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
     let name = cell.contentView.viewWithTag(40) as! UILabel
     let title = cell.contentView.viewWithTag(50) as! UILabel
     let comCount = cell.contentView.viewWithTag(80) as! UILabel
+    let duration = cell.contentView.viewWithTag(90) as! UILabel
     let des = cell.contentView.viewWithTag(60) as! UILabel
     let btn = cell.contentView.viewWithTag(20) as! UIButton
     let fPic = cell.contentView.viewWithTag(30) as! UIImageView
     let comPics = cell.contentView.viewWithTag(70)! as UIView
-    while let subview = comPics.subviews.last {
-        subview.removeFromSuperview()
+    if (comPics.accessibilityValue != object.DBIndex) {
+        while let subview = comPics.subviews.last {
+            subview.removeFromSuperview()
+        }
     }
+    comPics.accessibilityValue = object.DBIndex
     
     btn.accessibilityValue = String(index)
    
-     
-    
     name.text = object.Poster.FirstName + ":"
     title.text = object.Text.Title
     comCount.text = String(object.Comments.count)
     des.text = object.Text.Description
+    
+    let diffMoment = moment() - moment(object.Timestamp)
+    duration.text = getShortDurationDesc(diffMoment)
+    
     fPic.layer.cornerRadius = 12
     fPic.layer.masksToBounds = true
     
@@ -132,11 +145,11 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
         cell.backgroundColor = UIColor.BooLite()
     }
     
-    
+
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
         var picLocation = CGFloat(0)
-        for item in object.Comments {
+        for item in Array(Set(object.Comments)) {
             let cellImg : UIImageView = UIImageView(frame: CGRectMake(picLocation, 0, 16, 16))
             picLocation += 18
             cellImg.layer.cornerRadius = 8
@@ -148,6 +161,7 @@ func populateFriendPost (index : Int, isMyActivity : Bool, cell : UITableViewCel
                     
                     cellImg.image = resizeImage(UIImage(data: mydata!)!, toTheSize: CGSize(width: 16, height: 16))
                     comPics.addSubview(cellImg)
+                    
                 }
             }
         }

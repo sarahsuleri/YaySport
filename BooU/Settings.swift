@@ -85,7 +85,9 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         let invalidCharacters = NSCharacterSet(charactersInString: "0123456789").invertedSet
-        if let _ = string.rangeOfCharacterFromSet(invalidCharacters, range:Range<String.Index>(start: string.startIndex, end: string.endIndex)) {
+        let str = string.rangeOfCharacterFromSet(invalidCharacters, range:Range<String.Index>(start: string.startIndex, end: string.endIndex))
+        if str != nil || (textField.text?.characters.count > 10)
+        {
             return false
         }
         
@@ -102,25 +104,78 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
             switch tag
             {
             case 1 :
+                let oldValue = YayMgr.userSettings.minSteps
                 YayMgr.userSettings.minSteps = Int(textField.text!)!
+                checkBoundaries(1,oldValue: oldValue)
             case 2 :
+                let oldValue = YayMgr.userSettings.maxSteps
                 YayMgr.userSettings.maxSteps = Int(textField.text!)!
+                checkBoundaries(2,oldValue: oldValue)
             case 3 :
+                let oldValue = YayMgr.userSettings.minMiles
                 YayMgr.userSettings.minMiles = Int(textField.text!)!
+                checkBoundaries(3,oldValue: oldValue)
             case 4 :
+                let oldValue = YayMgr.userSettings.maxMiles
                 YayMgr.userSettings.maxMiles = Int(textField.text!)!
-                print(YayMgr.userSettings.maxMiles)
+                checkBoundaries(4,oldValue: oldValue)
             case 5 :
+                let oldValue = YayMgr.userSettings.minFloors
                 YayMgr.userSettings.minFloors = Int(textField.text!)!
+                checkBoundaries(5,oldValue: oldValue)
             default:
+                let oldValue = YayMgr.userSettings.maxFloors
                 YayMgr.userSettings.maxFloors = Int(textField.text!)!
+                checkBoundaries(6,oldValue: oldValue)
+            
             }
             
-            YayMgr.saveDefaults()
+//            YayMgr.saveDefaults()
             
        }
     }
     
+    func checkBoundaries(buttonId:Int, oldValue:Int)
+ {
+  
+    
+        let alert = UIAlertController(title: "Inconsistency!", message: "The maximum value can't be less than the minimum.", preferredStyle: UIAlertControllerStyle.Alert)
+    if (YayMgr.userSettings.minSteps > YayMgr.userSettings.maxSteps || YayMgr.userSettings.minMiles > YayMgr.userSettings.maxMiles || YayMgr.userSettings.minFloors > YayMgr.userSettings.maxFloors  )
+    {
+        
+        switch buttonId
+        {
+            case 1 :
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {  action in
+                self.minSteps.text = nil
+                self.minSteps.placeholder = String (oldValue) + " steps"}))
+            case 2 :
+                self.maxSteps.text = nil
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in self.maxSteps.placeholder = String(oldValue) + " steps" }))
+            case 3 :
+                self.minMiles.text = nil
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in self.minMiles.placeholder = String(oldValue) + " miles"}))
+            case 4 :
+                self.maxMiles.text = nil
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in self.maxMiles.placeholder = String(oldValue) + " miles" }))
+            case 5 :
+                self.minFloors.text = nil
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in self.minFloors.placeholder = String(oldValue) + " floors" }))
+            default :
+                self.maxFloors.text = nil
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in self.maxFloors.placeholder = String(oldValue) + " floors" }))
+            
+        }
+        
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    else{
+        YayMgr.saveDefaults()
+    }
+    
+    
+ }
     func soundSwitchChanged(_soundSwitch: UISwitch) {
         saveSoundSettings()
     }

@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Comment {
+class Comment: Hashable {
     
     let Commentor : User
     let Comment : String
@@ -21,4 +21,11 @@ class Comment {
         self.Timestamp = Timestamp
     }
     
+    var hashValue: Int {
+        return Commentor.Id
+    }
+}
+
+func ==(lhs: Comment, rhs: Comment) -> Bool {
+    return lhs.Commentor.Id == rhs.Commentor.Id
 }

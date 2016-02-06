@@ -43,6 +43,8 @@
 		D22363971C5D24F800404C46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22363951C5D24F800404C46 /* Main.storyboard */; };
 		D25897731C5C01A500B0C2CF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25897721C5C01A500B0C2CF /* Settings.swift */; };
 		D25897771C5C0D4600B0C2CF /* SettingsDef.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25897761C5C0D4600B0C2CF /* SettingsDef.swift */; };
+		D2D34B281C639D1D008908B2 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D34B271C639D1D008908B2 /* HeaderCell.swift */; };
+		D2D34B2E1C63DDB4008908B2 /* Piechart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D34B2D1C63DDB4008908B2 /* Piechart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,8 @@
 		D25897721C5C01A500B0C2CF /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D25897761C5C0D4600B0C2CF /* SettingsDef.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDef.swift; sourceTree = "<group>"; };
 		D261EC8E1C466F0100EF539D /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		D2D34B271C639D1D008908B2 /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		D2D34B2D1C63DDB4008908B2 /* Piechart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Piechart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,7 @@
 				233FDFD71C41BE6E00F81A6A /* YayMgr.swift */,
 				2652F7B21C4AA1A800214489 /* HealthManager.swift */,
 				236E82361C58FF6F003E7A7D /* DBMgr.swift */,
+				D2D34B271C639D1D008908B2 /* HeaderCell.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 		43520C811C2FDBAF00FACD63 = {
 			isa = PBXGroup;
 			children = (
+				D2D34B241C637DAC008908B2 /* Library */,
 				D261EC851C46689E00EF539D /* Frameworks */,
 				43520C8C1C2FDBAF00FACD63 /* BooU */,
 				43520C8B1C2FDBAF00FACD63 /* Products */,
@@ -222,6 +228,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D2D34B241C637DAC008908B2 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D2D34B2D1C63DDB4008908B2 /* Piechart.swift */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -257,7 +271,7 @@
 				TargetAttributes = {
 					43520C891C2FDBAF00FACD63 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = C2X5TLHQYM;
+						DevelopmentTeam = 36ZEJB8K6U;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -365,9 +379,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				233FDFCF1C41BBFE00F81A6A /* Comment.swift in Sources */,
+				D2D34B2E1C63DDB4008908B2 /* Piechart.swift in Sources */,
 				233FDFD11C41BC1B00F81A6A /* User.swift in Sources */,
 				233FDFD61C41BDA100F81A6A /* Post.swift in Sources */,
 				233FDFD81C41BE6E00F81A6A /* YayMgr.swift in Sources */,
+				D2D34B281C639D1D008908B2 /* HeaderCell.swift in Sources */,
 				43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */,
 				236E82351C58E5CA003E7A7D /* UIUtils.swift in Sources */,
 				D25897731C5C01A500B0C2CF /* Settings.swift in Sources */,
@@ -506,7 +522,7 @@
 				INFOPLIST_FILE = BooU/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Boo102;
+				PRODUCT_BUNDLE_IDENTIFIER = Hareeqi102;
 				PRODUCT_NAME = BooU;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = BooU/BridgingHeader.h;
@@ -528,7 +544,7 @@
 				INFOPLIST_FILE = BooU/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Boo102;
+				PRODUCT_BUNDLE_IDENTIFIER = Hareeqi102;
 				PRODUCT_NAME = BooU;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = BooU/BridgingHeader.h;

@@ -88,10 +88,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/ReactiveFoundation.framework"
   install_framework "Pods/ReactiveKit.framework"
   install_framework "Pods/ReactiveUIKit.framework"
+  install_framework "Pods/SwiftMoment.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Firebase.framework"
   install_framework "Pods/ReactiveFoundation.framework"
   install_framework "Pods/ReactiveKit.framework"
   install_framework "Pods/ReactiveUIKit.framework"
+  install_framework "Pods/SwiftMoment.framework"
 fi

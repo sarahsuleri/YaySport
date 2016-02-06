@@ -58,21 +58,21 @@ class HeaderCell: UITableViewCell, PiechartDelegate {
         {
         case 1:
             progress.text = ""
-            progress.value = CGFloat (YayMgr.currentSteps) / CGFloat (YayMgr.userSettings.maxSteps)
+            progress.value = CGFloat (YayMgr.currentStats.numberOfSteps) / CGFloat (YayMgr.userSettings.maxSteps)
             if progress.value > 1 {progress.value = 1}
             needed.value = 1 - progress.value
             pieChart.title = "Steps"
             
         case 2:
             progress.text = ""
-            progress.value = CGFloat (YayMgr.currentMiles) / CGFloat (YayMgr.userSettings.maxMiles)
+            progress.value = CGFloat (YayMgr.currentStats.numberOfMiles) / CGFloat (YayMgr.userSettings.maxMiles)
             if progress.value > 1 {progress.value = 1}
             needed.value = 1 - progress.value
             pieChart.title = "Miles"
             
         default:
             progress.text = ""
-            progress.value = CGFloat (YayMgr.currentFloors) / CGFloat (YayMgr.userSettings.maxFloors)
+            progress.value = CGFloat (YayMgr.currentStats.numberOfFloors) / CGFloat (YayMgr.userSettings.maxFloors)
             if progress.value > 1 {progress.value = 1}
             needed.value = 1 - progress.value
             pieChart.title = "Floors"

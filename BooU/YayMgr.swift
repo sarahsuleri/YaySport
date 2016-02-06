@@ -24,9 +24,7 @@ class YayMgr {
     static var userSettings: SettingsDef = SettingsDef()
     static let booSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("boo", ofType: "mp3")!)
     static let yaySound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("yay", ofType: "mp3")!)
-    static var currentSteps = 6000
-    static var currentMiles = 4
-    static var currentFloors = 100
+    static var currentStats : CurrentStats = CurrentStats()
     
     // MARK: - Firebase: load from DB
     

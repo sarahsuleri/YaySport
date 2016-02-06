@@ -126,7 +126,7 @@ class HealthManager {
                 //Criteria to show msg
                 
                 HealthManager.criteriaToShowMsg(dailyAVG,isStep: true,isFloor: false,isMiles: false)
-                CurrentStats.numberOfSteps = dailyAVG
+                YayMgr.currentStats.numberOfSteps = dailyAVG
                 
         })
         
@@ -163,7 +163,7 @@ class HealthManager {
                 //Criteria to show msg
                 
                HealthManager.criteriaToShowMsg(dailyAVG,isStep: false,isFloor: true,isMiles: false)
-                CurrentStats.numberOfFloors = dailyAVG
+                YayMgr.currentStats.numberOfFloors = dailyAVG
         })
         
          HealthManager.healthKitStore.executeQuery(query)
@@ -199,7 +199,7 @@ class HealthManager {
                 //Criteria to show msg
                 
                 HealthManager.criteriaToShowMsg(dailyAVG,isStep: false,isFloor: false,isMiles: true)
-                CurrentStats.numberOfMiles = dailyAVG
+                YayMgr.currentStats.numberOfMiles = dailyAVG
                 
         })
         
@@ -380,7 +380,7 @@ class HealthManager {
         
         if isStep {
             
-            YayMgr.currentSteps = dailyCount
+            
             if( dailyCount < YayMgr.userSettings.minSteps){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
@@ -414,7 +414,7 @@ class HealthManager {
         }
         else if isFloor {
             //Criteria for floors
-            YayMgr.currentFloors = dailyCount
+            
             if( dailyCount < YayMgr.userSettings.minFloors){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()
@@ -447,7 +447,7 @@ class HealthManager {
         }
         else if isMiles {
             //Criteria for floors
-            YayMgr.currentMiles = dailyCount
+           
             if( dailyCount < YayMgr.userSettings.minMiles){
                 dispatch_async(dispatch_get_main_queue(), {
                     msgDesc = YayMgr.getBooMsg()

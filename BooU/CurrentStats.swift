@@ -11,21 +11,26 @@ import Foundation
 
 class CurrentStats{
     
-    static var numberOfSteps : Int = 0
-    static var numberOfFloors : Int = 0
-    static var numberOfMiles : Int = 0
+     var numberOfSteps : Int = 0
+     var numberOfFloors : Int = 0
+     var numberOfMiles : Int = 0
     
+    init(){
+        self.numberOfSteps = 0
+        self.numberOfFloors = 0
+        self.numberOfMiles = 0
+    }
     
     init(steps: Int, floors: Int, miles: Int){
-        CurrentStats.numberOfSteps = steps
-        CurrentStats.numberOfFloors = floors
-        CurrentStats.numberOfMiles = miles
+        self.numberOfSteps = steps
+        self.numberOfFloors = floors
+        self.numberOfMiles = miles
         
     }
     
     
-    static func hasAchievedMaxSteps() -> Bool{
-        if CurrentStats.numberOfSteps >= YayMgr.userSettings.maxSteps{
+     func hasAchievedMaxSteps() -> Bool{
+        if self.numberOfSteps >= YayMgr.userSettings.maxSteps{
             return true
         }
         else{
@@ -33,8 +38,8 @@ class CurrentStats{
         }
     }
     
-    static func hasAchievedMaxFloors() -> Bool{
-        if CurrentStats.numberOfFloors >= YayMgr.userSettings.maxFloors{
+     func hasAchievedMaxFloors() -> Bool{
+        if self.numberOfFloors >= YayMgr.userSettings.maxFloors{
             return true
         }
         else{
@@ -42,8 +47,8 @@ class CurrentStats{
         }
     }
     
-    static func hasAchievedMaxMiles() -> Bool{
-        if CurrentStats.numberOfMiles >= YayMgr.userSettings.maxMiles{
+     func hasAchievedMaxMiles() -> Bool{
+        if self.numberOfMiles >= YayMgr.userSettings.maxMiles{
             return true
         }
         else{

@@ -10,19 +10,26 @@ import UIKit
 import AVFoundation
 
 class FriendsActivity: UITableViewController {
-
-   
+    
+    var noPostPic: UIImageView!
+    var timer: NSTimer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         YayMgr.FrPosts.observe { e in
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hidePostPic", userInfo: nil, repeats: false)
             self.tableView.reloadData()
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
+        tableView.reloadData()
+    }
+    
+    func hidePostPic() {
+        noPostPic.hidden = (YayMgr.FrPosts.count > 0) ? true : false
+        timer.invalidate()
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

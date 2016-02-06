@@ -23,7 +23,9 @@ class ContainerController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        circleButton.fillColor = circleColor
+        if circleButton != nil {
+            circleButton.fillColor = circleColor
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,10 +40,14 @@ class ContainerController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowComments" {
-            let controller = (segue.destinationViewController as! PostDetailController)
+            let controller = segue.destinationViewController as! PostDetailController
             controller.MyActivity = MyActivity
             controller.detailItemIndex = detailItemIndex
             controller.noComPic = noComPic
+        }
+        if segue.identifier == "showFriendsPosts" {
+            let controller = segue.destinationViewController as! FriendsActivity
+            controller.noPostPic = noComPic
         }
     }
 }

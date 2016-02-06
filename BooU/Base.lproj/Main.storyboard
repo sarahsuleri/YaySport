@@ -280,7 +280,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56F-Nm-sih" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1447" y="743"/>
+            <point key="canvasLocation" x="1012" y="559"/>
         </scene>
         <!--LogIn-->
         <scene sceneID="fy0-KT-qb4">
@@ -336,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghr-Ha-zTM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-292" y="-1383"/>
+            <point key="canvasLocation" x="-515" y="-943"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -361,7 +361,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-117" y="-104"/>
+            <point key="canvasLocation" x="-515" y="-214"/>
         </scene>
         <!--Friends' Activity-->
         <scene sceneID="sRl-e3-2vU">
@@ -379,12 +379,56 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="iJs-Re-PQM" kind="relationship" relationship="rootViewController" id="F0s-x5-1X3"/>
+                        <segue destination="1HW-Gu-RWG" kind="relationship" relationship="rootViewController" id="6jc-3e-iMl"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gut-Dz-3ES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-728"/>
+            <point key="canvasLocation" x="250" y="-943"/>
+        </scene>
+        <!--Friends' Activity-->
+        <scene sceneID="5i9-Sx-cMM">
+            <objects>
+                <viewController id="1HW-Gu-RWG" customClass="ContainerController" customModule="BooU" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IaK-fY-7eg"/>
+                        <viewControllerLayoutGuide type="bottom" id="ayF-Ci-eZX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qRo-gd-TCM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C3m-Oh-J1I">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <connections>
+                                    <segue destination="iJs-Re-PQM" kind="embed" identifier="showFriendsPosts" id="bfu-Jb-heX"/>
+                                </connections>
+                            </containerView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noPosts" translatesAutoresizingMaskIntoConstraints="NO" id="jKc-fc-PEO">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="C3m-Oh-J1I" firstAttribute="top" secondItem="qRo-gd-TCM" secondAttribute="top" id="0kK-em-4oA"/>
+                            <constraint firstItem="jKc-fc-PEO" firstAttribute="leading" secondItem="C3m-Oh-J1I" secondAttribute="leading" id="75q-vs-UiM"/>
+                            <constraint firstItem="jKc-fc-PEO" firstAttribute="trailing" secondItem="C3m-Oh-J1I" secondAttribute="trailing" id="945-HH-wGq"/>
+                            <constraint firstItem="jKc-fc-PEO" firstAttribute="bottom" secondItem="ayF-Ci-eZX" secondAttribute="top" id="YCB-0c-WrK"/>
+                            <constraint firstItem="C3m-Oh-J1I" firstAttribute="leading" secondItem="qRo-gd-TCM" secondAttribute="leading" id="n3j-Ux-sml"/>
+                            <constraint firstAttribute="trailing" secondItem="C3m-Oh-J1I" secondAttribute="trailing" id="o0n-G8-v84"/>
+                            <constraint firstAttribute="bottom" secondItem="C3m-Oh-J1I" secondAttribute="bottom" id="uTl-QY-rbg"/>
+                            <constraint firstItem="jKc-fc-PEO" firstAttribute="top" secondItem="IaK-fY-7eg" secondAttribute="bottom" id="zto-hd-KK9"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Friends' Activity" id="hA9-17-sXc"/>
+                    <connections>
+                        <outlet property="noComPic" destination="jKc-fc-PEO" id="PPq-sY-oY4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vBt-M3-eDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1004" y="-943"/>
         </scene>
         <!--Friends' Activity-->
         <scene sceneID="DE3-gP-2Ka">
@@ -396,7 +440,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="105" id="AdE-4h-O6W">
-                                <rect key="frame" x="0.0" y="92" width="600" height="105"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AdE-4h-O6W" id="Zv5-HM-yPa">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="104.5"/>
@@ -534,7 +578,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clE-GF-LSd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505" y="-746"/>
+            <point key="canvasLocation" x="1757" y="-943.5"/>
         </scene>
         <!--Post Detail Controller-->
         <scene sceneID="lsG-X9-V4Z">
@@ -821,7 +865,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tx7-XX-xoE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3058" y="-422"/>
+            <point key="canvasLocation" x="3270" y="-214"/>
         </scene>
         <!--Comment Controller-->
         <scene sceneID="G6h-GD-aKy">
@@ -882,7 +926,7 @@
                 <exit id="C0v-Hd-yDj" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZOB-bM-tIo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3058" y="317"/>
+            <point key="canvasLocation" x="2882" y="553"/>
         </scene>
         <!--Container Controller-->
         <scene sceneID="Gqo-yH-SQ1">
@@ -903,14 +947,14 @@
                                 </connections>
                             </containerView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noComments" translatesAutoresizingMaskIntoConstraints="NO" id="NTZ-xW-1En">
-                                <rect key="frame" x="0.0" y="185" width="600" height="366"/>
+                                <rect key="frame" x="0.0" y="185" width="600" height="430"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-EJ-0BF" customClass="CircleButton" customModule="BooU" customModuleProvider="target">
                                 <rect key="frame" x="530" y="481" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Nnu-WO-bc5"/>
-                                    <constraint firstAttribute="height" constant="50" id="OpG-w0-wGb"/>
+                                    <constraint firstAttribute="height" constant="50" id="fN2-49-str"/>
+                                    <constraint firstAttribute="width" constant="50" id="tBq-k9-jeO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="9"/>
                                 <connections>
@@ -919,16 +963,16 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="WcD-EJ-0BF" firstAttribute="trailing" secondItem="Ugw-rX-4Sq" secondAttribute="trailingMargin" id="0Zp-1c-F0a"/>
-                            <constraint firstAttribute="bottom" secondItem="CDX-27-h4H" secondAttribute="bottom" id="6oR-eA-Mjh"/>
-                            <constraint firstAttribute="trailing" secondItem="CDX-27-h4H" secondAttribute="trailing" id="8KM-Vb-Eyv"/>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="leading" secondItem="Ugw-rX-4Sq" secondAttribute="leading" id="8dj-VE-h14"/>
-                            <constraint firstItem="NTZ-xW-1En" firstAttribute="top" secondItem="DGA-5W-ghV" secondAttribute="bottom" constant="121" id="ch1-Yy-DHU"/>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="bottom" secondItem="NTZ-xW-1En" secondAttribute="bottom" constant="49" id="eFv-aX-jYp"/>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="top" secondItem="Ugw-rX-4Sq" secondAttribute="top" id="f6t-Vv-s0F"/>
-                            <constraint firstItem="NTZ-xW-1En" firstAttribute="leading" secondItem="CDX-27-h4H" secondAttribute="leading" id="giy-it-3ot"/>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="trailing" secondItem="NTZ-xW-1En" secondAttribute="trailing" id="mbm-T9-Pwi"/>
-                            <constraint firstItem="utZ-aH-bhq" firstAttribute="top" secondItem="WcD-EJ-0BF" secondAttribute="bottom" constant="20" id="stM-JL-KkW"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="NTZ-xW-1En" secondAttribute="bottom" constant="-15" id="OHr-Sf-byP"/>
+                            <constraint firstItem="CDX-27-h4H" firstAttribute="bottom" secondItem="utZ-aH-bhq" secondAttribute="top" constant="49" id="PMI-pa-rYB"/>
+                            <constraint firstItem="utZ-aH-bhq" firstAttribute="top" secondItem="WcD-EJ-0BF" secondAttribute="bottom" constant="20" id="Ph7-FY-QuZ"/>
+                            <constraint firstItem="CDX-27-h4H" firstAttribute="trailing" secondItem="NTZ-xW-1En" secondAttribute="trailing" id="WPe-Pi-hig"/>
+                            <constraint firstItem="CDX-27-h4H" firstAttribute="top" secondItem="DGA-5W-ghV" secondAttribute="bottom" constant="-64" id="fPZ-SK-PDc"/>
+                            <constraint firstAttribute="trailing" secondItem="CDX-27-h4H" secondAttribute="trailing" id="jRy-Rh-9dv"/>
+                            <constraint firstItem="NTZ-xW-1En" firstAttribute="top" secondItem="DGA-5W-ghV" secondAttribute="bottom" constant="121" id="nOt-UT-r1j"/>
+                            <constraint firstItem="CDX-27-h4H" firstAttribute="leading" secondItem="Ugw-rX-4Sq" secondAttribute="leading" id="ngE-tt-gud"/>
+                            <constraint firstItem="CDX-27-h4H" firstAttribute="leading" secondItem="NTZ-xW-1En" secondAttribute="leading" id="sj7-Qf-tNy"/>
+                            <constraint firstItem="WcD-EJ-0BF" firstAttribute="trailing" secondItem="Ugw-rX-4Sq" secondAttribute="trailingMargin" id="zaV-pj-PhZ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -938,7 +982,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zPZ-b3-pn2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2314" y="-422"/>
+            <point key="canvasLocation" x="2500" y="-214"/>
         </scene>
         <!--My Activity-->
         <scene sceneID="p64-rH-reC">
@@ -961,7 +1005,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hX-pp-1zk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="0.0"/>
+            <point key="canvasLocation" x="250" y="-214"/>
         </scene>
         <!--My Activity-->
         <scene sceneID="TC7-da-Uh5">
@@ -1093,7 +1137,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Km9-lL-5ws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505" y="0.0"/>
+            <point key="canvasLocation" x="1012" y="-214"/>
         </scene>
         <!--Settings-->
         <scene sceneID="6I8-sF-5Eb">
@@ -1116,7 +1160,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nxj-my-VxP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="743"/>
+            <point key="canvasLocation" x="250" y="559"/>
         </scene>
     </scenes>
     <resources>
@@ -1125,9 +1169,10 @@
         <image name="friends" width="32" height="32"/>
         <image name="logo" width="934" height="990"/>
         <image name="noComments" width="790" height="438"/>
+        <image name="noPosts" width="616" height="592"/>
         <image name="settings" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="orb-UX-Q0z"/>
+        <segue reference="c6G-im-Dxr"/>
     </inferredMetricsTieBreakers>
 </document>

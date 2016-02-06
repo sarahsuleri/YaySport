@@ -13,7 +13,6 @@ class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("View tab bar loaded")
         
     }
     

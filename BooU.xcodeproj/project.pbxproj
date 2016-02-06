@@ -25,6 +25,7 @@
 		262B26F21C5D803F006344A3 /* boo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 262B26F11C5D803F006344A3 /* boo.mp3 */; };
 		262B26F41C5D8532006344A3 /* yay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 262B26F31C5D8532006344A3 /* yay.mp3 */; };
 		2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652F7B21C4AA1A800214489 /* HealthManager.swift */; };
+		26ABCE151C637AF9008A4E65 /* CurrentStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26ABCE141C637AF9008A4E65 /* CurrentStats.swift */; };
 		431C4CBD1C5CC7DC00461562 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C4CBC1C5CC7DC00461562 /* ContainerController.swift */; };
 		431C4CBF1C5CCB2A00461562 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431C4CBE1C5CCB2A00461562 /* CommentController.swift */; };
 		43520C8E1C2FDBAF00FACD63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43520C8D1C2FDBAF00FACD63 /* AppDelegate.swift */; };
@@ -65,6 +66,7 @@
 		262B26F31C5D8532006344A3 /* yay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = yay.mp3; sourceTree = "<group>"; };
 		2652F7AF1C4AA14600214489 /* ShameSports.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShameSports.entitlements; sourceTree = "<group>"; };
 		2652F7B21C4AA1A800214489 /* HealthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
+		26ABCE141C637AF9008A4E65 /* CurrentStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentStats.swift; sourceTree = "<group>"; };
 		431C4CBC1C5CC7DC00461562 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		431C4CBE1C5CCB2A00461562 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		43520C8A1C2FDBAF00FACD63 /* BooU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BooU.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +121,7 @@
 				233FDFD01C41BC1B00F81A6A /* User.swift */,
 				233FDFD51C41BDA100F81A6A /* Post.swift */,
 				D25897761C5C0D4600B0C2CF /* SettingsDef.swift */,
+				26ABCE141C637AF9008A4E65 /* CurrentStats.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				236E82351C58E5CA003E7A7D /* UIUtils.swift in Sources */,
 				D25897731C5C01A500B0C2CF /* Settings.swift in Sources */,
 				233FDFDC1C41CE5A00F81A6A /* Utils.swift in Sources */,
+				26ABCE151C637AF9008A4E65 /* CurrentStats.swift in Sources */,
 				233FDFE01C41D60C00F81A6A /* FriendsActivity.swift in Sources */,
 				2652F7B31C4AA1A800214489 /* HealthManager.swift in Sources */,
 				233FDFCD1C418BCB00F81A6A /* LogIn.swift in Sources */,

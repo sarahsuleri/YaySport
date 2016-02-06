@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BooU/HealthManager.swift"
-            timestampString = "476272684.786487"
+            timestampString = "476284103.260592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "startObservingFloorsChanges()"
             landmarkType = "5">
          </BreakpointContent>

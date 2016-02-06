@@ -126,6 +126,7 @@ class HealthManager {
                 //Criteria to show msg
                 
                 HealthManager.criteriaToShowMsg(dailyAVG,isStep: true,isFloor: false,isMiles: false)
+                CurrentStats.numberOfSteps = dailyAVG
                 
         })
         
@@ -162,7 +163,7 @@ class HealthManager {
                 //Criteria to show msg
                 
                HealthManager.criteriaToShowMsg(dailyAVG,isStep: false,isFloor: true,isMiles: false)
-                
+                CurrentStats.numberOfFloors = dailyAVG
         })
         
          HealthManager.healthKitStore.executeQuery(query)
@@ -198,6 +199,7 @@ class HealthManager {
                 //Criteria to show msg
                 
                 HealthManager.criteriaToShowMsg(dailyAVG,isStep: false,isFloor: false,isMiles: true)
+                CurrentStats.numberOfMiles = dailyAVG
                 
         })
         
@@ -370,6 +372,8 @@ class HealthManager {
 
     // Criteria to show msgs<
     static func criteriaToShowMsg(dailyCount: Int, isStep:Bool , isFloor: Bool, isMiles: Bool){
+        
+        
         
         var msgDesc : String = ""
         var isYay: Bool = true

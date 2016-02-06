@@ -29,8 +29,8 @@ class SettingsDef {
         self.minMiles = 1
         self.maxMiles = 5
         
-        self.minFloors = 50
-        self.maxFloors = 500
+        self.minFloors = 3
+        self.maxFloors = 10
         
         self.hasSound = true
     }

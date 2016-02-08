@@ -964,12 +964,12 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="NTZ-xW-1En" secondAttribute="bottom" constant="-15" id="OHr-Sf-byP"/>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="bottom" secondItem="utZ-aH-bhq" secondAttribute="top" constant="49" id="PMI-pa-rYB"/>
-                            <constraint firstItem="utZ-aH-bhq" firstAttribute="top" secondItem="WcD-EJ-0BF" secondAttribute="bottom" constant="20" id="Ph7-FY-QuZ"/>
+                            <constraint firstItem="CDX-27-h4H" firstAttribute="bottom" secondItem="utZ-aH-bhq" secondAttribute="top" id="PMI-pa-rYB"/>
+                            <constraint firstItem="utZ-aH-bhq" firstAttribute="top" secondItem="WcD-EJ-0BF" secondAttribute="bottom" constant="69" id="Ph7-FY-QuZ"/>
                             <constraint firstItem="CDX-27-h4H" firstAttribute="trailing" secondItem="NTZ-xW-1En" secondAttribute="trailing" id="WPe-Pi-hig"/>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="top" secondItem="DGA-5W-ghV" secondAttribute="bottom" constant="-64" id="fPZ-SK-PDc"/>
+                            <constraint firstItem="CDX-27-h4H" firstAttribute="top" secondItem="DGA-5W-ghV" secondAttribute="bottom" id="fPZ-SK-PDc"/>
                             <constraint firstAttribute="trailing" secondItem="CDX-27-h4H" secondAttribute="trailing" id="jRy-Rh-9dv"/>
-                            <constraint firstItem="NTZ-xW-1En" firstAttribute="top" secondItem="DGA-5W-ghV" secondAttribute="bottom" constant="121" id="nOt-UT-r1j"/>
+                            <constraint firstItem="NTZ-xW-1En" firstAttribute="top" secondItem="DGA-5W-ghV" secondAttribute="bottom" constant="185" id="nOt-UT-r1j"/>
                             <constraint firstItem="CDX-27-h4H" firstAttribute="leading" secondItem="Ugw-rX-4Sq" secondAttribute="leading" id="ngE-tt-gud"/>
                             <constraint firstItem="CDX-27-h4H" firstAttribute="leading" secondItem="NTZ-xW-1En" secondAttribute="leading" id="sj7-Qf-tNy"/>
                             <constraint firstItem="WcD-EJ-0BF" firstAttribute="trailing" secondItem="Ugw-rX-4Sq" secondAttribute="trailingMargin" id="zaV-pj-PhZ"/>
@@ -1168,7 +1168,7 @@
         <image name="commenting" width="64" height="64"/>
         <image name="friends" width="32" height="32"/>
         <image name="logo" width="934" height="990"/>
-        <image name="noComments" width="790" height="438"/>
+        <image name="noComments" width="888" height="626"/>
         <image name="noPosts" width="616" height="592"/>
         <image name="settings" width="32" height="32"/>
     </resources>

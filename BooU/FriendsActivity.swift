@@ -18,15 +18,16 @@ class FriendsActivity: UITableViewController {
         super.viewDidLoad()
         // FrPosts is an observable collection
         YayMgr.FrPosts.observe { e in
-            // Fire timer in 2 sec. Supposedly, all data will be loaded
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hidePostPic", userInfo: nil, repeats: false)
             self.tableView.reloadData()
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        // FrPosts is an observable collection
         YayMgr.FrPosts.observe { e in
+            // Fire timer in 3 sec. Supposedly, all data will be loaded
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "hidePostPic", userInfo: nil, repeats: false)
             self.tableView.reloadData()
         }
     }

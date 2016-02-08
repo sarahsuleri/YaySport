@@ -10,7 +10,9 @@ import UIKit
 
 class HeaderCell: UITableViewCell, PiechartDelegate {
     
-    
+    /*
+    * creating 3 views and adding the each chart to one view. Finally adding all the views to the cell view
+    */
     func createViews () {
         
       
@@ -43,6 +45,9 @@ class HeaderCell: UITableViewCell, PiechartDelegate {
     
     }
     
+    /*
+    * create the pie chart according the information read from health kit
+    */
     func createChart(view:UIView, chartID:Int){
         
         var progress = Piechart.Slice()
@@ -85,6 +90,9 @@ class HeaderCell: UITableViewCell, PiechartDelegate {
         
     }
     
+    /*
+    * Adding percetnage value of current progress in chart
+    */
     func setSubtitle(total: CGFloat, slice: Piechart.Slice) -> String {
         return "\(Int(slice.value / total * 100))% \(slice.text)"
     }

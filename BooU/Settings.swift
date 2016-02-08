@@ -27,7 +27,9 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
     
     @IBOutlet weak var soundSwitch: UISwitch!
     
-    
+   /*
+    * Added a place holder text for each text field and assign each a tag
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,6 +84,9 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
         return true
     }
 
+    /*
+    * Check whether the text field has only number and its length not more than 10
+    */
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         let invalidCharacters = NSCharacterSet(charactersInString: "0123456789").invertedSet
@@ -94,6 +99,9 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
         return true
     }
   
+    /*
+    * Update the property values with the respective user input
+    */
     func textFieldDidEndEditing(textField: UITextField) {
         
         textField.resignFirstResponder()
@@ -130,11 +138,14 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
             
             }
             
-//            YayMgr.saveDefaults()
+
             
        }
     }
     
+    /*
+    * Check that max is not less than min then save changes in user default
+    */
     func checkBoundaries(buttonId:Int, oldValue:Int)
  {
   
@@ -194,6 +205,9 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         
     }
+    /*
+    * Once user logs out, call log out function and goes to the first screen.
+    */
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         
         FBSDKLoginManager().logOut()

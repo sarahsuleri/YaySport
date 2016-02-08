@@ -18,6 +18,10 @@ class MyActivity: UITableViewController {
         }
     }
     
+    /*
+    * With every device rotation redraw the charts in the first cell for the row (spacing between
+    * charts differ according to screen width)
+    */
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
@@ -25,14 +29,16 @@ class MyActivity: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
         YayMgr.myPosts.observe { e in
             self.tableView.reloadData()
         }
-        //let post : Post = Post(Poster: YayMgr.owner, Points: [1], Comments: [], Text: m3, Timestamp: NSDate().timeIntervalSince1970)
-        //DBMgr.addPost(post)
-    }
+}
     
-    
+    /*
+    * Add the contents of Header Cell in the first cell of the table, others are posts
+    */
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
        
         if(indexPath.row == 0)

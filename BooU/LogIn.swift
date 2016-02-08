@@ -12,14 +12,19 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
    
     @IBOutlet weak var loginView: FBSDKLoginButton!
     
-    //var userData: AnyObject?
-    //var userFriends: AnyObject?
+    /*
+    * Specifying the required permissions for the facebook
+    */
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loginView.delegate = self
         loginView.readPermissions = ["public_profile", "user_friends"]
     }
+    
+    /*
+    * Getting user information (id, name and picture from fb) and use them in the app
+    */
     
     func returnUserData() {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large)"])
@@ -43,6 +48,9 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
     
+    /*
+    * Getting list of user friends who installed the app from fb
+    */
     func returnUserFriends()
     {
         let fbRequest = FBSDKGraphRequest(graphPath:"/me/friends", parameters: ["fields": "id, name, first_name, last_name, picture.type(large)"]);
@@ -64,7 +72,12 @@ class LogIn: UIViewController, FBSDKLoginButtonDelegate {
             }
         }
     }
+    
     // Facebook Delegate Methods
+    
+    /*
+    * Once login is successful update user info then go to the Tab bar controller in storyboard
+    */
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("User Logged In")

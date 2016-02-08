@@ -21,6 +21,9 @@ class SettingsDef {
     
     var hasSound: Bool
     
+    /*
+    * Default contstructor for the settings, defining minimum and maximum for each property
+    */
     init()
     {
         self.minSteps = 2500
@@ -35,6 +38,9 @@ class SettingsDef {
         self.hasSound = true
     }
     
+    /*
+    * Assigning each property the respective value.
+    */
     init ( minStep: Int, maxStep: Int, minMile: Int, maxMile: Int, minFloor:Int, maxFloor: Int, _hasSound: Bool)
     {
         self.minSteps = minStep

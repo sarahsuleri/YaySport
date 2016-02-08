@@ -10,15 +10,18 @@ import UIKit
 
 class ContainerController: UIViewController {
     
-    var MyActivity: Bool!
-    var detailItemIndex: Int!
-    var circleColor: UIColor!
-    @IBOutlet weak var noComPic: UIImageView!
-    @IBOutlet weak var circleButton: CircleButton!
+    // Need for container view was caused by the impossibility
+    // to add any additional UI element to the
+    // Table View Controller
+    
+    var MyActivity: Bool!                           // my posts or friends' posts
+    var detailItemIndex: Int!                       // index of the post
+    var circleColor: UIColor!                       // Yay or Boo color for "+" button
+    @IBOutlet weak var noComPic: UIImageView!       // noCom or noPost image
+    @IBOutlet weak var circleButton: CircleButton!  // "+" button
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -30,21 +33,20 @@ class ContainerController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // If want to show comments, pass necessary items
         if segue.identifier == "ShowComments" {
             let controller = segue.destinationViewController as! PostDetailController
             controller.MyActivity = MyActivity
             controller.detailItemIndex = detailItemIndex
-            controller.noComPic = noComPic
+            controller.noComPic = noComPic  // in case there are no comments to the post
         }
+        // If want to show friends' posts and there are no posts yet
         if segue.identifier == "showFriendsPosts" {
             let controller = segue.destinationViewController as! FriendsActivity
             controller.noPostPic = noComPic

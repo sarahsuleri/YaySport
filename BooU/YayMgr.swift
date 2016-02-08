@@ -26,51 +26,47 @@ class YayMgr {
     static let yaySound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("yay", ofType: "mp3")!)
     static var currentStats : CurrentStats = CurrentStats()
     
+    
     // MARK: - Firebase: load from DB
     
+    // Load all messages, owner's posts, friends' posts, HealthKit start observing
     static func load() {
         loadDefaults()
         if(loaded == false && owner.Id != 0) {
             loaded = true
-            print("Owner id: ", owner.Id)
             DBMgr.getMessages()
             DBMgr.getPostByPosterID(owner.Id)
             
             for friend in friendsIDs {
                 DBMgr.getPostByPosterID(friend,isMyActivity: false)
             }
-            //YayMgr.FrPosts = YayMgr.FrPosts.sort({$0.Timestamp > $1.Timestamp})
             
-            
-                HealthManager.startObservingStepsChanges()
-                
-                HealthManager.startObservingFloorsChanges()
-                
-                HealthManager.startObservingMilesChanges()
-            
-            
-            
+            HealthManager.startObservingStepsChanges()
+            HealthManager.startObservingFloorsChanges()
+            HealthManager.startObservingMilesChanges()
         }
     }
     
+    // Save owner in NSUserDefaults
     static func setOwner(user: User) {
         YayMgr.owner = user
         saveDefaults()
-        //load()
     }
     
+    // Save friends' ids in NSUserDefaults
     static func setFriendList(frList: [Int]) {
         YayMgr.friendsIDs = frList
         saveDefaults()
         load()
     }
     
-    static func setSettings(settings:SettingsDef){
+    // Save settings in NSUserDefaults
+    static func setSettings(settings: SettingsDef){
         YayMgr.userSettings = settings
         saveDefaults()
     }
     
-    
+    // Get random Boo message text
     static func getBooMsg() -> String{
         if YayMgr.BooMsg.count == 0{
             return "Seriously! Even snails move more than you !"
@@ -79,6 +75,7 @@ class YayMgr {
         return YayMgr.BooMsg[Int(randomIndex)].Description
     }
     
+    // Get random Yay message text
     static func getYayMsg() -> String{
         if YayMgr.YayMsg.count == 0{
             return "Job Well Done !"
@@ -87,21 +84,22 @@ class YayMgr {
         return YayMgr.YayMsg[Int(randomIndex)].Description
     }
     
-    
+    // +1 Point: call to corresponding func in Database (Firebase) Manager
     static func addPoint(index : Int) {
-        //YayMgr.FrPosts[index].Points.append(owner.Id)
         DBMgr.addPoint(YayMgr.FrPosts[index])
     }
     
+    //Add comment: call to corresponding func in Database (Firebase) Manager
     static func addComment(comment: Comment, index : Int, isMyactivity : Bool) {
-        //myPosts[index].Comments.append(comment)
         isMyactivity ? DBMgr.addComment(comment, post: myPosts[index]) : DBMgr.addComment(comment, post: FrPosts[index])
     }
     
+    // Add post: call to corresponding func in Database (Firebase) Manager
     static func addPost(msgObj : Message){
         DBMgr.addPost(Post(Poster: owner, Points: [1], Comments: [], Text: msgObj, Timestamp: NSDate().timeIntervalSince1970))
     }
     
+    // NSUserDefaults: save info
     static func saveDefaults(){
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setInteger(owner.Id, forKey: "Id")
@@ -118,6 +116,7 @@ class YayMgr {
         defaults.setBool(userSettings.hasSound, forKey: "hasSound")
     }
     
+    // NSUserDefaults: load info
     static func loadDefaults() {
         let defaults = NSUserDefaults.standardUserDefaults()
         let Id = defaults.integerForKey("Id")
@@ -141,6 +140,12 @@ class YayMgr {
         
     }
     
+    // Remove
+    // (1) all listeners to Firebase refrences
+    // (2) owner's posts, friends' posts
+    // (3) Yay and Boo messages
+    // (4) Friends' ids
+    // (5) stop HealthKit observing
     static func logOut() {
         
         loaded = false
@@ -148,7 +153,6 @@ class YayMgr {
         
         myPosts.removeAll(); FrPosts.removeAll()
         YayMsg.removeAll(); BooMsg.removeAll()
-        
         friendsIDs.removeAll()
         
         HealthManager.stopObservingFloorsChanges()

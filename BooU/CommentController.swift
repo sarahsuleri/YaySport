@@ -10,7 +10,6 @@ import UIKit
 
 class CommentController: UIViewController, UITextViewDelegate {
     
-    
     @IBOutlet weak var textView: UITextView!
 
     override func viewDidLoad() {
@@ -26,18 +25,21 @@ class CommentController: UIViewController, UITextViewDelegate {
         textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
     }
     
-    
+    // Type comment text in the text view
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
         let currentText: NSString = textView.text
+        // Replace current text
         let updatedText = currentText.stringByReplacingCharactersInRange(range, withString: text)
         
+        // If the text is empty string, put placeholder
         if updatedText.isEmpty {
             textView.text = "Add your comment"
             textView.textColor = UIColor.lightGrayColor()
             textView.selectedTextRange = textView.textRangeFromPosition(textView.beginningOfDocument, toPosition: textView.beginningOfDocument)
             return false
         }
+        // Otherwise, type in black color
         else if textView.textColor == UIColor.lightGrayColor() && !text.isEmpty {
             textView.text = nil
             textView.textColor = UIColor.blackColor()
@@ -45,7 +47,8 @@ class CommentController: UIViewController, UITextViewDelegate {
         return true
     }
     
-    
+    // Don't allow to put the cursor anywhere except from the beginning of
+    // placeholder text
     func textViewDidChangeSelection(textView: UITextView) {
         if self.view.window != nil {
             if textView.textColor == UIColor.lightGrayColor() {
@@ -66,15 +69,18 @@ class CommentController: UIViewController, UITextViewDelegate {
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "CommentSaveSegue" {
+            // Pass new comment to the previous contoller
             let comment = Comment(Commentor: YayMgr.owner, Comment: textView.text.stringByReplacingOccurrencesOfString("\n", withString: " "), Timestamp: NSDate().timeIntervalSince1970)
           
             let controller = segue.destinationViewController as! PostDetailController
             controller.newCom = comment
         }
     }
+    
+    
+    // Unwind segue functions
     
     @IBAction func cancel(segue: UIStoryboardSegue) {
         

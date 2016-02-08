@@ -58,10 +58,14 @@ class DBMgr {
         refArray.append(postsRef)
     }
     
+    // Parsing function from Firebase Post snapshot dict to Post object
     static func parseFToPost(snapshot: FDataSnapshot) -> Post {
         let pDic = snapshot.value["Poster"] as! NSDictionary
+        
+        // Poster
         let poster : User = User(Id: pDic["Id"] as! Int, FirstName: pDic["FirstName"] as! String, LastName: pDic["LastName"]as! String, PhotoUrl: pDic["PhotoUrl"]as! String)
         
+        // Comments
         var comments : [Comment] = []
         if let cDic = snapshot.value["Comments"] as? NSDictionary {
             for com in cDic.allValues {
@@ -71,21 +75,26 @@ class DBMgr {
             comments.sortInPlace({$0.Timestamp < $1.Timestamp})
         }
         
+        // Message
         let mDic = snapshot.value["Text"] as! NSDictionary
         let message : Message = Message(Title: mDic["Title"] as! String, Description: mDic["Description"] as! String, Yay: mDic["Yay"] as! Bool)
         
+        // Points
         var points : [Int] = []
         if let pointsDic = snapshot.value["Points"] as! [Int]? {
             points = pointsDic
         }
         
+        // Timestamp
         let timeInt = snapshot.value["Timestamp"] as! NSTimeInterval
-
+        
+        // Finally, initialize Post
         let post : Post = Post(Poster: poster, Points: points, Comments: comments, Text: message, Timestamp: timeInt)
         post.DBIndex = snapshot.key
         return post
     }
     
+    // Get all Yay and Boo messages, make Title empty
     static func getMessages() {
         let msgRef = ref.childByAppendingPath("messages")
         msgRef.observeEventType(.Value, withBlock: { snapshot in
@@ -102,7 +111,7 @@ class DBMgr {
         refArray.append(msgRef)
     }
     
-    
+    // +1 Point
     static func addPoint(post: Post) {
         post.Points.append(YayMgr.owner.Id)
         let pointsRef = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/\(post.DBIndex)/Points")
@@ -110,6 +119,7 @@ class DBMgr {
         refArray.append(pointsRef)
     }
     
+    // -1 Point
     static func removePoint(post: Post) {
         post.Points = post.Points.filter() {$0 != YayMgr.owner.Id}
         let pointsRef = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/\(post.DBIndex)/Points")
@@ -117,12 +127,14 @@ class DBMgr {
         refArray.append(pointsRef)
     }
     
+    // Add comment to specific Post
     static func addComment(comment: Comment, post: Post) {
         let commentsRef = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/\(post.DBIndex)/Comments").childByAutoId()
         commentsRef.setValue( convertStringToDictionary(JSONSerializer.toJson(comment)) )
         refArray.append(commentsRef)
     }
     
+    // Delete all listeners
     static func removeAllObservers() {
         for ref in refArray {
             ref.removeAllObservers()

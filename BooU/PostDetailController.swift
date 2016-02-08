@@ -37,9 +37,11 @@ class PostDetailController: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        // Scroll to the last comment to the post
         self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.tableView.numberOfRowsInSection(0) - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
     }
     
+    // Post either friend's post or owner's post
     func setItemDetailObject(){
         if(MyActivity == true){
             detailItem = YayMgr.myPosts[detailItemIndex]
@@ -48,6 +50,11 @@ class PostDetailController: UITableViewController {
             detailItem = YayMgr.FrPosts[detailItemIndex]
         }
     }
+    
+    // Three options:
+    // (1) owner's post as first row
+    // (2) friend's post as first row
+    // (3) comments as other rows
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell : UITableViewCell!
         if(indexPath.row == 0){
@@ -109,7 +116,7 @@ class PostDetailController: UITableViewController {
     }
     
 
-
+    // +1 Yay or +1 Boo in case of friend's post
     func pointClick(sender: UIButton){
         playSound(YayMgr.FrPosts[Int(sender.accessibilityValue!)!].Text.Yay)
         YayMgr.addPoint(Int(sender.accessibilityValue!)!)
@@ -129,6 +136,7 @@ class PostDetailController: UITableViewController {
         
     }
     
+    // Add comment
     @IBAction func post(segue: UIStoryboardSegue) {
         YayMgr.addComment(newCom, index: detailItemIndex, isMyactivity: MyActivity)
     }

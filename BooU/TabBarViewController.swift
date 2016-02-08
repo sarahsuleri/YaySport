@@ -16,6 +16,7 @@ class TabBarViewController: UITabBarController {
         
     }
     
+    // Start loading before first tab View Controller is loaded and appears
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         YayMgr.load()

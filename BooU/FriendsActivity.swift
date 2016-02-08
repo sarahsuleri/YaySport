@@ -12,11 +12,13 @@ import AVFoundation
 class FriendsActivity: UITableViewController {
     
     var noPostPic: UIImageView!
-    var timer: NSTimer!
+    var timer: NSTimer!             // timer to wait: if loading posts OR there're no posts?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // FrPosts is an observable collection
         YayMgr.FrPosts.observe { e in
+            // Fire timer in 2 sec. Supposedly, all data will be loaded
             self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "hidePostPic", userInfo: nil, repeats: false)
             self.tableView.reloadData()
         }
@@ -24,9 +26,12 @@ class FriendsActivity: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        YayMgr.FrPosts.observe { e in
+            self.tableView.reloadData()
+        }
     }
     
+    // If there was no data, then show "no posts" picture
     func hidePostPic() {
         noPostPic.hidden = (YayMgr.FrPosts.count > 0) ? true : false
         timer.invalidate()
@@ -39,6 +44,7 @@ class FriendsActivity: UITableViewController {
         return populateFriendPost(indexPath.row,isMyActivity: false, cell: cell)
     }
     
+    // +1 Yay or +1 Boo
     func pointClick(sender: UIButton){
        playSound(YayMgr.FrPosts[Int(sender.accessibilityValue!)!].Text.Yay)
        YayMgr.addPoint(Int(sender.accessibilityValue!)!)
@@ -53,10 +59,12 @@ class FriendsActivity: UITableViewController {
         return YayMgr.FrPosts.count
     }
     
+    // Show Friends Activity = Show Comments to Friends' post
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowFriendsActivityDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let controller = (segue.destinationViewController as! ContainerController)
+                // Pass necessary parameters to Container Controller
                 controller.MyActivity = false;
                 controller.detailItemIndex = indexPath.row
                 controller.circleColor = YayMgr.FrPosts[indexPath.row].Text.Yay ? UIColor.Yay() : UIColor.Boo()

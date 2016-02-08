@@ -46,9 +46,9 @@ class DBMgr {
             
             let post = parseFToPost(snapshot)
             if (isMyActivity == true){
-                var index = YayMgr.myPosts.indexOf({$0.Timestamp > post.Timestamp})
-                index = index == nil ? 0 : index
-                YayMgr.myPosts.insert(post, atIndex: index!)
+                var index = YayMgr.myPosts.indexOf({$0.Timestamp < post.Timestamp})
+                index = index == nil ? -1 : index
+                index == -1 ? YayMgr.myPosts.append(post) : YayMgr.myPosts.insert(post, atIndex: index!)
             } else {
                 var index = YayMgr.FrPosts.indexOf({$0.Timestamp < post.Timestamp})
                 index = index == nil ? -1 : index

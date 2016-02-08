@@ -12,6 +12,7 @@ class MyActivity: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // myPosts is an observable collection
         YayMgr.myPosts.observe { e in
             self.tableView.reloadData()
         }
@@ -24,10 +25,13 @@ class MyActivity: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
+        YayMgr.myPosts.observe { e in
+            self.tableView.reloadData()
+        }
         //let post : Post = Post(Poster: YayMgr.owner, Points: [1], Comments: [], Text: m3, Timestamp: NSDate().timeIntervalSince1970)
         //DBMgr.addPost(post)
     }
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
        
@@ -54,6 +58,8 @@ class MyActivity: UITableViewController {
         
         return YayMgr.myPosts.count
     }
+    
+    // Show My Activity = Show Comments to owner's posts
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowMyActivityDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {

@@ -155,6 +155,8 @@
 				233FDFD91C41BE8300F81A6A /* DummyData.swift */,
 				D261EC8E1C466F0100EF539D /* BridgingHeader.h */,
 				236E82341C58E5CA003E7A7D /* UIUtils.swift */,
+				4379A2F91C5D1B9E00BE0735 /* CircleButton.swift */,
+				D2D34B271C639D1D008908B2 /* HeaderCell.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -165,7 +167,6 @@
 				233FDFD71C41BE6E00F81A6A /* YayMgr.swift */,
 				2652F7B21C4AA1A800214489 /* HealthManager.swift */,
 				236E82361C58FF6F003E7A7D /* DBMgr.swift */,
-				D2D34B271C639D1D008908B2 /* HeaderCell.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -174,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				D22363951C5D24F800404C46 /* Main.storyboard */,
-				4379A2F91C5D1B9E00BE0735 /* CircleButton.swift */,
 				43520C961C2FDBAF00FACD63 /* Assets.xcassets */,
 				43520C981C2FDBAF00FACD63 /* LaunchScreen.storyboard */,
 			);

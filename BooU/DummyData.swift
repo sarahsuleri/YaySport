@@ -19,10 +19,10 @@ var u5 = User(Id: 23156,FirstName: "Raghad",LastName: "Do",PhotoUrl: "http://dow
 var u6 = User(Id: 23156,FirstName: "Omar",LastName: "Do",PhotoUrl: "http://download1.acadox.net/user/8451/50.jpg?v=1")
 var u7 = User(Id: 23156,FirstName: "Steph",LastName: "Do",PhotoUrl: "http://download8.acadox.net/user/8738/50.jpg?v=2")
 
-var m0 = Message(Title: "100 Step", Description: "Great Work", Yay: true)
-var m1 = Message(Title: "2 Step", Description: "When your friends tell you look good, ditch them, they are all a bunch of liars", Yay: false)
-var m2 = Message(Title: "300 floor", Description: "At this rate you will reach heaven", Yay: true)
-var m3 = Message(Title: "1 Miles", Description: "We see that you found your soulmate, Your couch. When is the wedding ", Yay: false)
+var m0 = Message(Title: "100 Steps", Description: "Great Work", Yay: true)
+var m1 = Message(Title: "5194 Steps", Description: "You have done remarkably well ! Bravo !", Yay: false)
+var m2 = Message(Title: "0 floors", Description: "Bigger snacks means bigger slacks !", Yay: false)
+var m3 = Message(Title: "0 Miles", Description: "Run like Channing Tatum is waiting for you at the finish line !", Yay: false)
 
 /*
 var c0 = Comment(Commentor: u1, Comment: "Bla Bla")

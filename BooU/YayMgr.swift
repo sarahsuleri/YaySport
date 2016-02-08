@@ -32,13 +32,14 @@ class YayMgr {
         loadDefaults()
         if(loaded == false && owner.Id != 0) {
             loaded = true
-            
+            print("Owner id: ", owner.Id)
             DBMgr.getMessages()
             DBMgr.getPostByPosterID(owner.Id)
             
             for friend in friendsIDs {
                 DBMgr.getPostByPosterID(friend,isMyActivity: false)
             }
+            //YayMgr.FrPosts = YayMgr.FrPosts.sort({$0.Timestamp > $1.Timestamp})
             
             
                 HealthManager.startObservingStepsChanges()

@@ -50,11 +50,9 @@ class DBMgr {
                 index = index == nil ? 0 : index
                 YayMgr.myPosts.insert(post, atIndex: index!)
             } else {
-                //var index = YayMgr.FrPosts.indexOf({$0.Timestamp > post.Timestamp})
-                //index = index == nil ? 0 : index
-                //YayMgr.FrPosts.insert(post, atIndex: index!)
-                YayMgr.FrPosts.append(post)
-                YayMgr.FrPosts = YayMgr.FrPosts.sort({$0.Timestamp > $1.Timestamp})
+                var index = YayMgr.FrPosts.indexOf({$0.Timestamp < post.Timestamp})
+                index = index == nil ? -1 : index
+                index == -1 ? YayMgr.FrPosts.append(post) : YayMgr.FrPosts.insert(post, atIndex: index!)
             }
         })
         refArray.append(postsRef)

@@ -11,16 +11,18 @@ import Firebase
 
 class DBMgr {
 
-    
+    // Declare Firebase reference and array of its listeners
     static let ref = Firebase(url:  "https://yaysport.firebaseio.com")
     static var refArray = [ref]
     
+    // Add Post to Firebase
     static func addPost(post : Post) {
         let postAutoId = ref.childByAppendingPath("users/\(post.Poster.Id)/posts/").childByAutoId()
         postAutoId.setValue( convertStringToDictionary(JSONSerializer.toJson(post)) )
         refArray.append(postAutoId)
     }
     
+    // Change an existing Post knowing its Poster's id
     static func changePostByPosterID(Id : Int, isMyActivity : Bool = true ) {
         let postsRef = ref.childByAppendingPath("users/\(Id)/posts/")
         postsRef.observeEventType(.ChildChanged, withBlock: { snapshot in
@@ -36,6 +38,7 @@ class DBMgr {
         refArray.append(postsRef)
     }
     
+    // Get Post by Poster id (use: when want to get all friends' posts or my posts)
     static func getPostByPosterID(Id : Int, isMyActivity : Bool = true ) {
         changePostByPosterID(Id,isMyActivity: isMyActivity)
       let postsRef = ref.childByAppendingPath("users/\(Id)/posts/")
@@ -47,11 +50,12 @@ class DBMgr {
                 index = index == nil ? 0 : index
                 YayMgr.myPosts.insert(post, atIndex: index!)
             } else {
-                var index = YayMgr.FrPosts.indexOf({$0.Timestamp > post.Timestamp})
-                index = index == nil ? 0 : index
-                YayMgr.FrPosts.insert(post, atIndex: index!)
+                //var index = YayMgr.FrPosts.indexOf({$0.Timestamp > post.Timestamp})
+                //index = index == nil ? 0 : index
+                //YayMgr.FrPosts.insert(post, atIndex: index!)
+                YayMgr.FrPosts.append(post)
+                YayMgr.FrPosts = YayMgr.FrPosts.sort({$0.Timestamp > $1.Timestamp})
             }
-
         })
         refArray.append(postsRef)
     }

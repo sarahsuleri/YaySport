@@ -37,7 +37,7 @@ class YayMgr {
             DBMgr.getPostByPosterID(owner.Id)
             
             for friend in friendsIDs {
-                DBMgr.getPostByPosterID(friend,isMyActivity: false);
+                DBMgr.getPostByPosterID(friend,isMyActivity: false)
             }
             
             

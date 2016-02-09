@@ -585,7 +585,7 @@
             <objects>
                 <tableViewController id="sDB-wy-r92" customClass="PostDetailController" customModule="BooU" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xvr-2H-VGA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -941,13 +941,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CDX-27-h4H">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="-64" width="600" height="724"/>
                                 <connections>
                                     <segue destination="sDB-wy-r92" kind="embed" identifier="ShowComments" id="f0Q-aP-Zoj"/>
                                 </connections>
                             </containerView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noComments" translatesAutoresizingMaskIntoConstraints="NO" id="NTZ-xW-1En">
-                                <rect key="frame" x="0.0" y="185" width="600" height="430"/>
+                                <rect key="frame" x="0.0" y="185" width="600" height="415"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcD-EJ-0BF" customClass="CircleButton" customModule="BooU" customModuleProvider="target">
@@ -963,11 +963,11 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="NTZ-xW-1En" secondAttribute="bottom" constant="-15" id="OHr-Sf-byP"/>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="bottom" secondItem="utZ-aH-bhq" secondAttribute="top" id="PMI-pa-rYB"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="NTZ-xW-1En" secondAttribute="bottom" id="OHr-Sf-byP"/>
+                            <constraint firstItem="CDX-27-h4H" firstAttribute="bottom" secondItem="utZ-aH-bhq" secondAttribute="top" constant="60" id="PMI-pa-rYB"/>
                             <constraint firstItem="utZ-aH-bhq" firstAttribute="top" secondItem="WcD-EJ-0BF" secondAttribute="bottom" constant="69" id="Ph7-FY-QuZ"/>
                             <constraint firstItem="CDX-27-h4H" firstAttribute="trailing" secondItem="NTZ-xW-1En" secondAttribute="trailing" id="WPe-Pi-hig"/>
-                            <constraint firstItem="CDX-27-h4H" firstAttribute="top" secondItem="DGA-5W-ghV" secondAttribute="bottom" id="fPZ-SK-PDc"/>
+                            <constraint firstItem="CDX-27-h4H" firstAttribute="top" secondItem="DGA-5W-ghV" secondAttribute="bottom" constant="-64" id="fPZ-SK-PDc"/>
                             <constraint firstAttribute="trailing" secondItem="CDX-27-h4H" secondAttribute="trailing" id="jRy-Rh-9dv"/>
                             <constraint firstItem="NTZ-xW-1En" firstAttribute="top" secondItem="DGA-5W-ghV" secondAttribute="bottom" constant="185" id="nOt-UT-r1j"/>
                             <constraint firstItem="CDX-27-h4H" firstAttribute="leading" secondItem="Ugw-rX-4Sq" secondAttribute="leading" id="ngE-tt-gud"/>

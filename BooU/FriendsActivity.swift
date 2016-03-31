@@ -27,7 +27,7 @@ class FriendsActivity: UITableViewController {
         // FrPosts is an observable collection
         YayMgr.FrPosts.observe { e in
             // Fire timer in 3 sec. Supposedly, all data will be loaded
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: "hidePostPic", userInfo: nil, repeats: false)
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(FriendsActivity.hidePostPic), userInfo: nil, repeats: false)
             self.tableView.reloadData()
         }
     }
@@ -41,7 +41,7 @@ class FriendsActivity: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
         let btn = cell.contentView.viewWithTag(20) as! UIButton
-        btn.addTarget(self, action: "pointClick:", forControlEvents: .TouchUpInside)
+        btn.addTarget(self, action: #selector(FriendsActivity.pointClick(_:)), forControlEvents: .TouchUpInside)
         return populateFriendPost(indexPath.row,isMyActivity: false, cell: cell)
     }
     

@@ -65,7 +65,7 @@ class PostDetailController: UITableViewController {
             else {
                 cell = tableView.dequeueReusableCellWithIdentifier("fPost", forIndexPath: indexPath) as UITableViewCell
                 let btn = cell.contentView.viewWithTag(20) as! UIButton
-                btn.addTarget(self, action: "pointClick:", forControlEvents: .TouchUpInside)
+                btn.addTarget(self, action: #selector(PostDetailController.pointClick(_:)), forControlEvents: .TouchUpInside)
                 populateFriendPost(detailItemIndex,isMyActivity: false,cell: cell)
             }
         }

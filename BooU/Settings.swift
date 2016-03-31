@@ -41,7 +41,7 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
             field.tag = count
             field.delegate = self
             field.keyboardType = .NumberPad
-            count++
+            count += 1
         }
         
         
@@ -55,7 +55,7 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
         maxFloors.placeholder = String(YayMgr.userSettings.maxFloors) + " floors"
         
         soundSwitch.setOn(Bool(YayMgr.userSettings.hasSound), animated: true)
-        soundSwitch.addTarget(self, action: "soundSwitchChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        soundSwitch.addTarget(self, action: #selector(Settings.soundSwitchChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
 
 
         FBLogout.delegate = self
@@ -74,7 +74,7 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
         keyboardDoneButtonView.sizeToFit()
         
         // Setup the buttons to be put in the system.
-        let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("done") )
+        let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(Settings.done) )
         let toolbarButtons = [item]
         
         //Put the buttons into the ToolBar and display the tool bar
@@ -90,7 +90,7 @@ class Settings: UITableViewController, UITextFieldDelegate, FBSDKLoginButtonDele
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         let invalidCharacters = NSCharacterSet(charactersInString: "0123456789").invertedSet
-        let str = string.rangeOfCharacterFromSet(invalidCharacters, range:Range<String.Index>(start: string.startIndex, end: string.endIndex))
+        let str = string.rangeOfCharacterFromSet(invalidCharacters, range:Range<String.Index>(string.startIndex ..< string.endIndex))
         if str != nil || (textField.text?.characters.count > 10)
         {
             return false
